@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[max]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>max</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Mon, 30 Sep 2024 07:08:17 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 30 Sep 2024 07:08:14 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Advanced Hyperparameter Tuning]]></title><description><![CDATA[<a class="tag" href="?query=tag:advance" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#advance</a> <a class="tag" href="?query=tag:hyperparameter" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#hyperparameter</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:optuna" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#optuna</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> <a class="tag" href="?query=tag:tuning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tuning</a> 
+ <br> <a href=".?query=tag:advance" class="tag" target="_blank" rel="noopener">#advance</a> <a href=".?query=tag:hyperparameter" class="tag" target="_blank" rel="noopener">#hyperparameter</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:optuna" class="tag" target="_blank" rel="noopener">#optuna</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a> <a href=".?query=tag:tuning" class="tag" target="_blank" rel="noopener">#tuning</a><br>Optuna is a hyperparameter optimization framework that automates the search for the optimal hyperparameters of machine learning models. It uses an efficient and adaptable approach based on the idea of Bayesian optimization.<br>import optuna
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define objective function
+def objective(trial):
+    # Define hyperparameters to be tuned
+    n_estimators = trial.suggest_int('n_estimators', 50, 200)
+    max_depth = trial.suggest_categorical('max_depth', [None, 5, 10])
+    min_samples_split = trial.suggest_int('min_samples_split', 2, 10)
+    min_samples_leaf = trial.suggest_int('min_samples_leaf', 1, 5)
+
+    # Create Random Forest Classifier with hyperparameters
+    rf = RandomForestClassifier(
+        n_estimators=n_estimators,
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        min_samples_leaf=min_samples_leaf
+    )
+
+    # Evaluate model using cross-validation
+    score = cross_val_score(rf, X, y, cv=5, n_jobs=-1)
+    return score.mean()  # Return the mean cross-validation score
+
+# Create Optuna study object
+study = optuna.create_study(direction='maximize')
+
+# Optimize objective function
+study.optimize(objective, n_trials=100)
+
+# Best parameters and best score
+print("Best Parameters:", study.best_params)
+print("Best Score:", study.best_value)
+Copy]]></description><link>blog\advanced-hyperparameter-tuning.html</link><guid isPermaLink="false">Blog/Advanced Hyperparameter Tuning.md</guid><pubDate>Sun, 29 Sep 2024 09:53:15 GMT</pubDate></item><item><title><![CDATA[Classification using Tree Models]]></title><description><![CDATA[<a class="tag" href="?query=tag:binary" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#binary</a> <a class="tag" href="?query=tag:classification" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#classification</a> <a class="tag" href="?query=tag:decission" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#decission</a> <a class="tag" href="?query=tag:ensamble" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ensamble</a> <a class="tag" href="?query=tag:forest" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#forest</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> <a class="tag" href="?query=tag:tree" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tree</a> 
+ <br> <a href=".?query=tag:binary" class="tag" target="_blank" rel="noopener">#binary</a> <a href=".?query=tag:classification" class="tag" target="_blank" rel="noopener">#classification</a> <a href=".?query=tag:decission" class="tag" target="_blank" rel="noopener">#decission</a> <a href=".?query=tag:ensamble" class="tag" target="_blank" rel="noopener">#ensamble</a> <a href=".?query=tag:forest" class="tag" target="_blank" rel="noopener">#forest</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a> <a href=".?query=tag:tree" class="tag" target="_blank" rel="noopener">#tree</a><br>import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+import xgboost as xgb
+from catboost import CatBoostClassifier
+import lightgbm as lgb
+from sklearn.metrics import accuracy_score, classification_report
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Decision Tree
+dt_classifier = DecisionTreeClassifier(random_state=42)
+dt_classifier.fit(X_train, y_train)
+dt_predictions = dt_classifier.predict(X_test)
+dt_accuracy = accuracy_score(y_test, dt_predictions)
+print("Decision Tree Accuracy:", dt_accuracy)
+
+# Gradient Boosting
+gb_classifier = GradientBoostingClassifier(n_estimators=100, random_state=42)
+gb_classifier.fit(X_train, y_train)
+gb_predictions = gb_classifier.predict(X_test)
+gb_accuracy = accuracy_score(y_test, gb_predictions)
+print("Gradient Boosting Accuracy:", gb_accuracy)
+
+# XGBoost
+xgb_classifier = xgb.XGBClassifier(random_state=42)
+xgb_classifier.fit(X_train, y_train)
+xgb_predictions = xgb_classifier.predict(X_test)
+xgb_accuracy = accuracy_score(y_test, xgb_predictions)
+print("XGBoost Accuracy:", xgb_accuracy)
+
+# CatBoost
+catboost_classifier = CatBoostClassifier(random_state=42, verbose=False)
+catboost_classifier.fit(X_train, y_train)
+catboost_predictions = catboost_classifier.predict(X_test)
+catboost_accuracy = accuracy_score(y_test, catboost_predictions)
+print("CatBoost Accuracy:", catboost_accuracy)
+
+# LightGBM
+lgb_classifier = lgb.LGBMClassifier(random_state=42)
+lgb_classifier.fit(X_train, y_train)
+lgb_predictions = lgb_classifier.predict(X_test)
+lgb_accuracy = accuracy_score(y_test, lgb_predictions)
+print("LightGBM Accuracy:", lgb_accuracy)
+
+Copy]]></description><link>blog\classification-using-tree-models.html</link><guid isPermaLink="false">Blog/Classification using Tree Models.md</guid><pubDate>Sun, 29 Sep 2024 09:53:35 GMT</pubDate></item><item><title><![CDATA[<strong>K-Means Clustering</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:clustering" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#clustering</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:means" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#means</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:unsupervised" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#unsupervised</a> 
+ <br><a href=".?query=tag:clustering" class="tag" target="_blank" rel="noopener">#clustering</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:means" class="tag" target="_blank" rel="noopener">#means</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:unsupervised" class="tag" target="_blank" rel="noopener">#unsupervised</a><br><br>K-Means clustering is a partitioning-based clustering algorithm that aims to partition data into K clusters, where each data point belongs to the cluster with the nearest mean (centroid). Here's how it works:<br>
+<br>Initialization: Randomly initialize K centroids.
+<br>Assignment: Assign each data point to the nearest centroid, forming K clusters.
+<br>Update Centroids: Recalculate the centroids of each cluster as the mean of all data points assigned to that cluster.
+<br>Repeat: Iterate steps 2 and 3 until convergence, i.e., when the centroids no longer change significantly or a predefined number of iterations is reached.
+<br>from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Generate sample data
+X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=0)
+
+# Perform K-Means clustering
+kmeans = KMeans(n_clusters=4)
+kmeans.fit(X)
+y_kmeans = kmeans.predict(X)
+
+# Visualize the clusters
+plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
+
+centers = kmeans.cluster_centers_
+plt.scatter(centers[:, 0], centers[:, 1], c='red', s=200, alpha=0.75)
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.title('K-Means Clustering')
+plt.show()
+
+Copy<br><br>Hierarchical clustering is a method of cluster analysis that builds a hierarchy of clusters. It does not require specifying the number of clusters beforehand. Here's how it works:<br>
+<br>Initialization: Start with each data point as a singleton cluster.
+<br>Merge: Iteratively merge the two closest clusters until only one cluster remains, forming a hierarchy or dendrogram.
+<br>Dendrogram Cutting: Cut the dendrogram at a certain height to determine the number of clusters.
+<br>Cluster Formation: Assign each data point to a cluster based on the cutting point.
+<br>from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+
+# Generate sample data
+X = [[i] for i in [2, 8, 0, 4, 1, 9, 9, 0]]
+
+# Perform Hierarchical Clustering
+linked = linkage(X, 'single')
+
+# Plot dendrogram
+plt.figure(figsize=(10, 5))
+dendrogram(linked, orientation='top', distance_sort='descending', show_leaf_counts=True)
+plt.title('Hierarchical Clustering Dendrogram')
+plt.xlabel('Sample Index')
+plt.ylabel('Distance')
+plt.show()
+
+Copy]]></description><link>blog\clustering.html</link><guid isPermaLink="false">Blog/Clustering.md</guid><pubDate>Sun, 29 Sep 2024 09:53:56 GMT</pubDate></item><item><title><![CDATA[EDA]]></title><description><![CDATA[<a class="tag" href="?query=tag:analysis" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#analysis</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:eda" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#eda</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> 
+ <br><a href=".?query=tag:analysis" class="tag" target="_blank" rel="noopener">#analysis</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:eda" class="tag" target="_blank" rel="noopener">#eda</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a><br><br>This involves obtaining the data from various sources such as databases, APIs, CSV files, Excel files, etc. The goal is to gather all the relevant data needed for analysis.<br>import pandas as pd
+
+# Reading data from a CSV file
+data = pd.read_csv('example_dataset.csv')
+
+# Displaying the first few rows of the dataset
+print(data.head())
+
+Copy<br><br>Data cleaning involves handling missing values, removing duplicates, dealing with outliers, and transforming the data into a usable format. This ensures the data is accurate and consistent.<br># Handling missing values
+data.dropna(inplace=True)
+
+# Removing duplicates
+data.drop_duplicates(inplace=True)
+
+# Dealing with outliers (example: replacing outliers with median)
+median = data['column_name'].median()
+data['column_name'] = data['column_name'].apply(lambda x: median if x &gt; upper_bound else x)
+
+Copy<br><br>Univariate analysis focuses on examining the distribution and characteristics of individual variables. This includes calculating summary statistics, visualizing distributions, and identifying patterns.<br>import matplotlib.pyplot as plt
+
+# Summary statistics
+print(data['column_name'].describe())
+
+# Histogram to visualize distribution
+plt.hist(data['column_name'], bins=20)
+plt.xlabel('Variable')
+plt.ylabel('Frequency')
+plt.title('Histogram of Variable')
+plt.show()
+
+Copy<br><br>Bivariate analysis explores the relationship between two variables. It helps in understanding how one variable affects the other and if there is any correlation or association between them.<br># Scatter plot to visualize relationship between two variables
+plt.scatter(data['variable1'], data['variable2'])
+plt.xlabel('Variable 1')
+plt.ylabel('Variable 2')
+plt.title('Scatter Plot of Variable 1 vs Variable 2')
+plt.show()
+
+# Correlation matrix
+correlation_matrix = data.corr()
+print(correlation_matrix)
+
+Copy]]></description><link>blog\eda.html</link><guid isPermaLink="false">Blog/EDA.md</guid><pubDate>Sun, 29 Sep 2024 09:54:10 GMT</pubDate></item><item><title><![CDATA[<strong>Random Forests</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:decission" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#decission</a> <a class="tag" href="?query=tag:ensamble" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ensamble</a> <a class="tag" href="?query=tag:forest" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#forest</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:random" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#random</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> 
+ <br><a href=".?query=tag:decission" class="tag" target="_blank" rel="noopener">#decission</a> <a href=".?query=tag:ensamble" class="tag" target="_blank" rel="noopener">#ensamble</a> <a href=".?query=tag:forest" class="tag" target="_blank" rel="noopener">#forest</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:random" class="tag" target="_blank" rel="noopener">#random</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a><br><br>A Random Forest is an ensemble learning method that combines multiple decision trees to create a more robust and accurate predictor. It leverages the idea of "wisdom of the crowd" where averaging predictions from diverse trees reduces variance and improves generalization.<br>
+<br>Uses bagging (bootstrap aggregating) to train individual decision trees on random subsets of data with random feature selection at each split.
+<br>Each tree votes on the final prediction, with the majority class being the ensemble's prediction (for classification) or the average prediction (for regression).
+<br>Enhances model stability and reduces overfitting compared to a single decision tree.
+<br>from sklearn.ensemble import RandomForestClassifier
+
+# Create a Random Forest classifier with 100 trees
+clf = RandomForestClassifier(n_estimators=100)
+
+# Train the model on your data
+clf.fit(X_train, y_train)
+
+# Make predictions on new data
+predictions = clf.predict(X_test)
+Copy<br><br>A technique for reducing variance in machine learning models by training multiple models on different subsets of data with replacement (i.e., some samples may appear in multiple subsets). By averaging the predictions from these models, the overall prediction is less sensitive to fluctuations in the training data.<br>
+<br>Creates diversity among the base models by using different data subsets.
+<br>Particularly effective for reducing variance in unstable models like decision trees.
+<br>Used in Random Forests and other ensemble methods.
+<br># Same as above XD
+Copy<br><br>A sequential ensemble method where each new model in the sequence learns from the errors of the previous model. The goal is to progressively improve the overall prediction accuracy by focusing on the data points that the earlier models misclassified.<br>
+<br>Models are built sequentially, with each model fitting the residuals (errors) of the previous model.
+<br>Weights are assigned to data points, increasing weights for misclassified points to give them more focus in subsequent models.
+<br>Can be more prone to overfitting than bagging if not carefully tuned.
+<br>Examples of boosting algorithms include AdaBoost and Gradient Boosting.
+<br>from sklearn.ensemble import GradientBoostingClassifier
+
+# Create a Gradient Boosting classifier with 100 trees and a learning rate of 0.1
+gbr = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
+
+# Train the model on your data
+gbr.fit(X_train, y_train)
+
+# Make predictions on new data
+predictions = gbr.predict(X_test)
+Copy<br><br>A specific type of boosting algorithm that uses a gradient descent-like approach to minimize loss function. It iteratively builds decision trees, focusing on correcting the errors of the previous trees.<br>
+<br>Utilizes decision trees as weak learners (simple models).
+<br>Employs a loss function to measure prediction errors.
+<br>Each subsequent tree attempts to correct the errors made by the previous one.
+<br>Popular algorithm for regression and classification tasks.<br>
+The provided Python code demonstrates Gradient Boosting using GradientBoostingClassifier. This is a powerful and versatile ensemble method.
+<br><br>
+<br>If reducing variance (model instability) is your primary concern, bagging is a good choice.
+<br>If you need a more powerful model that can potentially achieve lower bias (underfitting), boosting might be preferable. However, be cautious of overfitting and tune the learning rate carefully.
+]]></description><link>blog\ensemble-learning.html</link><guid isPermaLink="false">Blog/Ensemble Learning.md</guid><pubDate>Sun, 29 Sep 2024 09:54:31 GMT</pubDate></item><item><title><![CDATA[<strong>How KNN Works</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:basic" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#basic</a> <a class="tag" href="?query=tag:blog" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#blog</a> <a class="tag" href="?query=tag:distance" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#distance</a> <a class="tag" href="?query=tag:knn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#knn</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> 
+ <br> <a href=".?query=tag:basic" class="tag" target="_blank" rel="noopener">#basic</a> <a href=".?query=tag:blog" class="tag" target="_blank" rel="noopener">#blog</a> <a href=".?query=tag:distance" class="tag" target="_blank" rel="noopener">#distance</a> <a href=".?query=tag:knn" class="tag" target="_blank" rel="noopener">#knn</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a><br>K-Nearest Neighbors (KNN) stands out as a foundational algorithm in the realm of machine learning, cherished for its simplicity and effectiveness in both classification and regression tasks. In this comprehensive guide, we’ll embark on a journey through the fundamentals of KNN, dive into its inner workings, provide a hands-on implementation in Python, and offer practical tips for maximizing its potential in real-world applications.<br><br>At the heart of KNN lies a simple yet powerful concept: similarity. When presented with a new data point, KNN identifies its nearest neighbors in the training dataset and assigns it a label based on the most prevalent class among those neighbors. The process can be summarized as follows:<br>
+<br>Distance Calculation: KNN computes the distance between the new data point and all other points in the training set. Common distance metrics include Euclidean, Manhattan, and Minkowski distances.
+<br>Finding Neighbors: It then selects the K nearest neighbors with the smallest distances to the new data point.
+<br>Majority Voting: For classification tasks, KNN takes a majority vote among the K neighbors to determine the class label of the new data point. In regression tasks, it averages the values of the K nearest neighbors to predict the target value.
+<br><br>The choice of K plays a pivotal role in the performance of the KNN algorithm. A smaller K value can lead to overly complex decision boundaries, prone to overfitting, while a larger K value may oversmooth the boundaries, resulting in underfitting. Striking a balance between bias and variance is essential, often achieved through cross-validation and hyperparameter tuning.<br><br>Let’s walk through a step-by-step implementation of KNN using Python and the renowned machine learning library, scikit-learn. For this demonstration, we’ll utilize the classic Iris dataset, which contains features of iris flowers along with their corresponding species.<br># Importing necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+ 
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+ 
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+ 
+# Initialize the KNN classifier
+knn = KNeighborsClassifier(n_neighbors=3)
+ 
+# Train the classifier
+knn.fit(X_train, y_train)
+ 
+# Make predictions on the test data
+y_pred = knn.predict(X_test)
+ 
+# Calculate the accuracy of the model
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+Copy<br><br>
+<br>Feature Scaling: Since KNN relies heavily on distance metrics, it’s imperative to scale the features to a similar range to prevent certain features from dominating the distance calculation.
+<br>Handling Imbalanced Data: In scenarios where classes are unevenly distributed, employing techniques such as oversampling, undersampling, or adjusting class weights can mitigate the impact of class imbalance on KNN’s performance.
+<br>Choosing Distance Metric: The choice of distance metric depends on the nature of the data. While Euclidean distance is commonly used, alternative metrics such as Manhattan or Mahalanobis distance may better capture the underlying relationships in certain datasets.
+<br><br><br>
+<br>Medical Diagnosis: KNN can be employed for medical diagnosis by analyzing patient data and predicting the likelihood of certain diseases based on similarities with previously diagnosed cases.
+<br>Recommendation Systems: In e-commerce platforms or streaming services, KNN can recommend products or movies to users based on the preferences and behavior of similar users.
+<br>Anomaly Detection: KNN can be utilized for anomaly detection by identifying data points that deviate significantly from the majority of the dataset, indicating potential anomalies or outliers.
+<br><br>K-Nearest Neighbors offers a robust and intuitive approach to machine learning, making it accessible to both beginners and seasoned practitioners. By grasping its principles, experimenting with various hyperparameters, and adhering to best practices, you can harness the full potential of KNN in diverse domains ranging from healthcare to finance to recommendation systems. Embrace the power of proximity and embark on your journey with KNN today!]]></description><link>blog\getting-started-with-k-nearest-neighbors-algorithm.html</link><guid isPermaLink="false">Blog/Getting Started with K-Nearest Neighbors Algorithm.md</guid><pubDate>Sun, 29 Sep 2024 09:54:41 GMT</pubDate></item><item><title><![CDATA[Git and GitHub]]></title><description><![CDATA[<a class="tag" href="?query=tag:devops" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#devops</a> <a class="tag" href="?query=tag:git" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#git</a> <a class="tag" href="?query=tag:github" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#github</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:version" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#version</a> 
+ <br> <a href=".?query=tag:devops" class="tag" target="_blank" rel="noopener">#devops</a> <a href=".?query=tag:git" class="tag" target="_blank" rel="noopener">#git</a> <a href=".?query=tag:github" class="tag" target="_blank" rel="noopener">#github</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:version" class="tag" target="_blank" rel="noopener">#version</a><br><br>Git is a distributed version control system (DVCS) designed to handle everything from small to very large projects with speed and efficiency. It allows multiple people to collaborate on projects and keep track of changes made to files over time.<br><br>
+<br>Repository (Repo): This is the core of Git. It's a directory where Git stores all the files and the history of changes for a project.
+<br>Commit: A commit is a snapshot of the project at a specific point in time. It represents a set of changes made to the files in the repository.
+<br>Branch: A branch is essentially a parallel version of the repository. It allows you to work on new features or fixes without affecting the main project until you're ready to merge your changes.
+<br>Merge: Merging combines changes from different branches into one branch. It's typically used to incorporate the changes made in a feature branch back into the main branch.
+<br>Pull Request (PR): A pull request is a request to merge changes from one branch into another. It's commonly used in collaborative environments, where team members review each other's code before merging it into the main branch.
+<br><br>
+<br>
+Initialize a Repository:
+git init
+Copy
+
+<br>
+Add Files to the Staging Area:
+git add &lt;file1&gt; &lt;file2&gt; ...
+Copy
+
+<br>
+Commit Changes:
+git commit -m "Commit message"
+Copy
+
+<br>
+Create a Branch:
+git checkout -b new-feature
+Copy
+
+<br>
+Make Changes and Commit:
+# Make changes to files
+git add .
+git commit -m "Implement new feature"
+Copy
+
+<br>
+Switch Branches:
+git checkout main
+Copy
+
+<br>
+Merge Branches:
+git merge new-feature
+Copy
+
+<br>
+Push Changes to Remote Repository:
+git push origin main
+Copy
+
+<br><br>Let's say you're working on a project with a friend. You both clone the repository to your local machines:<br>git clone &lt;repository_url&gt;
+cd &lt;repository_name&gt;
+Copy<br>You create a new branch to work on a feature:<br>git checkout -b new-feature
+Copy<br>You make changes to some files, add them to the staging area, and commit your changes:<br># Make changes
+git add .
+git commit -m "Implemented new feature"
+Copy<br>Meanwhile, your friend makes some changes on the main branch. You want to incorporate those changes into your branch, so you switch back to the main branch, pull the latest changes, and then switch back to your feature branch:<br>git checkout main
+git pull origin main
+git checkout new-feature
+Copy<br>Finally, when you're done with your feature and have tested it thoroughly, you merge it back into the main branch:<br>git checkout main
+git merge new-feature
+Copy<br>And push the changes to the remote repository:<br>git push origin main
+Copy<br><br><br>Clone -&gt; git clone &lt;URL&gt;<br>Clone Branch -&gt; git clone -b &lt;Branch_Name&gt; &lt;URL&gt;<br>View Branches -&gt; git branch<br>View Current Branch -&gt; git branch --show-current<br>Stage Files -&gt; git add . or git add &lt;File_Path&gt;<br>Commit Files -&gt; git commit -m "&lt;Commit_Message&gt;"<br>Push Code to Branch -&gt; git push origin &lt;Branch_Name&gt;]]></description><link>blog\git-and-github.html</link><guid isPermaLink="false">Blog/Git and GitHub.md</guid><pubDate>Sun, 29 Sep 2024 09:54:54 GMT</pubDate></item><item><title><![CDATA[Grid Search]]></title><description><![CDATA[<a class="tag" href="?query=tag:hyperparameter" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#hyperparameter</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:optuna" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#optuna</a> <a class="tag" href="?query=tag:selection" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#selection</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> <a class="tag" href="?query=tag:tuning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tuning</a> 
+ <br> <a href=".?query=tag:hyperparameter" class="tag" target="_blank" rel="noopener">#hyperparameter</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:optuna" class="tag" target="_blank" rel="noopener">#optuna</a> <a href=".?query=tag:selection" class="tag" target="_blank" rel="noopener">#selection</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a> <a href=".?query=tag:tuning" class="tag" target="_blank" rel="noopener">#tuning</a><br>Hyperparameter tuning involves selecting the best set of hyperparameters for a model to optimize its performance. Hyperparameters are parameters that are set before the learning process begins<br>
+Two popular methods for hyperparameter tuning are Grid Search and Random Search.<br><br>Grid Search involves defining a grid of hyperparameter values and evaluating the model performance for each combination of values. It exhaustively searches through all the combinations and selects the best one based on a specified performance metric.<br>from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define hyperparameters grid
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Create Random Forest Classifier
+rf = RandomForestClassifier()
+
+# Perform Grid Search Cross-Validation
+grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, n_jobs=-1, verbose=2)
+grid_search.fit(X, y)
+
+# Best parameters and best score
+print("Best Parameters:", grid_search.best_params_)
+print("Best Score:", grid_search.best_score_)
+
+Copy<br><br>Random Search selects random combinations of hyperparameters from a defined search space. It's computationally less expensive compared to Grid Search but may not guarantee finding the best combination.<br>from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define hyperparameters distribution
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Create Random Forest Classifier
+rf = RandomForestClassifier()
+
+# Perform Randomized Search Cross-Validation
+random_search = RandomizedSearchCV(estimator=rf, param_distributions=param_dist, n_iter=100, cv=5, n_jobs=-1, verbose=2)
+random_search.fit(X, y)
+
+# Best parameters and best score
+print("Best Parameters:", random_search.best_params_)
+print("Best Score:", random_search.best_score_)
+Copy<br>Both Grid Search and Random Search have their advantages and are useful in different scenarios. Grid Search is exhaustive but can be computationally expensive, especially with a large number of hyperparameters. Random Search, on the other hand, is more efficient but may not guarantee finding the optimal hyperparameters.]]></description><link>blog\hyperparameter-tuning.html</link><guid isPermaLink="false">Blog/Hyperparameter Tuning.md</guid><pubDate>Sun, 29 Sep 2024 09:55:06 GMT</pubDate></item><item><title><![CDATA[Types of Hypothesis Testing]]></title><description><![CDATA[<a class="tag" href="?query=tag:basian" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#basian</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:hypothesis" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#hypothesis</a> <a class="tag" href="?query=tag:math" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#math</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:probability" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#probability</a> <a class="tag" href="?query=tag:stats" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#stats</a> <a class="tag" href="?query=tag:testing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#testing</a> 
+ <br> <a href=".?query=tag:basian" class="tag" target="_blank" rel="noopener">#basian</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:hypothesis" class="tag" target="_blank" rel="noopener">#hypothesis</a> <a href=".?query=tag:math" class="tag" target="_blank" rel="noopener">#math</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:probability" class="tag" target="_blank" rel="noopener">#probability</a> <a href=".?query=tag:stats" class="tag" target="_blank" rel="noopener">#stats</a> <a href=".?query=tag:testing" class="tag" target="_blank" rel="noopener">#testing</a><br>Hypothesis testing is a fundamental method in statistics used to evaluate an assumption about a population based on evidence from a sample. It's a structured way to analyze data and determine if there's enough reason to believe something different is true about the bigger picture (population) than what we initially assumed.<br><br><br>To determine whether a discovery or relationship is statistically significant, hypothesis testing uses a z-test. It usually checks to see if two means are the same (the null hypothesis). Only when the population standard deviation is known and the sample size is 30 data points or more, can a z-test be applied.<br><br>A statistical test called a t-test is employed to compare the means of two groups. To determine whether two groups differ or if a procedure or treatment affects the population of interest, it is frequently used in hypothesis testing.<br><br>You utilize a&nbsp;Chi-square test &nbsp;for hypothesis testing concerning whether your data is as predicted. To determine if the expected and observed results are well-fitted, the Chi-square test analyzes the differences between categorical variables from a random sample. The test's fundamental premise is that the observed values in your data should be compared to the predicted values that would be present if the null hypothesis were true.<br><br><br>
+<br>Formulating the Hypotheses:
+
+<br>Null Hypothesis (H₀): This is the default assumption, often stating no difference or effect. Think of it as the baseline scenario.
+<br>Alternative Hypothesis (Hₐ): This is the opposite of the null hypothesis, what you actually want to test. It proposes a difference or effect exists.
+
+
+<br>Choosing a Significance Level (α):
+
+<br>This is the probability of rejecting the null hypothesis when it's actually true (also known as a type I error). It's like the margin of error we're willing to accept. Common significance levels are 0.05 (5%) or 0.01 (1%).
+
+
+<br>Data Collection:
+
+<br>You collect data through surveys, experiments, or measurements from a representative sample of the population.
+
+
+<br>Statistical Test and Calculation:
+
+<br>You choose a statistical test appropriate for your data type (e.g., t-test, z-test, chi-square test) and calculate a test statistic based on the sample data.
+
+
+<br>P-value Determination:
+
+<br>The p-value is the probability of getting a test statistic as extreme or more extreme than what you observed, assuming the null hypothesis is true. Lower p-values indicate stronger evidence against the null hypothesis.
+
+
+<br>Decision Making:
+
+<br>You compare the p-value to your chosen significance level (α).
+
+<br>If p-value ≤ α: Reject the null hypothesis. There's enough evidence to support the alternative hypothesis.
+<br>If p-value &gt; α: Fail to reject the null hypothesis. The data doesn't provide strong enough evidence to disprove the null hypothesis.
+
+
+
+
+<br><br><br>Imagine you want to test if Vitamin C helps reduce the duration of the common cold.<br>
+<br>H₀: Vitamin C has no effect on the common cold duration (null hypothesis).
+<br>Hₐ: Vitamin C reduces the common cold duration (alternative hypothesis).
+<br>α = 0.05 (chosen significance level)
+<br>You conduct a study where one group takes Vitamin C daily and another group takes a placebo while recording their cold duration. After analysis, the p-value from your chosen statistical test is 0.02 (let's say).<br>Since the p-value (0.02) is less than our significance level (0.05), we reject the null hypothesis. This suggests there's evidence at a 5% significance level that Vitamin C might be effective in reducing cold duration. It's important to note that hypothesis testing doesn't necessarily prove the alternative hypothesis is true, but rather provides evidence against the null hypothesis.]]></description><link>blog\hypothesis-testing.html</link><guid isPermaLink="false">Blog/Hypothesis Testing.md</guid><pubDate>Sun, 29 Sep 2024 09:55:26 GMT</pubDate></item><item><title><![CDATA[Linear Regression A Comprehensive Guide]]></title><description><![CDATA[<a class="tag" href="?query=tag:basics" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#basics</a> <a class="tag" href="?query=tag:blog" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#blog</a> <a class="tag" href="?query=tag:learning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#learning</a> <a class="tag" href="?query=tag:machine" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#machine</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:regression" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#regression</a> 
+ <br> <a href=".?query=tag:basics" class="tag" target="_blank" rel="noopener">#basics</a> <a href=".?query=tag:blog" class="tag" target="_blank" rel="noopener">#blog</a> <a href=".?query=tag:learning" class="tag" target="_blank" rel="noopener">#learning</a> <a href=".?query=tag:machine" class="tag" target="_blank" rel="noopener">#machine</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:regression" class="tag" target="_blank" rel="noopener">#regression</a><br>Linear Regression stands as a cornerstone in the realm of machine learning and statistics, revered for its simplicity and interpretability. In this in-depth exploration, we’ll unravel the principles of Linear Regression, delve into its inner workings, provide a hands-on implementation in Python, and offer practical insights for leveraging its potential in real-world applications.<br><br><br>At its core, Linear Regression endeavors to establish a linear relationship between a dependent variable (target) and one or more independent variables (features). The objective is to fit a line that best represents the relationship between the variables, allowing for prediction and inference. The process can be summarized as follows:<br>
+<br>
+Model Representation: Linear Regression assumes a linear relationship between the independent variables (X) and the dependent variable (y) and is represented by the equation:
+y=β0+β1x1+β2x2+…+βn**xn+ϵ
+where:
+
+<br>(y) is the dependent variable,
+<br>(x_1, x_2, …, x_n) are the independent variables,
+<br>(\beta_0, \beta_1, \beta_2, …, \beta_n) are the coefficients (parameters) of the model, and
+<br>(\epsilon) is the error term.
+
+
+<br>
+Parameter Estimation: The goal of Linear Regression is to estimate the coefficients ((\beta_0, \beta_1, …, \beta_n)) that minimize the sum of squared errors between the actual and predicted values.
+
+<br>
+Making Predictions: Once the model parameters are determined, predictions for new data points can be made by plugging the feature values into the equation.
+
+<br><br>Let’s delve into a practical implementation of Linear Regression using Python and the versatile machine learning library, scikit-learn. For this demonstration, we’ll utilize a synthetic dataset generated with random values.<br># Importing necessary libraries
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+ 
+# Generate synthetic dataset
+np.random.seed(0)
+X = 2 * np.random.rand(100, 1)
+y = 4 + 3 * X + np.random.randn(100, 1)
+ 
+# Initialize and fit the Linear Regression model
+lin_reg = LinearRegression()
+lin_reg.fit(X, y)
+ 
+# Make predictions
+y_pred = lin_reg.predict(X)
+ 
+# Visualize the linear regression line
+plt.scatter(X, y, color='blue')
+plt.plot(X, y_pred, color='red')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Linear Regression')
+plt.show()
+ 
+# Calculate Mean Squared Error
+mse = mean_squared_error(y, y_pred)
+print("Mean Squared Error:", mse)
+Copy<br><br>
+<br>Feature Engineering: Carefully selecting and engineering features can significantly impact the performance of Linear Regression. Techniques such as polynomial features or feature scaling can enhance model accuracy.
+<br>Assumption Validation: Linear Regression relies on several assumptions, including linearity, independence of errors, homoscedasticity, and normality of residuals. It’s crucial to validate these assumptions to ensure the reliability of the model.
+<br>Regularization: In scenarios with multicollinearity or overfitting, regularization techniques such as Ridge Regression or Lasso Regression can be employed to prevent model complexity.
+<br><br><br>
+<br>Housing Price Prediction: Linear Regression can be applied to predict housing prices based on features such as square footage, number of bedrooms, and location.
+<br>Demand Forecasting: In retail or supply chain management, Linear Regression can forecast product demand based on historical sales data and external factors like seasonality and promotions.
+<br>Financial Analysis: Linear Regression can analyze the relationship between economic indicators and stock prices, aiding in investment decisions.
+<br><br>Linear Regression serves as a foundational technique in machine learning, offering a straightforward yet powerful approach to modeling relationships between variables. By grasping its principles, experimenting with feature engineering, and adhering to best practices, you can harness the full potential of Linear Regression in a myriad of domains. Embrace the simplicity and elegance of Linear Regression and unlock its transformative capabilities in your data-driven endeavors!]]></description><link>blog\linear-regression-a-comprehensive-guide.html</link><guid isPermaLink="false">Blog/Linear Regression A Comprehensive Guide.md</guid><pubDate>Sun, 29 Sep 2024 09:55:56 GMT</pubDate></item><item><title><![CDATA[<strong>Model Selection in Machine Learning</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:hyperparameter" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#hyperparameter</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:selection" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#selection</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> <a class="tag" href="?query=tag:testing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#testing</a> <a class="tag" href="?query=tag:tuning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tuning</a> 
+ <br> <a href=".?query=tag:hyperparameter" class="tag" target="_blank" rel="noopener">#hyperparameter</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:selection" class="tag" target="_blank" rel="noopener">#selection</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a> <a href=".?query=tag:testing" class="tag" target="_blank" rel="noopener">#testing</a> <a href=".?query=tag:tuning" class="tag" target="_blank" rel="noopener">#tuning</a><br><br>Model selection is a crucial step in machine learning where you choose the most suitable algorithm and its hyperparameters for a specific task and dataset. It involves evaluating and comparing different models to find the one that generalizes well to unseen data, avoiding overfitting or underfitting.<br>
+<br>AIC (Akaike Information Criterion) from frequentist probability
+<br>BIC(Bayesian Information Criterion) from bayesian probabaility<br>
+These are calculated using Log-likelihood which includes MSE (regression) and log_loss such as cross_entropy (classification).
+<br><img alt="Pasted image 20240929152922.png" src="lib\media\pasted-image-20240929152922.png"><br><br>from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load or prepare your data (replace with your data loading)
+data = pd.read_csv("your_data.csv")
+X = data.drop("target", axis=1)  # Features
+y = data["target"]  # Target variable
+Copy<br><br># Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+Copy<br><br># Define models to compare (using default hyperparameters for simplicity)
+models = {
+    "Logistic Regression": LogisticRegression(),
+    "SVM": SVC(),
+    "Random Forest": RandomForestClassifier()
+}
+
+output = {}
+
+# Train and evaluate each model
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+    accuracy = accuracy_score(y_test, predictions)
+    print(f"{name} Test Accuracy: {accuracy:.2f}")
+    output[name] = accuracy
+Copy<br><br>print(output)
+Copy<br>
+Once the best model is identified, finetuning can be performed on it to further improve the performance
+]]></description><link>blog\model-selection.html</link><guid isPermaLink="false">Blog/Model Selection.md</guid><pubDate>Sun, 29 Sep 2024 09:59:38 GMT</pubDate><enclosure url="lib\media\pasted-image-20240929152922.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\pasted-image-20240929152922.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[NLTK]]></title><description><![CDATA[<a class="tag" href="?query=tag:classification" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#classification</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:language" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#language</a> <a class="tag" href="?query=tag:natural" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#natural</a> <a class="tag" href="?query=tag:naturel" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#naturel</a> <a class="tag" href="?query=tag:nlp" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#nlp</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> <a class="tag" href="?query=tag:sentence" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sentence</a> <a class="tag" href="?query=tag:text" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#text</a> <a class="tag" href="?query=tag:token" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#token</a> <a class="tag" href="?query=tag:tokenization" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tokenization</a> <a class="tag" href="?query=tag:words" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#words</a> 
+ <br> <a href=".?query=tag:classification" class="tag" target="_blank" rel="noopener">#classification</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:language" class="tag" target="_blank" rel="noopener">#language</a> <a href=".?query=tag:natural" class="tag" target="_blank" rel="noopener">#natural</a> <a href=".?query=tag:naturel" class="tag" target="_blank" rel="noopener">#naturel</a> <a href=".?query=tag:nlp" class="tag" target="_blank" rel="noopener">#nlp</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a> <a href=".?query=tag:sentence" class="tag" target="_blank" rel="noopener">#sentence</a> <a href=".?query=tag:text" class="tag" target="_blank" rel="noopener">#text</a> <a href=".?query=tag:token" class="tag" target="_blank" rel="noopener">#token</a> <a href=".?query=tag:tokenization" class="tag" target="_blank" rel="noopener">#tokenization</a> <a href=".?query=tag:words" class="tag" target="_blank" rel="noopener">#words</a><br><br>pip3 install nltk<br>import nltk
+nltk.download('all')
+Copy<br>
+Corpora -&gt; Body of text<br>
+lexicon -&gt; Words with meaning
+<br><br>sent_tokenize -&gt; Sentence Tokenizer, splits sentences in a body of text<br>
+word_tokenize -&gt; Word Tokenizer, splits words in a sentence<br>from nltk.tokenize import sent_tokenize, word_tokenize
+
+sampleText = "your text file"
+print(sent_tokenize(sampletext))
+print(word_tokenize(sampletext))
+Copy<br><br>Grouping words in meaningful group<br>import nltk
+from nltk.corpus import state_union
+from nltk.tokenize import PunktSentenceTokenizer
+
+train_text = state_union.raw("2005-GWBush.txt")
+txt = "Kids are playing. Kids like to play games. He got played"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+
+    chunkGram = r"""Chunk: {&lt;RB.?&gt;*&lt;VB.?&gt;*&lt;NNP&gt;+&lt;NN&gt;?}"""
+    chunkParser = nltk.RegexpParser(chunkGram)
+    chunked = chunkParser.parse(tag)
+    #chunked.draw()
+    chunked.pretty_print()
+Copy<br><br>stop words are words that don't contribute a lot the text, or filler words like "a", "the"... this words are removed so that text can be made easier for machine to understand<br>
+stopwords.words("english")<br>from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+txt = "your text file / input"
+
+words = word_tokenize(txt)
+
+nw = [i for i in words if i not in stopwords.words("english")]
+Copy<br><br>The state_union data set will be used for training PunktSentenceTokenizer to create a custom tokenizer<br>import nltk
+from nltk.tokenize import PunktSentenceTokenizer
+from nltk.corpus import state_union
+
+txt = "Your text file or input"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+    nameEnt = nltk.ne_chunk(tag)
+    nameEnt.pretty_print()
+Copy<br><br>Stemming is the process of reducing a word to its word stem that affixes to suffixes and prefixes or to the roots of words known as a lemma. ps.stem("word")<br>from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+
+ps = PorterStemmer()
+
+txt = "Kids are playing. Kids like to play games. He got played"
+wt = word_tokenize(txt)
+print([ps.stem(i) for i in wt])
+Copy<br><br>A very similar operation to stemming is called lemmatizing. The major difference between these is, stemming can often create non-existent words, whereas lemmas are actual words.<br>
+pos = "a" ⇒ Adjective<br>
+pos = "v" ⇒ Verb<br>from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+
+print(lemmatizer.lemmatize("cats"))
+print(lemmatizer.lemmatize("cacti"))
+print(lemmatizer.lemmatize("geese"))
+print(lemmatizer.lemmatize("rocks"))
+print(lemmatizer.lemmatize("python"))
+print(lemmatizer.lemmatize("better", pos="a"))
+print(lemmatizer.lemmatize("best", pos="a"))
+print(lemmatizer.lemmatize("run"))
+print(lemmatizer.lemmatize("run",'v'))
+Copy<br><br>import nltk
+from nltk.tokenize import PunktSentenceTokenizer
+from nltk.corpus import state_union
+# state_union data set will be used for training PunktSentenceTokenizer to create a custom tokenizer
+
+txt = "Kids are playing. Kids like to play games. He got played"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+    print(tag)
+Copy<br><br><br>Rather then letters, words are encoded into numbers because different words can have same letters in them<br>
+Tokenizer(num_words = 100)<br>
+in above code, num_words refer to the maximum number of words to keep, if we have a huge text body, we can keep only top 100 most used words<br>import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.preprocessing.text import Tokenizer
+
+sentences = [ "I love my dog", "I love my cat" ]
+
+tokenizer = Tokenizer(num_words = 100) # Creating the model object
+tokenizer.fit_on_texts(sentences) # Training the model
+print(tokenizer.word_index) # prints tokenized dictionary
+# output -&gt; {'i': 1, 'love': 2, 'my': 3, 'dog': 4, 'cat': 5}
+
+Copy<br><br>if there is an unknown word that is passed in tokenizer.texts_to_sequences() method, that word is ignored.<br>
+to deal with this, oov_token property is passed to Tokenizer() object, so whenever a new word is faced, it will be replaced by whatever is passed as argument to oov_token in this case it is &lt;OOV&gt; as it is unlikely to appear naturally in a body of text.<br>from tensorflow.keras.preprocessing.text import Tokenizer
+
+sentences = [ "I love my dog", "I love my cat", "you love my dog", "Do you think my dog is amazing? " ]
+
+tokenizer = Tokenizer(num_words = 100, oov_token="&lt;OOV&gt;")
+tokenizer.fit_on_texts(sentences)
+word_index = tokenizer.word_index
+
+# passing array of sentences to convert to ints
+seq = tokenizer.texts_to_sequences([ "He likes my cat", "My dog is amazing!" ])
+
+print(seq)
+# [[4, 2, 1, 3], [4, 2, 1, 6], [5, 2, 1, 3], [7, 5, 8, 1, 3, 9, 10]]
+
+Copy<br><br>Text input in a mode can be of different sizes, to deal with this Padding is used.<br>
+function pad_sequence() is used, this method will set the length of all your inputs to the longest string by adding zeros either in front or at end of the sequence<br>
+paddedSeq() adds zeros in beginning<br>
+paddedSeq(padding='post') adds zeros at the end<br>
+paddedSeq(seqData, padding='post', maxlen=10, truncating='post')<br>from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+sentences = [ "I love my dog", "I love my cat", "you love my dog", "Do you think my dog is amazing? " ]
+
+tokenizer = Tokenizer(num_words = 100, oov_token="&lt;OOV&gt;")
+tokenizer.fit_on_texts(sentences)
+word_index = tokenizer.word_index
+
+# passing array of sentences to convert to ints
+seq = tokenizer.texts_to_sequences([ "He likes my cat", "My dog is amazing!" ])
+paddedSeq = pad_sequences(seq)
+print(paddedSeq)
+
+Copy<br><br><br>Textual data is converted into numerical vectors that machine learning algorithms can understand.<br><br>
+<br>BoW represents text as a collection of unique words along with their frequencies in the document
+<br>Each document is represented as a vector, where each dimension corresponds to a unique word, and the value represents the frequency of that word in the document.
+<br>from sklearn.feature_extraction.text import CountVectorizer
+
+corpus = [
+	"This is the first document.",
+	"This document is the second document.",
+	"And this is the third one.",
+	"Is this the first document?",
+]
+
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(corpus)
+
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+
+Copy<br><br>TF-IDF stands for Term Frequency-Inverse Document Frequency. It's a numerical statistic used in information retrieval and text mining to evaluate the importance of a word in a document relative to a collection of documents. Here's a breakdown of what it entails:<br>
+<br>Term Frequency (TF): This measures the frequency of a term (word) within a document. It's simply the number of times a term appears in a document divided by the total number of terms in the document. It aims to represent how often a term occurs within a document relative to the total number of terms.
+<br>Inverse Document Frequency (IDF): This measures how important a term is across the entire corpus of documents. It's calculated by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient. It helps in determining the weight of rare terms that may be more significant than common terms.
+<br>TF-IDF: This combines TF and IDF to give a weight to each term in a document. The higher the TF-IDF score of a term in a document, the more important that term is to the document.<br>
+The TF-IDF score is calculated for each term in each document in the corpus. It's commonly used in various natural language processing tasks such as document classification, information retrieval, and text mining to determine the importance of words in a document relative to a collection of documents.
+<br>from sklearn.feature_extraction.text import TfidfVectorizer
+
+corpus = [
+	"This is the first document.",
+	"This document is the second document.",
+	"And this is the third one.",
+	"Is this the first document?",
+]
+
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(corpus)
+
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+
+Copy<br><br>Word embeddings are a type of word representation in natural language processing (NLP) that captures the semantic meaning of words by mapping them to dense vectors in a continuous vector space.<br>
+There are several popular algorithms for generating word embeddings, including Word2Vec, GloVe, and fastText.<br><br>Word2Vec learns distributed representations of words by training a neural network on a large corpus of text. The key idea behind Word2Vec is the distributional hypothesis, which posits that words appearing in similar contexts tend to have similar meanings.<br>from gensim.models import Word2Vec
+from gensim.utils import simple_preprocess
+
+# Sample corpus
+corpus = [
+    "This is the first document.",
+    "This document is the second document.",
+    "And this is the third one.",
+    "Is this the first document?",
+]
+
+# Tokenize the corpus
+tokenized_corpus = [simple_preprocess(text) for text in corpus]
+
+# Train Word2Vec model
+model = Word2Vec(tokenized_corpus, vector_size=100, window=5, min_count=1, workers=4)
+
+# Get word vectors
+word_vectors = model.wv
+
+# Find similar words
+similar_words = word_vectors.most_similar("document")
+print("Similar words to 'document':", similar_words)
+
+# Get vector for a specific word
+vector_for_word = word_vectors["document"]
+print("Vector for 'document':", vector_for_word)
+
+Copy<br>In this example, we tokenize the corpus into lists of words using simple_preprocess from Gensim. Then, we train a Word2Vec model with a vector size of 100, a window size of 5 (maximum distance between the current and predicted word within a sentence), and a minimum word count of 1. After training, we can access word vectors using the wv attribute of the model. Finally, we can find similar words or retrieve the vector representation of a specific word.]]></description><link>blog\nlp.html</link><guid isPermaLink="false">Blog/NLP.md</guid><pubDate>Sun, 29 Sep 2024 09:59:48 GMT</pubDate></item><item><title><![CDATA[NLTK]]></title><description><![CDATA[<a class="tag" href="?query=tag:language" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#language</a> <a class="tag" href="?query=tag:natural" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#natural</a> <a class="tag" href="?query=tag:nltk" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#nltk</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:setup" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#setup</a> <a class="tag" href="?query=tag:text" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#text</a> <a class="tag" href="?query=tag:tokenization" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tokenization</a> 
+ <br> <a href=".?query=tag:language" class="tag" target="_blank" rel="noopener">#language</a> <a href=".?query=tag:natural" class="tag" target="_blank" rel="noopener">#natural</a> <a href=".?query=tag:nltk" class="tag" target="_blank" rel="noopener">#nltk</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:setup" class="tag" target="_blank" rel="noopener">#setup</a> <a href=".?query=tag:text" class="tag" target="_blank" rel="noopener">#text</a> <a href=".?query=tag:tokenization" class="tag" target="_blank" rel="noopener">#tokenization</a><br><br>pip3 install nltk<br>
+import nltk<br>
+nltk.download("all")<br>
+⚙ corpora → Body of text
+<br>
+⚙ Lexicon → Words with meaning
+<br><br><br>sent_tokenize -&gt; Sentence Tokenizer, splits sentences in a body of text<br>
+word_tokenize -&gt; Word Tokenizer, splits words in a sentence<br>from nltk.tokenize import sent_tokenize, word_tokenize
+
+sampleText = "your text file"
+print(sent_tokenize(sampletext))
+print(word_tokenize(sampletext))
+
+Copy<br><br>Grouping words in meaningful grpups<br>import nltk
+from nltk.corpus import state_union
+from nltk.tokenize import PunktSentenceTokenizer
+
+train_text = state_union.raw("2005-GWBush.txt")
+txt = "Kids are playing. Kids like to play games. He got played"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+		
+    chunkGram = r"""Chunk: {&lt;RB.?&gt;*&lt;VB.?&gt;*&lt;NNP&gt;+&lt;NN&gt;?}"""
+    chunkParser = nltk.RegexpParser(chunkGram)
+    chunked = chunkParser.parse(tag)
+    #chunked.draw()
+    chunked.pretty_print()
+Copy<br><br>stop words are words that dont contribute a lot the text, or filler words like "a", "the"...<br>this words are removed so that text can be made easier for machine to understand<br>stopwords.words("english")<br>from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+txt = "your text file / input"
+
+words = word_tokenize(txt)
+
+nw = [i for i in words if i not in stopwords.words("english")]
+Copy<br><br>import nltk
+from nltk.tokenize import PunktSentenceTokenizer
+from nltk.corpus import state_union
+# state_union data set will be used for training PunktSentenceTokenizer to create a custom tokenizer
+
+txt = "Your text file or input"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+    nameEnt = nltk.ne_chunk(tag)
+    nameEnt.pretty_print()
+Copy<br><br>Stemming is the process of reducing a word to its word stem that affixes to suffixes and prefixes or to the roots of words known as a lemma.<br>ps.stem("word")<br>from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+
+ps = PorterStemmer()
+
+txt = "Kids are playing. Kids like to play games. He got played"
+wt = word_tokenize(txt)
+print([ps.stem(i) for i in wt])
+Copy<br>“Untitled 43.png” could not be found.<br><br>A very similar operation to stemming is called lemmatizing. The major difference between these is, stemming can often create non-existent words, whereas lemmas are actual words.<br>pos = "a" ⇒ Adjective<br>pos = "v" ⇒ Verb<br>from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+
+print(lemmatizer.lemmatize("cats"))
+print(lemmatizer.lemmatize("cacti"))
+print(lemmatizer.lemmatize("geese"))
+print(lemmatizer.lemmatize("rocks"))
+print(lemmatizer.lemmatize("python"))
+print(lemmatizer.lemmatize("better", pos="a"))
+print(lemmatizer.lemmatize("best", pos="a"))
+print(lemmatizer.lemmatize("run"))
+print(lemmatizer.lemmatize("run",'v'))
+Copy<br><br>import nltk
+from nltk.tokenize import PunktSentenceTokenizer
+from nltk.corpus import state_union
+# state_union data set will be used for training PunktSentenceTokenizer to create a custom tokenizer
+
+txt = "Kids are playing. Kids like to play games. He got played"
+
+custTokenizer = PunktSentenceTokenizer(state_union.raw("2006-GWBush.txt"))
+tokenizedText = custTokenizer.tokenize(txt)
+
+for i in tokenizedText:
+    words = nltk.word_tokenize(i)
+    tag = nltk.pos_tag(words)
+    print(tag)
+Copy<br>state_union.raw("2006-GWBush.txt") This is the txt dataset we will be using for training, other are available, you can use your own.<br>Example output<br>[('Kids', 'NNS'), ('are', 'VBP'), ('playing', 'VBG'), ('.', '.')]
+[('Kids', 'NNS'), ('like', 'IN'), ('to', 'TO'), ('play', 'VB'), ('games', 'NNS'), ('.', '.')]
+[('He', 'PRP'), ('got', 'VBD'), ('played', 'JJ')]
+Copy<br>]]></description><link>blog\nltk.html</link><guid isPermaLink="false">Blog/NLTK.md</guid><pubDate>Sun, 29 Sep 2024 10:00:35 GMT</pubDate></item><item><title><![CDATA[PCA]]></title><description><![CDATA[<a class="tag" href="?query=tag:PCA" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#PCA</a> <a class="tag" href="?query=tag:analysis" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#analysis</a> <a class="tag" href="?query=tag:component" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#component</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:principal" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#principal</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:tuning" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tuning</a> 
+ <br> <a href=".?query=tag:PCA" class="tag" target="_blank" rel="noopener">#PCA</a> <a href=".?query=tag:analysis" class="tag" target="_blank" rel="noopener">#analysis</a> <a href=".?query=tag:component" class="tag" target="_blank" rel="noopener">#component</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:principal" class="tag" target="_blank" rel="noopener">#principal</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:tuning" class="tag" target="_blank" rel="noopener">#tuning</a><br>Principal Component Analysis (PCA) is a dimensionality reduction technique commonly used in data analysis and machine learning. It works by transforming the original dataset into a new coordinate system, where the axes are the principal components (PCs), which are orthogonal to each other and capture the maximum variance in the data.<br>
+<br>Standardization: The first step is often to standardize the data by subtracting the mean and dividing by the standard deviation of each feature. This ensures that each feature has a mean of 0 and a standard deviation of 1.
+<br>Covariance Matrix: Next, PCA calculates the covariance matrix of the standardized data. The covariance matrix describes the relationships between all pairs of features in the dataset.
+<br>Eigenvalue Decomposition: PCA then performs eigenvalue decomposition on the covariance matrix to find the eigenvectors and eigenvalues. Eigenvectors represent the directions of the new feature space (principal components), and eigenvalues represent the magnitude of variance along these directions.
+<br>Selecting Principal Components: PCA ranks the eigenvectors based on their corresponding eigenvalues. The eigenvector with the highest eigenvalue is the first principal component (PC1), the second highest eigenvalue corresponds to PC2, and so on.
+<br>Projection: Finally, PCA projects the original data onto the new feature space defined by the selected principal components. This results in a lower-dimensional representation of the data, where the new variables (principal components) are uncorrelated and capture the maximum variance.
+<br>from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Standardize the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Perform PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# Plot the PCA-transformed data
+plt.figure(figsize=(8, 6))
+for i in range(len(iris.target_names)):
+    plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=iris.target_names[i])
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('PCA of Iris Dataset')
+plt.legend()
+plt.show()
+
+# Explained variance ratio
+print("Explained variance ratio:", pca.explained_variance_ratio_)
+Copy]]></description><link>blog\pca.html</link><guid isPermaLink="false">Blog/PCA.md</guid><pubDate>Sun, 29 Sep 2024 09:56:52 GMT</pubDate></item><item><title><![CDATA[<strong>Building on Linear Regression</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:analysis" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#analysis</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:math" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#math</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:regression" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#regression</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> 
+ <br> <a href=".?query=tag:analysis" class="tag" target="_blank" rel="noopener">#analysis</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:math" class="tag" target="_blank" rel="noopener">#math</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:regression" class="tag" target="_blank" rel="noopener">#regression</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a><br><br>Linear regression is a simple and widely used approach for modeling the relationship between a dependent variable and one or more independent variables. However, it assumes a linear relationship between the independent and dependent variables. When dealing with non-linear data, we can extend linear regression by incorporating non-linear transformations of the features.<br>from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+import numpy as np
+
+# Generate sample non-linear data
+np.random.seed(0)
+X = 2 * np.random.rand(100, 1)
+y = 4 + 3 * X + np.random.randn(100, 1)
+
+# Transform features to higher degrees
+poly_features = PolynomialFeatures(degree=2, include_bias=False)
+X_poly = poly_features.fit_transform(X)
+
+# Fit linear regression model on transformed features
+lin_reg = LinearRegression()
+lin_reg.fit(X_poly, y)
+
+# Predictions
+y_pred = lin_reg.predict(X_poly)
+Copy<br><br>Non-linear data can be handled in various ways, including polynomial regression, spline regression, or using non-linear models like decision trees or neural networks. Polynomial regression fits a polynomial function to the data, allowing for non-linear relationships between variables.<br>from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Generate non-linear data
+np.random.seed(0)
+X = 6 * np.random.rand(100, 1) - 3
+y = 0.5 * X**2 + X + 2 + np.random.randn(100, 1)
+
+# Transform features to higher degrees
+poly_features = PolynomialFeatures(degree=2, include_bias=False)
+X_poly = poly_features.fit_transform(X)
+
+# Fit polynomial regression model
+lin_reg = LinearRegression()
+lin_reg.fit(X_poly, y)
+
+# Predictions
+y_pred = lin_reg.predict(X_poly)
+Copy<br><br>Regularization is a technique used to prevent overfitting by adding a penalty term to the loss function. Two common types of regularization are Ridge Regression (L2 regularization) and Lasso Regression (L1 regularization).<br>from sklearn.linear_model import Ridge, Lasso
+import numpy as np
+
+# Generate sample data
+np.random.seed(0)
+X = 2 * np.random.rand(100, 1)
+y = 4 + 3 * X + np.random.randn(100, 1)
+
+# Fit Ridge regression model
+ridge_reg = Ridge(alpha=1)
+ridge_reg.fit(X, y)
+
+# Fit Lasso regression model
+lasso_reg = Lasso(alpha=0.1)
+lasso_reg.fit(X, y)
+
+Copy<br><br>Ridge and Lasso regression can be represented geometrically as constraints on the coefficients. In Ridge regression, the constraint is a L2 norm, which forms a circular constraint region. In Lasso regression, the constraint is a L1 norm, which forms a diamond-shaped constraint region.<br>
+<br>Lasso (L1):&nbsp;It’s like saying, “I want the blanket to fit well, but I also want it to be smooth with as few folds as possible.” Each fold represents a feature in our model, and L1 regularization tries to minimize the number of folds. In the end, you’ll have a blanket that fits the bed well but might not get into every nook and cranny, especially if those are just noise. In the geometric visual, Lasso would try to keep the plane well-fitted to the points but might flatten out in the direction of less important variables (shrinking coefficients to zero).
+<br>Ridge (L2):&nbsp;This is like wanting a snug fit but also wanting the blanket to be evenly spread out without any part being too far from the bed. So even though the blanket still fits the bed closely, it won’t get overly contorted to fit the minor bumps. In the geometric visual, Ridge adds a penalty that constrains the coefficients, shrinking them towards zero but not exactly to zero. This keeps the plane close to the points but prevents it from tilting too sharply to fit any particular points too closely, thus maintaining a bit of a distance (bias) to prevent overfitting to the noise.
+]]></description><link>blog\regression.html</link><guid isPermaLink="false">Blog/Regression.md</guid><pubDate>Sun, 29 Sep 2024 09:57:07 GMT</pubDate></item><item><title><![CDATA[Smooth Sailing in the Tech Seas Docker Demystified]]></title><description><![CDATA[<a class="tag" href="?query=tag:blog" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#blog</a> <a class="tag" href="?query=tag:containers" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#containers</a> <a class="tag" href="?query=tag:devops" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#devops</a> <a class="tag" href="?query=tag:docker" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#docker</a> <a class="tag" href="?query=tag:mlops" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#mlops</a> 
+ <br> <a href=".?query=tag:blog" class="tag" target="_blank" rel="noopener">#blog</a> <a href=".?query=tag:containers" class="tag" target="_blank" rel="noopener">#containers</a> <a href=".?query=tag:devops" class="tag" target="_blank" rel="noopener">#devops</a> <a href=".?query=tag:docker" class="tag" target="_blank" rel="noopener">#docker</a> <a href=".?query=tag:mlops" class="tag" target="_blank" rel="noopener">#mlops</a><br>Welcome aboard, tech enthusiasts! Today, we’re setting sail on a voyage into the exciting world of Docker. Whether you’re a seasoned sailor or a newbie to the tech waters, Docker offers a containerization solution that streamlines software development, deployment, and scalability like never before. Join us as we hoist the Docker flag and embark on an adventure to uncover its components, unravel its mysteries, and set sail with a simple “Hello, World!” example.<br><br>
+<br>Docker Engine:&nbsp;The heart of Docker, comprising a server, REST API, and command-line interface, responsible for building, running, and distributing containers.
+<br>Containers:&nbsp;Lightweight, portable, and self-sufficient units encapsulating software and its dependencies, enabling consistent deployment across diverse environments.
+<br>Images:&nbsp;Immutable snapshots of containers, housing everything needed to run an application, including code, runtime, libraries, and dependencies.
+<br>Dockerfile:&nbsp;A text file defining the configuration and steps to assemble an image, facilitating automation and reproducibility in the containerization process.
+<br>Docker Registry:&nbsp;A repository for storing and distributing Docker images, allowing seamless collaboration and sharing across development teams.
+<br>Docker Compose:&nbsp;A tool for defining and managing multi-container Docker applications, simplifying orchestration and configuration with YAML files.
+<br>Docker Swarm and Kubernetes:&nbsp;Orchestration platforms for managing and scaling containerized applications across clusters of hosts, ensuring high availability and performance.
+<br><br>Let’s dip our toes into Docker’s waters with a classic “Hello, World!” example. First, ensure you have Docker installed on your system. Then, create a new directory for our project and navigate into it:<br>mkdir hello-docker
+cd hello-docker
+Copy<br>Next, create a simple Python script named&nbsp;hello.py&nbsp;within the directory:<br># hello.py
+print("Hello, Docker!")
+Copy<br>Now, let’s craft our Dockerfile to build an image based on Python and execute our script:<br># Dockerfile
+FROM python:3.9-slim
+ 
+WORKDIR /app
+ 
+COPY hello.py .
+ 
+CMD ["python", "hello.py"]
+Copy<br>With our Dockerfile ready, it’s time to build our Docker image:<br>docker build -t hello-docker .
+Copy<br>Once the image is built successfully, let’s run a container based on it:<br>docker run hello-docker
+Copy<br>Voila! You’ve just embarked on your Docker journey by executing your first containerized application. Now, raise your Docker flag high and set sail towards even greater adventures in the vast sea of containerization!<br>Fair winds and following seas, fellow Docker sailors! 🚢🐳]]></description><link>blog\smooth-sailing-in-the-tech-seas-docker-demystified.html</link><guid isPermaLink="false">Blog/Smooth Sailing in the Tech Seas Docker Demystified.md</guid><pubDate>Sun, 29 Sep 2024 09:57:17 GMT</pubDate></item><item><title><![CDATA[Introduction to Databases]]></title><description><![CDATA[<a class="tag" href="?query=tag:basic" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#basic</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:database" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#database</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:sql" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sql</a> 
+ <br> <a href=".?query=tag:basic" class="tag" target="_blank" rel="noopener">#basic</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:database" class="tag" target="_blank" rel="noopener">#database</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:sql" class="tag" target="_blank" rel="noopener">#sql</a><br><br>A database can be considered as a collection of tabels.<br>Tables are made of rows and columns.<br>Columns have names by which they can be accessed.<br>Each record is stored as a row in a table.<br><br>
+<br>SQL stands for Structured Query Language.
+<br>It is used to communicate with and manage databases.
+<br><br>In SQL, statements are categorised into one of the 5 categories.<br><img alt="Pasted image 20240929153056.png" src="lib\media\pasted-image-20240929153056.png"><br>As this is a beginners guide, we will go over the basic statements:<br>CREATE, DROP, TRUNCATE, INSERT, DELETE, UPDATE, SELECT<br><br>Create command is used to create a Table in a database.<br><br>CREATE TABLE &lt;TABLE_NAME&gt; (
+&lt;col_1_name&gt; &lt;datatype&gt;,
+&lt;col_2_name&gt; &lt;datatype&gt;,
+&lt;col_3_name&gt; &lt;datatype&gt;,
+.
+.
+&lt;col_n_name&gt; &lt;datatype&gt;
+);
+Copy<br>here &lt;TABLE_NAME&gt; is the name of the table. &lt;col_n_name&gt; is the column name and &lt;datatype&gt; is the datatype of the cossusponding column.<br><br>CREATE TABLE student (
+	name varchar(50),
+	roll_no int,
+	marks int
+);
+Copy<br>In the above example we are creating a new Table named student.<br>The table contains three columns: name, roll number and marks<br>Name is defined as varchar(50) . This datatype is used to store text data (strings) of length 50. ie it can store at max 50 characters.<br>roll_no and marks are defined as int which stands for integer which can be any number, positive or negative.<br><br>currently table student is empty.<br>In order to add data to this table we use the INSERT command.<br><br>INSERT INTO &lt;TABLE_NAME&gt; (&lt;col_1_name&gt;, &lt;col_2_name&gt;, &lt;col_3_name&gt;, ...)
+VALUES (&lt;value_1&gt;, &lt;value_2&gt;, &lt;value_3&gt;, ...);
+
+OR
+
+INSERT INTO &lt;TABLE_NAME&gt; ()
+VALUES (&lt;value_1&gt;, &lt;value_2&gt;, &lt;value_3&gt;, ...);
+Copy<br>Here, &lt;TABLE_NAME&gt; is the name of the table. The column names and corresponding values are listed in parentheses.<br><br>INSERT INTO student ()
+VALUES ('John Doe', 1, 85);
+Copy<br>In the above example, we are adding a new row to the student table with name as 'John Doe', roll_no as 1, and marks as 85.<br><br>Now that we have data in our table, we can retrive this data and print to screen.<br>For this the SELECT command is. Using the select command we can query the database and see the results.<br><br>SELECT &lt;column1&gt;, &lt;column2&gt;, ...
+FROM &lt;TABLE_NAME&gt;;
+
+-- OR 
+-- In the following command * sign represents all columns
+SELECT * FROM &lt;TABLE_NAME&gt;;
+
+-- OR
+-- Use this syntax when specific data is needed
+SELECT &lt;column1&gt;, &lt;column2&gt;, ...
+FROM &lt;TABLE_NAME&gt;
+WHERE &lt;condition&gt;;
+Copy<br><br>SELECT name, marks
+FROM student;
+Copy<br>This example retrieves the name and marks of the student with roll_no 1.<br>In order to select name students with marks more than 60 we can use the following command<br>SELECT name FROM student WHERE` marks &gt; 60; 
+Copy<br>Or we can print all data of all students (all records)<br>SELECT * FROM student;
+Copy<br><br>The UPDATE command is used to modify existing records in a table.<br>this can be used to fix errors or update information in the table.<br><br>UPDATE &lt;TABLE_NAME&gt;
+SET &lt;column1&gt; = &lt;value1&gt;, &lt;column2&gt; = &lt;value2&gt;, ...
+WHERE &lt;condition&gt;;
+Copy<br><br>the marks of a student with roll_no 7 was set as 18 by mistake.<br>The actual marks of the student is 81.<br>The following query can be used to make this change<br>UPDATE student
+SET marks = 81
+WHERE roll_no = 7;
+Copy<br><br>The DELETE command is used to remove records from a table.<br><br>DELETE FROM &lt;TABLE_NAME&gt;
+WHERE &lt;condition&gt;;
+Copy<br><br>DELETE FROM student
+WHERE roll_no = 1;
+Copy<br>This example deletes the record of the student with roll_no 1.<br><br>The DROP command is used to delete a table or database.<br>If a table is no longer required we can remove it from the base.<br><br>DROP TABLE &lt;TABLE_NAME&gt;;
+Copy<br><br>DROP TABLE student;
+
+Copy<br>This example deletes the student table.<br><br>Instead of deleting the complete table, sometime we just wanna remove all data from the table but keep the table structure (columns).<br>The TRUNCATE command is used to remove all records from a table but keeps the table structure.<br><br>TRUNCATE TABLE &lt;TABLE_NAME&gt;;
+Copy<br><br>TRUNCATE TABLE student;
+Copy<br>This example removes all records from the student table but keeps the table structure intact.<br><br>
+<br>CREATE: Creates a new table.
+<br>INSERT: Adds data to a table.
+<br>SELECT: Retrieves data from a table.
+<br>UPDATE: Modifies existing data in a table.
+<br>DELETE: Removes data from a table.
+<br>DROP: Deletes a table or database.
+<br>TRUNCATE: Removes all records from a table but retains the table structure.
+]]></description><link>blog\sql-for-kids.html</link><guid isPermaLink="false">Blog/SQL for kids.md</guid><pubDate>Sun, 29 Sep 2024 10:01:05 GMT</pubDate><enclosure url="lib\media\pasted-image-20240929153056.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\pasted-image-20240929153056.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Constraints]]></title><description><![CDATA[<a class="tag" href="?query=tag:basic" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#basic</a> <a class="tag" href="?query=tag:data" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#data</a> <a class="tag" href="?query=tag:database" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#database</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:sql" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sql</a> 
+ <br> <a href=".?query=tag:basic" class="tag" target="_blank" rel="noopener">#basic</a> <a href=".?query=tag:data" class="tag" target="_blank" rel="noopener">#data</a> <a href=".?query=tag:database" class="tag" target="_blank" rel="noopener">#database</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:sql" class="tag" target="_blank" rel="noopener">#sql</a><br><br>In SQL, constraints are rules applied to columns in a table to ensure the integrity, accuracy, and reliability of the data within the database. Constraints help enforce data rules and maintain data quality by restricting the types of data that can be stored in a table. Here are the common types of constraints in SQL, explained in detail:<br><br>The NOT NULL constraint ensures that a column cannot have a NULL value. This constraint enforces that every row must have a value for the specified column.<br><br>CREATE TABLE table_name (
+    column_name datatype NOT NULL,
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birth_date DATE
+);
+Copy<br>In this example, the employee_id, first_name, and last_name columns cannot contain NULL values.<br><br>The UNIQUE constraint ensures that all the values in a column are different. It prevents duplicate values in the specified column or combination of columns.<br><br>CREATE TABLE table_name (
+    column_name datatype UNIQUE,
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50)
+);
+Copy<br>In this example, the employee_id and email columns must have unique values, meaning no two rows can have the same employee_id or email.<br><br>The PRIMARY KEY constraint uniquely identifies each record in a table. A table can have only one primary key, which can consist of single or multiple columns. The columns included in a primary key cannot contain NULL values.<br><br>CREATE TABLE table_name (
+    column_name datatype PRIMARY KEY,
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE
+);
+Copy<br>In this example, the employee_id column is the primary key, which uniquely identifies each employee.<br><br>The FOREIGN KEY constraint ensures referential integrity by establishing a link between the data in two tables. It ensures that the value in a column (or a group of columns) matches the value in the primary key column of another table.<br><br>CREATE TABLE table_name (
+    column_name datatype,
+    ...
+    FOREIGN KEY (column_name) REFERENCES other_table_name (primary_key_column)
+);
+Copy<br><br>CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50)
+);
+
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+Copy<br>In this example, the department_id column in the employees table is a foreign key that references the department_id column in the departments table.<br><br>The CHECK constraint ensures that all values in a column satisfy a specific condition. This constraint allows you to define custom rules for the data in the table.<br><br>CREATE TABLE table_name (
+    column_name datatype CHECK (condition),
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    salary DECIMAL(10, 2) CHECK (salary &gt; 0),
+    birth_date DATE CHECK (birth_date &gt; '1900-01-01')
+);
+Copy<br>In this example, the salary column must have a value greater than 0, and the birth_date column must have a value later than January 1, 1900.<br><br>The DEFAULT constraint provides a default value for a column when no value is specified during the insertion of a new record.<br><br>CREATE TABLE table_name (
+    column_name datatype DEFAULT default_value,
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    hire_date DATE DEFAULT CURRENT_DATE
+);
+Copy<br>In this example, if no value is provided for the hire_date column when a new employee is added, the current date will be used as the default value.<br><br>A composite primary key is a primary key that consists of two or more columns. This type of key ensures that the combination of values in the specified columns is unique across the table.<br><br>CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    PRIMARY KEY (column1, column2)
+);
+Copy<br><br>CREATE TABLE order_details (
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    PRIMARY KEY (order_id, product_id)
+);
+Copy<br>In this example, the combination of order_id and product_id uniquely identifies each row in the order_details table.<br><br><br>The CREATE statement in SQL is used to create a new database, table, index, or other objects in a database. Here, I'll provide a detailed explanation of how to use the CREATE statement for these different objects.<br><br>To create a new database, you use the CREATE DATABASE statement.<br><br>CREATE DATABASE database_name;
+Copy<br><br>CREATE DATABASE company_db;
+Copy<br>This command creates a new database named company_db.<br><br>To create a new table within a database, you use the CREATE TABLE statement. This involves specifying the table name and defining its columns along with their data types and constraints.<br><br>CREATE TABLE table_name (
+    column1 datatype constraint,
+    column2 datatype constraint,
+    ...
+);
+Copy<br><br>CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birth_date DATE,
+    hire_date DATE,
+    salary DECIMAL(10, 2),
+    department_id INT
+);
+Copy<br><br><br>The SELECT statement in SQL is used to retrieve data from one or more tables in a database. It is one of the most fundamental and widely used SQL operations. Here is a detailed explanation of the SELECT statement:<br><br>SELECT column1, column2, ... FROM table_name;
+Copy<br>
+<br>column1, column2, ...: These are the columns you want to retrieve. If you want to select all columns from a table, you can use * sign instead of specifying column names.
+<br>table_name: The name of the table from which you want to retrieve the data.
+<br><br>
+<br>
+Selecting Specific Columns
+SELECT first_name, last_name FROM employees;
+Copy
+This query retrieves the first_name and last_name columns from the employees table.
+
+<br>
+Selecting All Columns
+SELECT * FROM employees;
+Copy
+This query retrieves all columns from the employees table.
+
+<br><br>The WHERE clause is used to filter records that meet certain criteria.<br>SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT first_name, last_name
+FROM employees
+WHERE department = 'Sales';
+Copy<br>This query retrieves the first_name and last_name of employees who work in the Sales department.<br><br>You can use logical operators (AND, OR, NOT) to combine multiple conditions.<br><br>SELECT first_name, last_name
+FROM employees
+WHERE department = 'Sales' AND salary &gt; 50000;
+Copy<br>This query retrieves the first_name and last_name of employees who work in the Sales department and have a salary greater than 50,000.<br><br>The ORDER BY clause is used to sort the result set.<br>SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+Copy<br>
+<br>ASC is for ascending order (default).
+<br>DESC is for descending order.
+<br><br>SELECT first_name, last_name
+FROM employees
+ORDER BY last_name ASC;
+Copy<br>This query retrieves the first_name and last_name of employees, sorted by last_name in ascending order.<br><br>The LIMIT clause is used to specify the number of records to return.<br>SELECT column1, column2, ...
+FROM table_name
+LIMIT number;
+Copy<br><br>SELECT first_name, last_name
+FROM employees
+LIMIT 10;
+Copy<br>This query retrieves the first 10 records from the employees table.<br><br>Aliases are used to give a table or a column a temporary name.<br>SELECT column1 AS alias_name, column2
+FROM table_name AS alias_name;
+Copy<br><br>SELECT first_name AS fname, last_name AS lname
+FROM employees AS e;
+Copy<br>This query retrieves the first_name and last_name from the employees table, but the result set will have columns named fname and lname.<br><br>The GROUP BY clause groups rows that have the same values into summary rows.<br>SELECT column1, COUNT(*)
+FROM table_name
+GROUP BY column1;
+Copy<br><br>SELECT department, COUNT(*)
+FROM employees
+GROUP BY department;
+Copy<br>This query retrieves the number of employees in each department.<br><br>The HAVING clause is used to filter groups based on a condition.<br>SELECT column1, COUNT(*)
+FROM table_name
+GROUP BY column1
+HAVING COUNT(*) &gt; number;
+Copy<br><br>SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING COUNT(*) &gt; 5;
+Copy<br>This query retrieves departments with more than 5 employees.<br><br><br>In SQL, joins are used to combine rows from two or more tables based on a related column between them. Joins allow you to retrieve data from multiple tables as if they were a single table. There are several types of joins, each serving a different purpose. Here’s a detailed explanation of the most common types of joins:<br><br>An INNER JOIN returns only the rows that have matching values in both tables. If there is no match, the row is excluded from the result set.<br><br>SELECT columns
+FROM table1
+INNER JOIN table2
+ON table1.column = table2.column;
+Copy<br><br>SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+INNER JOIN departments
+ON employees.department_id = departments.department_id;
+Copy<br>This query returns the first_name and last_name of employees along with the department_name from the departments where there is a match between employees.department_id and departments.department_id.<br><br>A LEFT JOIN returns all rows from the left table (table1) and the matched rows from the right table (table2). If there is no match, the result is NULL on the side of the right table.<br><br>SELECT columns
+FROM table1
+LEFT JOIN table2
+ON table1.column = table2.column;
+Copy<br><br>SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+LEFT JOIN departments
+ON employees.department_id = departments.department_id;
+Copy<br>This query returns all employees, and their corresponding department names. If an employee does not belong to any department, the department_name will be NULL.<br><br>A RIGHT JOIN returns all rows from the right table (table2) and the matched rows from the left table (table1). If there is no match, the result is NULL on the side of the left table.<br><br>SELECT columns
+FROM table1
+RIGHT JOIN table2
+ON table1.column = table2.column;
+Copy<br><br>SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+RIGHT JOIN departments
+ON employees.department_id = departments.department_id;
+Copy<br>This query returns all departments, and the employees that belong to them. If a department does not have any employees, the first_name and last_name will be NULL.<br><br>A FULL JOIN returns all rows when there is a match in either the left table (table1) or the right table (table2). If there is no match, the result is NULL for the columns of the table that lacks a matching row.<br><br>SELECT columns
+FROM table1
+FULL JOIN table2
+ON table1.column = table2.column;
+Copy<br><br>SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+FULL JOIN departments
+ON employees.department_id = departments.department_id;
+Copy<br>This query returns all employees and all departments. If an employee does not belong to a department, the department_name will be NULL. If a department does not have any employees, the first_name and last_name will be NULL.<br><br>A CROSS JOIN returns the Cartesian product of the two tables, meaning it combines all rows from the first table with all rows from the second table.<br><br>SELECT columns
+FROM table1
+CROSS JOIN table2;
+Copy<br><br>SELECT employees.first_name, departments.department_name
+FROM employees
+CROSS JOIN departments;
+Copy<br>This query returns every combination of first_name from employees and department_name from departments.<br><br>A SELF JOIN is a regular join, but the table is joined with itself. This is useful for querying hierarchical data or comparing rows within the same table.<br><br>SELECT a.column1, b.column2
+FROM table_name a, table_name b
+WHERE condition;
+Copy<br><br>SELECT e1.first_name AS Employee, e2.first_name AS Manager
+FROM employees e1
+INNER JOIN employees e2
+ON e1.manager_id = e2.employee_id;
+Copy<br>This query returns employees and their managers from the employees table.<br><br>Using table aliases (short names for table names) in joins can make your SQL queries more readable, especially when dealing with complex queries.<br><br>SELECT e.first_name, e.last_name, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id;
+Copy<br>In this example, e and d are aliases for the employees and departments tables, respectively.<br><br><br>Aggregate functions in SQL are used to perform calculations on a set of values and return a single value. These functions are often used with the GROUP BY clause to group the result set by one or more columns. Here are the most commonly used aggregate functions:<br><br>The COUNT() function returns the number of rows that match a specified condition.<br><br>SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT COUNT(employee_id) AS number_of_employees
+FROM employees
+WHERE department_id = 1;
+Copy<br>This query returns the number of employees in the department with department_id 1.<br><br>The SUM() function returns the total sum of a numeric column.<br><br>SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT SUM(salary) AS total_salary
+FROM employees
+WHERE department_id = 1;
+Copy<br>This query returns the total salary of all employees in the department with department_id 1.<br><br>The AVG() function returns the average value of a numeric column.<br><br>SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT AVG(salary) AS average_salary
+FROM employees
+WHERE department_id = 1;
+Copy<br>This query returns the average salary of employees in the department with department_id 1.<br><br>The MIN() function returns the smallest value in a column.<br><br>SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT MIN(salary) AS lowest_salary
+FROM employees
+WHERE department_id = 1;
+Copy<br>This query returns the lowest salary of employees in the department with department_id 1.<br><br>The MAX() function returns the largest value in a column.<br><br>SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+Copy<br><br>SELECT MAX(salary) AS highest_salary
+FROM employees
+WHERE department_id = 1;
+Copy<br>This query returns the highest salary of employees in the department with department_id 1.<br><br>The GROUP BY clause is used with aggregate functions to group the result set by one or more columns.<br><br>SELECT column1, aggregate_function(column2)
+FROM table_name
+WHERE condition
+GROUP BY column1;
+Copy<br><br>SELECT department_id, COUNT(employee_id) AS number_of_employees
+FROM employees
+GROUP BY department_id;
+Copy<br>This query returns the number of employees in each department.<br><br>The HAVING clause is used to filter groups based on a specified condition, often used with GROUP BY.<br><br>SELECT column1, aggregate_function(column2)
+FROM table_name
+WHERE condition
+GROUP BY column1
+HAVING condition;
+Copy<br><br>SELECT department_id, COUNT(employee_id) AS number_of_employees
+FROM employees
+GROUP BY department_id
+HAVING COUNT(employee_id) &gt; 5;
+Copy<br>This query returns only the departments with more than 5 employees.<br><br>You can use multiple aggregate functions in a single query to perform different calculations on different columns.<br><br>SELECT department_id,
+       COUNT(employee_id) AS number_of_employees,
+       AVG(salary) AS average_salary,
+       MIN(salary) AS lowest_salary,
+       MAX(salary) AS highest_salary
+FROM employees
+GROUP BY department_id;
+Copy<br>This query returns the number of employees, average salary, lowest salary, and highest salary for each department.<br><br>Consider a sales table with the following columns: sale_id, product_id, quantity, price, sale_date.<br><br>SELECT SUM(quantity * price) AS total_sales
+FROM sales;
+Copy<br>This query calculates the total sales revenue.<br><br>SELECT product_id, SUM(quantity) AS total_quantity_sold, SUM(quantity * price) AS total_revenue
+FROM sales
+GROUP BY product_id;
+Copy<br>This query returns the total quantity sold and total revenue for each product.<br><br>SELECT AVG(quantity * price) AS average_sale_amount
+FROM sales;
+Copy<br>This query calculates the average amount of each sale.<br><br><br>In SQL, a view is a virtual table based on the result set of a SELECT query. A view does not store the data itself, but rather it provides a way to represent and access data from one or more tables. Views are used to simplify complex queries, enhance security, and present data in a specific format.<br><br>The CREATE VIEW statement is used to create a view.<br><br>CREATE VIEW view_name AS
+SELECT columns
+FROM table_name
+WHERE condition;
+Copy<br><br>CREATE VIEW employee_info AS
+SELECT first_name, last_name, department_id
+FROM employees
+WHERE hire_date &gt; '2020-01-01';
+Copy<br>This command creates a view named employee_info that contains the first_name, last_name, and department_id of employees hired after January 1, 2020.<br><br>You can query a view just like a table.<br><br>SELECT * FROM employee_info;
+Copy<br>This query retrieves all rows and columns from the employee_info view.<br><br>Depending on the complexity of the view and the database system, you can sometimes use INSERT, UPDATE, and DELETE statements on a view. However, not all views are updatable.<br><br>UPDATE employee_info
+SET department_id = 5
+WHERE last_name = 'Doe';
+Copy<br>This query updates the department_id for employees with the last name 'Doe' in the employee_info view.<br><br>To remove a view from the database, use the DROP VIEW statement.<br><br>DROP VIEW view_name;
+Copy<br><br>DROP VIEW employee_info;
+Copy<br>This command deletes the employee_info view.<br><br>
+<br>Simplifying Complex Queries: Views can encapsulate complex joins and aggregations, making it easier to query the data.
+<br>Security: Views can restrict access to specific columns and rows, enhancing data security. Users can be granted access to the view without granting access to the underlying tables.
+<br>Data Abstraction: Views provide a level of abstraction, allowing the database schema to change without affecting the end users.
+<br>Data Consistency: Views ensure a consistent presentation of the data by encapsulating business logic and calculations.
+<br><br><br>Simple views are based on a single table and do not include group functions, such as SUM or AVG, or join multiple tables.<br><br>CREATE VIEW employee_names AS
+SELECT first_name, last_name
+FROM employees;
+Copy<br><br>Complex views can be based on multiple tables and can include group functions, joins, and subqueries.<br><br>CREATE VIEW department_summary AS
+SELECT d.department_name, COUNT(e.employee_id) AS num_employees, AVG(e.salary) AS avg_salary
+FROM departments d
+LEFT JOIN employees e
+ON d.department_id = e.department_id
+GROUP BY d.department_name;
+Copy<br>This view provides a summary of each department, including the number of employees and the average salary.<br><br>
+<br>Performance: Views can sometimes degrade performance, especially if they involve complex queries with joins and aggregations.
+<br>Non-Updatable Views: Not all views are updatable. Views based on joins, group functions, and subqueries may not support INSERT, UPDATE, or DELETE operations.
+<br>Dependency Management: Changes to underlying tables can affect the views that depend on them, requiring careful management of dependencies.
+<br><br>Materialized views are similar to regular views, but they store the result set of the query physically, which can improve query performance for complex and time-consuming operations. However, materialized views require periodic refreshes to stay up-to-date.<br><br>CREATE MATERIALIZED VIEW view_name AS
+SELECT columns
+FROM table_name
+WHERE condition;
+Copy<br><br>CREATE MATERIALIZED VIEW sales_summary AS
+SELECT product_id, SUM(quantity) AS total_quantity
+FROM sales
+GROUP BY product_id;
+Copy<br>This creates a materialized view that stores the total quantity sold for each product.<br><br><br>Transactions in SQL are a sequence of one or more SQL statements that are executed as a single unit of work. They ensure data integrity and consistency by following the ACID properties: Atomicity, Consistency, Isolation, and Durability.<br><br>
+<br>Atomicity: Ensures that all operations within a transaction are completed successfully. If any operation fails, the entire transaction is rolled back.
+<br>Consistency: Ensures that a transaction brings the database from one valid state to another, maintaining database rules such as constraints.
+<br>Isolation: Ensures that transactions are executed in isolation from one another until they are committed, preventing data inconsistency.
+<br>Durability: Ensures that once a transaction is committed, the changes are permanent, even in the event of a system failure.
+<br><br>
+<br>BEGIN TRANSACTION: Marks the beginning of a transaction.
+<br>COMMIT: Saves all changes made in the transaction permanently.
+<br>ROLLBACK: Undoes all changes made in the transaction.
+<br><br>BEGIN TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 100
+WHERE account_id = 1;
+
+UPDATE accounts
+SET balance = balance + 100
+WHERE account_id = 2;
+
+IF @@ERROR &lt;&gt; 0
+BEGIN
+    ROLLBACK;
+    PRINT 'Transaction failed and was rolled back';
+END
+ELSE
+BEGIN
+    COMMIT;
+    PRINT 'Transaction committed successfully';
+END;
+Copy<br><br><br>A nested SELECT, also known as a subquery, is a query within another SQL query. Subqueries can be used in various clauses like SELECT, FROM, WHERE, and HAVING.<br><br>SELECT employee_id, first_name, last_name,
+       (SELECT department_name
+        FROM departments
+        WHERE departments.department_id = employees.department_id) AS department_name
+FROM employees;
+Copy<br>This query returns employee details along with their department names.<br><br>SELECT first_name, last_name
+FROM employees
+WHERE department_id =
+      (SELECT department_id
+       FROM departments
+       WHERE department_name = 'Sales');
+Copy<br>This query returns the first and last names of employees who work in the 'Sales' department.<br><br>SELECT department_id, AVG(salary) AS avg_salary
+FROM (SELECT department_id, salary
+      FROM employees) AS emp_salaries
+GROUP BY department_id;
+Copy<br>This query calculates the average salary for each department.<br><br><br>An index in SQL is a database object that improves the speed of data retrieval operations on a table at the cost of additional writes and storage space to maintain the index data structure. Indexes are created on columns to allow faster searches and improve query performance.<br><br>
+<br>Single-Column Index: Created on a single column.
+<br>Composite Index: Created on two or more columns.
+<br>Unique Index: Ensures that the indexed column(s) do not have duplicate values.
+<br>Full-Text Index: Optimized for searching within text columns.
+<br><br>CREATE INDEX index_name
+ON table_name (column1, column2, ...);
+Copy<br><br>CREATE INDEX idx_employee_last_name
+ON employees (last_name);
+Copy<br>This creates an index on the last_name column of the employees table.<br><br>CREATE INDEX idx_employee_name
+ON employees (last_name, first_name);
+Copy<br>This creates an index on both the last_name and first_name columns of the employees table.<br><br>CREATE UNIQUE INDEX idx_unique_email
+ON employees (email);
+Copy<br>This creates a unique index on the email column of the employees table, ensuring no duplicate email addresses.<br><br>DROP INDEX index_name;
+Copy<br><br>DROP INDEX idx_employee_last_name;
+Copy<br>This command drops the idx_employee_last_name index from the employees table.<br><br><br>Triggers in SQL are special types of stored procedures that automatically execute in response to certain events on a particular table or view in a database. These events can include INSERT, UPDATE, DELETE operations, or a combination thereof. Triggers are used to enforce business rules, validate data changes, maintain data integrity, and automate tasks that need to occur alongside database operations.<br><br>
+<br>Before Triggers (BEFORE INSERT, BEFORE UPDATE, BEFORE DELETE):
+
+<br>Executed before the operation specified in the trigger (e.g., INSERT, UPDATE, DELETE) is performed on the table.
+<br>Useful for validation and modification of data before it is written to the database.
+
+
+<br>After Triggers (AFTER INSERT, AFTER UPDATE, AFTER DELETE):
+
+<br>Executed after the operation specified in the trigger has completed.
+<br>Often used for auditing, logging changes, or triggering additional actions based on the change.
+
+
+<br><br>CREATE [OR REPLACE] TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON table_name
+[FOR EACH ROW]  -- For row-level triggers; omit for statement-level triggers
+BEGIN
+    -- Trigger logic goes here
+END;
+Copy<br><br><br>CREATE OR REPLACE TRIGGER before_insert_employee
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF :NEW.salary &lt; 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Salary cannot be negative');
+    END IF;
+END;
+Copy<br>In this example:<br>
+<br>before_insert_employee is the name of the trigger.
+<br>BEFORE INSERT ON employees specifies that the trigger will fire before an insert operation on the employees table.
+<br>FOR EACH ROW indicates that this is a row-level trigger, meaning it will execute for each row affected by the insert operation.
+<br>:NEW.salary refers to the value of the salary column being inserted.
+<br>RAISE_APPLICATION_ERROR is used to raise an error if the inserted salary is negative.
+<br><br>CREATE OR REPLACE TRIGGER after_update_inventory
+AFTER UPDATE ON inventory
+FOR EACH ROW
+BEGIN
+    INSERT INTO inventory_logs (item_id, old_quantity, new_quantity, change_date)
+    VALUES (:OLD.item_id, :OLD.quantity, :NEW.quantity, SYSDATE);
+END;
+Copy<br>In this example:<br>
+<br>after_update_inventory is the name of the trigger.
+<br>AFTER UPDATE ON inventory specifies that the trigger will fire after an update operation on the inventory table.
+<br>:OLD.item_id and :NEW.quantity refer to the values of the item_id and quantity columns before and after the update, respectively.
+<br>SYSDATE is a built-in function in SQL that returns the current date and time.
+<br>The trigger inserts a record into the inventory_logs table whenever the quantity column in the inventory table is updated.
+<br><br>To drop (delete) a trigger from a database, you use the DROP TRIGGER statement followed by the trigger name.<br>DROP TRIGGER trigger_name;
+Copy<br><br>
+<br>Enforce Business Rules: Ensure that specific conditions are met before data is modified.
+<br>Maintain Data Integrity: Automatically enforce referential integrity and other constraints.
+<br>Automate Tasks: Perform additional actions such as logging changes or updating related data without manual intervention.
+<br>Enhance Security: Implement security measures by auditing or restricting data modifications.
+<br><br>
+<br>Performance Impact: Triggers can affect database performance, especially if they involve complex logic or affect a large number of rows.
+<br>Avoid Recursive Triggers: Be cautious when using triggers that update the same table on which they are defined, as this can lead to infinite loops.
+<br>Documentation: Document triggers thoroughly to ensure understanding and maintenance by other developers.
+<br>Testing: Test triggers rigorously to ensure they behave as expected in various scenarios.
+]]></description><link>blog\sql-for-older-kids.html</link><guid isPermaLink="false">Blog/SQL for older kids.md</guid><pubDate>Sun, 29 Sep 2024 09:57:37 GMT</pubDate></item><item><title><![CDATA[Unlocking Natural Language Processing (NLP) with NLTK]]></title><description><![CDATA[<a class="tag" href="?query=tag:blog" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#blog</a> <a class="tag" href="?query=tag:classification" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#classification</a> <a class="tag" href="?query=tag:language" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#language</a> <a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:natural" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#natural</a> <a class="tag" href="?query=tag:nlp" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#nlp</a> <a class="tag" href="?query=tag:nltk" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#nltk</a> <a class="tag" href="?query=tag:processing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#processing</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:text" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#text</a> 
+ <br> <a href=".?query=tag:blog" class="tag" target="_blank" rel="noopener">#blog</a> <a href=".?query=tag:classification" class="tag" target="_blank" rel="noopener">#classification</a> <a href=".?query=tag:language" class="tag" target="_blank" rel="noopener">#language</a> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:natural" class="tag" target="_blank" rel="noopener">#natural</a> <a href=".?query=tag:nlp" class="tag" target="_blank" rel="noopener">#nlp</a> <a href=".?query=tag:nltk" class="tag" target="_blank" rel="noopener">#nltk</a> <a href=".?query=tag:processing" class="tag" target="_blank" rel="noopener">#processing</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:text" class="tag" target="_blank" rel="noopener">#text</a><br>Natural Language Processing (NLP) has revolutionized the way we interact with computers, enabling them to understand and interpret human language. NLTK (Natural Language Toolkit) is a powerful Python library that provides tools and resources for NLP tasks such as tokenization, stemming, lemmatization, part-of-speech tagging, named entity recognition, and more. In this article, we’ll explore the fundamentals of NLP and dive into each of these topics using NLTK.<br><br>NLTK is a leading platform for building Python programs to work with human language data. It provides easy-to-use interfaces to over 50 corpora and lexical resources such as WordNet, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning.<br><br>Tokenization is the process of breaking down text into smaller units, such as words or sentences. NLTK provides functions like&nbsp;sent_tokenize&nbsp;and&nbsp;word_tokenize&nbsp;to tokenize text into sentences and words, respectively. This step is essential for many NLP tasks as it forms the foundation for further analysis.<br>from nltk.tokenize import sent_tokenize, word_tokenize
+ 
+sample_text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+sentences = sent_tokenize(sample_text)
+words = word_tokenize(sample_text)
+ 
+print("Sentences:", sentences)
+print("Words:", words)
+Copy<br><br>Chunking involves grouping words into meaningful chunks based on their parts of speech. NLTK allows us to define chunk patterns using regular expressions and then apply them to text for chunking. This process helps in extracting meaningful information from text by identifying phrases and entities.<br>import nltk
+from nltk.tokenize import word_tokenize
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = word_tokenize(text)
+tags = nltk.pos_tag(words)
+ 
+chunk_grammar = r"""Chunk: {&lt;NN.?&gt;*&lt;VB.?&gt;*&lt;JJ.?&gt;*&lt;NNP&gt;+}"""
+chunk_parser = nltk.RegexpParser(chunk_grammar)
+chunks = chunk_parser.parse(tags)
+ 
+chunks.draw()  # Uncomment to visualize the chunks
+Copy<br><br>Stop words are common words like “a”, “the”, “is”, etc., that occur frequently in text but often do not carry significant meaning. NLTK provides a list of stop words for various languages, allowing us to filter them out from our text data. Removing stop words can improve the efficiency and accuracy of NLP tasks by focusing on content-bearing words.<br>from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = word_tokenize(text)
+stop_words = set(stopwords.words("english"))
+ 
+filtered_words = [word for word in words if word.lower() not in stop_words]
+ 
+print("Filtered Words:", filtered_words)
+Copy<br><br>Named Entity Recognition is the process of identifying and classifying named entities such as names of people, organizations, locations, etc., within text. NLTK includes tools for NER, which can automatically label named entities in text, providing valuable information for tasks like information extraction and text summarization.<br>import nltk
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = nltk.word_tokenize(text)
+tags = nltk.pos_tag(words)
+named_entities = nltk.ne_chunk(tags)
+ 
+print("Named Entities:")
+print(named_entities)
+Copy<br><br>Stemming is the process of reducing words to their root or base form, removing suffixes and prefixes. NLTK provides various stemmers, such as the Porter Stemmer, which apply linguistic rules to transform words. Stemming helps in standardizing words to improve text analysis and information retrieval.<br>from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+ 
+ps = PorterStemmer()
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = word_tokenize(text)
+stemmed_words = [ps.stem(word) for word in words]
+ 
+print("Stemmed Words:", stemmed_words)
+Copy<br><br>Lemmatization is similar to stemming but aims to reduce words to their lemma or dictionary form. Unlike stemming, lemmatization ensures that the resulting word is a valid word in the language. NLTK’s WordNet Lemmatizer uses lexical knowledge to accurately lemmatize words based on their part of speech.<br>from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+ 
+lemmatizer = WordNetLemmatizer()
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = word_tokenize(text)
+lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
+ 
+print("Lemmatized Words:", lemmatized_words)
+Copy<br><br>Part-of-speech tagging is the process of assigning grammatical tags to words based on their role in a sentence (e.g., noun, verb, adjective). NLTK provides tools for POS tagging, which analyze text and assign appropriate tags to each word. POS tagging is crucial for tasks like syntax analysis and word sense disambiguation.<br>import nltk
+from nltk.tokenize import word_tokenize
+ 
+text = "NLTK is a powerful tool for natural language processing. It provides various functionalities for text analysis."
+words = word_tokenize(text)
+tags = nltk.pos_tag(words)
+ 
+print("Part-of-Speech Tags:")
+print(tags)
+Copy<br><br>NLTK is a versatile and comprehensive toolkit for natural language processing in Python. By leveraging its functionalities for tokenization, chunking, stop word removal, named entity recognition, stemming, lemmatization, and part-of-speech tagging, developers and researchers can build powerful NLP applications for various domains such as text analysis, sentiment analysis, machine translation, and more.]]></description><link>blog\unlocking-natural-language-processing-(nlp)-with-nltk.html</link><guid isPermaLink="false">Blog/Unlocking Natural Language Processing (NLP) with NLTK.md</guid><pubDate>Sun, 29 Sep 2024 09:58:12 GMT</pubDate></item><item><title><![CDATA[<strong>Train-Test Split</strong>]]></title><description><![CDATA[<a class="tag" href="?query=tag:ml" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#ml</a> <a class="tag" href="?query=tag:model" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#model</a> <a class="tag" href="?query=tag:notes" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#notes</a> <a class="tag" href="?query=tag:python" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#python</a> <a class="tag" href="?query=tag:sklearn" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#sklearn</a> <a class="tag" href="?query=tag:tensorflow" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#tensorflow</a> <a class="tag" href="?query=tag:testing" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#testing</a> <a class="tag" href="?query=tag:validation" style="background-color: rgb(4, 108, 116); color: white; font-weight: 700; border: none; border-radius: 1em; padding: 0.2em 0.5em;">#validation</a> 
+ <br> <a href=".?query=tag:ml" class="tag" target="_blank" rel="noopener">#ml</a> <a href=".?query=tag:model" class="tag" target="_blank" rel="noopener">#model</a> <a href=".?query=tag:notes" class="tag" target="_blank" rel="noopener">#notes</a> <a href=".?query=tag:python" class="tag" target="_blank" rel="noopener">#python</a> <a href=".?query=tag:sklearn" class="tag" target="_blank" rel="noopener">#sklearn</a> <a href=".?query=tag:tensorflow" class="tag" target="_blank" rel="noopener">#tensorflow</a> <a href=".?query=tag:testing" class="tag" target="_blank" rel="noopener">#testing</a> <a href=".?query=tag:validation" class="tag" target="_blank" rel="noopener">#validation</a><br>Validation strategies are crucial methods in machine learning (ML) for assessing how well a model performs on unseen data. The main goal is to prevent a model from simply memorizing the training data, and instead ensure it can generalize to new situations. Here's a breakdown of some common validation techniques:<br><br>This is the simplest approach. You split your data into two sets: training data (used to train the model) and testing data (used to evaluate the model's performance on unseen data). The key here is to ensure the testing data is truly representative of the real-world data the model will encounter.<br>from sklearn.model_selection import train_test_split
+
+# Load your data (X - features, y - target variable)
+X, y = ...
+
+# Split data into training and testing sets (test_size is the proportion of data for testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train your model on the training set
+model.fit(X_train, y_train)
+
+# Evaluate your model on the testing set
+# (e.g., using classification report, confusion matrix, etc.)
+predictions = model.predict(X_test)
+# ... evaluation metrics here
+
+Copy<br><br>This is a more robust technique that addresses potential biases from a single data split. It involves dividing your data into multiple folds. Then, you iteratively train the model on k-1 folds (e.g., 7 folds for k-fold cross-validation) and test it on the remaining fold. This process is repeated for each unique combination of folds, and the results are averaged for a more comprehensive evaluation.<br>from sklearn.model_selection import KFold
+
+# Define the number of folds
+k = 5
+
+# Initialize KFold object
+kf = KFold(n_splits=k, shuffle=True, random_state=42)
+
+# Loop through each fold for training and testing
+for train_index, test_index in kf.split(X):
+  X_train, X_test = X[train_index], X[test_index]
+  y_train, y_test = y[train_index], y[test_index]
+
+  # Train your model on the training fold
+  model.fit(X_train, y_train)
+
+  # Evaluate your model on the testing fold
+  # (e.g., using classification report, confusion matrix, etc.)
+  predictions = model.predict(X_test)
+  # ... evaluation metrics here
+
+# You can average the evaluation metrics across all folds for a final score
+
+Copy<br><br>This is a variation of k-fold cross-validation that's particularly useful for imbalanced datasets (where some classes have significantly fewer data points than others). It ensures each fold has a similar proportion of classes as the original data, leading to a more reliable assessment.<br>from sklearn.model_selection import StratifiedKFold
+
+# Define the number of folds
+k = 5
+
+# Initialize StratifiedKFold object
+skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=42)
+
+# Similar loop structure as KFold example, but using skf object for splitting
+for train_index, test_index in skf.split(X, y):
+  X_train, X_test = X[train_index], X[test_index]
+  y_train, y_test = y[train_index], y[test_index]
+
+  # Train and evaluate following the same pattern
+  # ...
+
+Copy<br><br>This is a type of cross-validation where each data point is used for testing once, with all other points being used for training. While it provides a thorough evaluation, it can be computationally expensive for large datasets. Its a variant of K fold where the value of K is same as the number of records.]]></description><link>blog\validation-strategies.html</link><guid isPermaLink="false">Blog/Validation Strategies.md</guid><pubDate>Sun, 29 Sep 2024 09:58:22 GMT</pubDate></item><item><title><![CDATA[Collatz Conjecture]]></title><description><![CDATA[ 
+ <br><img alt="Pasted image 20240929153248.png" src="lib\media\pasted-image-20240929153248.png"><br>The Collatz conjecture, also known as the 3n + 1 conjecture or the Hailstone sequence, is an unsolved problem in mathematics that was proposed by Lothar Collatz in 1937. It is one of the simplest-to-state yet unresolved problems in number theory and has intrigued mathematicians for decades.<br>The conjecture can be stated as follows:<br>
+<br>Take any positive integer n.
+<br>If n is even, divide it by 2.
+<br>If n is odd, multiply it by 3 and add 1.
+<br>Repeat the process with the resulting number.
+<br><a data-tooltip-position="top" aria-label="https://angelmacwan.github.io/P5.JS/Collatz%20Conjecture/" rel="noopener" class="external-link" href="https://angelmacwan.github.io/P5.JS/Collatz%20Conjecture/" target="_blank">Animated visualization of the Collatz Conjecture</a><br>The conjecture posits that regardless of the starting number, this sequence will always eventually reach 1, after which it will enter a loop of 4 → 2 → 1.<br>Despite its apparent simplicity, the Collatz conjecture has resisted all attempts at a proof for over 80 years. It has been verified for all starting numbers up to at least 2^68, but a general proof remains elusive. The conjecture's significance lies not only in its mathematical intrigue but also in its potential connections to other areas of mathematics and computer science.<br>The study of the Collatz conjecture has led to developments in various mathematical fields, including number theory, dynamical systems, and computational mathematics. It serves as an excellent example of how seemingly simple problems can lead to profound mathematical exploration and insight.<br><br><a data-tooltip-position="top" aria-label="https://github.com/angelmacwan/P5.JS/tree/master/Collatz%20Conjecture" rel="noopener" class="external-link" href="https://github.com/angelmacwan/P5.JS/tree/master/Collatz%20Conjecture" target="_blank">View on Github</a><br>The visualization created using p5.js is an artistic representation of the Collatz conjecture. Here's an explanation of the key aspects of the code:<br>
+<br>Setup: The code sets up a canvas and initializes the visualization with some basic text and color settings.
+<br>Main Loop: The draw() function generates Collatz sequences for numbers from 1 to 1000.
+<br>Collatz Function: The collatz(n) function implements the Collatz conjecture rules: if n is even, divide by 2; if odd, multiply by 3 and add 1.
+<br>Visualization: The draw_collatz() function creates a visual representation of each Collatz sequence:
+
+<br>It starts from the center bottom of the canvas.
+<br>For each number in the sequence, it draws a line.
+<br>The direction of the line depends on whether the number is odd or even.
+<br>The color and thickness of the lines vary based on their position in the sequence.
+
+
+<br>This visualization likely creates a tree-like structure, with each branch representing a different starting number and its Collatz sequence. The result is an artistic representation of the mathematical concept, showcasing the complexity and patterns within the Collatz conjecture.<br>let n = 1;
+
+function setup() {
+    createCanvas(windowWidth - 5, windowHeight - 5);
+    background(20);
+
+    // ADD TEST ON TOP LEFT
+    textSize(20);
+    fill(255);
+    text("Collatz Conjecture", 30, 60);
+
+    colorMode(HSB, 255);
+    frameRate(30);  // Limit frame rate to slow down drawing
+}
+
+function draw() {
+    let collatz_outputs = [];
+    let x = n;
+
+    do {
+        x = collatz(x);
+        collatz_outputs.push(x);
+    } while (x != 1);
+
+    draw_collatz(collatz_outputs);
+
+    n++;
+
+    if (n &gt; 1000) {
+        console.log("done");
+        noLoop();
+        return;
+    }
+}
+
+function draw_collatz(collatz_outputs, angle = .15, offset = 15) {
+    push();
+    translate(width / 2, height / 1.2);
+    rotate(PI / 2);
+    for (let i = collatz_outputs.length - 1; i &gt;= 0; i--) {
+        let hue = map(i, 0, collatz_outputs.length - 1, 100, 200);
+        stroke(hue, 255, 255, 100);
+        strokeWeight(map(i, 0, collatz_outputs.length - 1, 1, 8));
+
+        if (collatz_outputs[i] % 2 == 0) rotate(angle);
+        else rotate(-angle);
+        line(0, 0, 0, offset);
+        translate(0, offset);
+    }
+    pop();
+}
+
+function collatz(n) {
+    if (n % 2 == 0) {
+        return n / 2;
+    } else {
+        return 3 * n + 1;
+    }
+}
+Copy]]></description><link>projects\collatz-conjecture.html</link><guid isPermaLink="false">Projects/Collatz Conjecture.md</guid><pubDate>Mon, 30 Sep 2024 07:06:40 GMT</pubDate><enclosure url="lib\media\pasted-image-20240929153248.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\pasted-image-20240929153248.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Understanding Gradient Descent with a Visual Linear Regression Example]]></title><description><![CDATA[ 
+ <br><img alt="image.png" src="lib\media\image.png"><br><br>Gradient descent is one of the most essential optimization algorithms in machine learning, and it forms the backbone of many algorithms, including linear regression. This blog will guide you through the concept of gradient descent, and we'll demonstrate its application using a visual linear regression example.<br><br><br>At its core, gradient descent is an iterative optimization algorithm used to minimize a function. In machine learning, it is often used to minimize the error between predicted values and actual values by adjusting model parameters.<br>Here's how gradient descent works:<br>
+<br>Initialize Parameters: Start with initial values for the parameters (in linear regression, these are the slope ( m ) and intercept ( b )).
+<br>Compute the Error: Calculate the error between the predicted output and the actual output.
+<br>Update Parameters: Adjust the parameters to reduce the error. The direction and magnitude of the adjustment are determined by the gradient of the error function with respect to the parameters and a factor known as the learning rate.
+<br>Iterate: Repeat the process until the error is minimized or a stopping criterion is met.
+<br>The key idea is to move the parameters in the direction that decreases the error the fastest, following the gradient.<br><br>To understand how gradient descent works, we'll apply it to a basic linear regression problem. Linear regression is used to model the relationship between two variables by fitting a straight line to a set of data points. The equation of this line is:<br>y = mx + b<br>Where:<br>
+<br>y is the predicted value.
+<br>x is the input feature.
+<br>m is the slope (how steep the line is).
+<br>b is the y-intercept (where the line crosses the y-axis).
+<br>The goal of linear regression is to find the values of ( m ) and ( b ) that result in the best-fitting line, i.e., the line that minimizes the error between the predicted and actual values.<br><br><a data-tooltip-position="top" aria-label="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js" rel="noopener" class="external-link" href="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js" target="_blank">View on Github</a><br><a rel="noopener" class="external-link" href="https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/" target="_blank">https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/</a><br>In this example, you can visualize gradient descent by interacting with the linear regression model. The process starts with random values for the slope m and intercept b and then iteratively updates them using gradient descent to fit the data points.<br><br>
+<br>Interactive Data Points: You can add data points to the canvas by clicking on it. These points represent the data that the linear regression model will try to fit.
+<br>Drawing the Regression Line: As you add data points, a line representing the current state of the model is drawn. This line adjusts dynamically as the model learns from the data using gradient descent.
+<br>Controlling the Learning Rate: A slider allows you to control the learning rate, which determines how quickly the model updates its parameters. A higher learning rate may cause the model to converge faster but risks overshooting the minimum error, while a lower learning rate provides more precision but slows down the learning process.
+<br>Error Display: The average error is displayed in real time, giving you a clear indication of how well the model is fitting the data.
+<br><br>
+<br>Data Collection: Each time you click on the canvas, the coordinates are recorded as data points, scaled between 0 and 1 to fit the canvas.
+<br>Gradient Descent: The linearRegression() function implements gradient descent by calculating the error for each data point and updating ( m ) and ( b ) to minimize this error.
+<br>Drawing the Line: The drawLine() function maps the calculated line from the model's parameters onto the canvas, updating as gradient descent progresses.
+<br>Reset Function: A reset feature allows you to clear the data points and start fresh, making it easy to experiment with different scenarios.
+<br><br>Gradient descent is a powerful tool for optimizing machine learning models, and linear regression provides an intuitive way to visualize how it works. This example allows you to see gradient descent in action, with real-time updates as the algorithm adjusts the model to fit your data.<br>By experimenting with different data points and learning rates, you can gain a deeper understanding of how gradient descent works and how it can be applied to solve optimization problems in machine learning.]]></description><link>projects\gradient-descent-a-visual-linear-using-regression.html</link><guid isPermaLink="false">Projects/Gradient Descent-a Visual Linear using Regression.md</guid><pubDate>Mon, 30 Sep 2024 07:05:52 GMT</pubDate><enclosure url="lib\media\image.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\image.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Blogs]]></title><description><![CDATA[ 
+ <br><br><br><a data-tooltip-position="top" aria-label="Blog/Getting Started with K-Nearest Neighbors Algorithm.md" data-href="Blog/Getting Started with K-Nearest Neighbors Algorithm.md" href="blog\getting-started-with-k-nearest-neighbors-algorithm.html" class="internal-link" target="_self" rel="noopener">Getting Started with K-Nearest Neighbors Algorithm</a><br><a data-tooltip-position="top" aria-label="Blog/Linear Regression A Comprehensive Guide.md" data-href="Blog/Linear Regression A Comprehensive Guide.md" href="blog\linear-regression-a-comprehensive-guide.html" class="internal-link" target="_self" rel="noopener">Linear Regression A Comprehensive Guide</a><br><a data-tooltip-position="top" aria-label="Blog/Smooth Sailing in the Tech Seas Docker Demystified.md" data-href="Blog/Smooth Sailing in the Tech Seas Docker Demystified.md" href="blog\smooth-sailing-in-the-tech-seas-docker-demystified.html" class="internal-link" target="_self" rel="noopener">Smooth Sailing in the Tech Seas Docker Demystified</a><br><a data-tooltip-position="top" aria-label="Blog/Unlocking Natural Language Processing (NLP) with NLTK.md" data-href="Blog/Unlocking Natural Language Processing (NLP) with NLTK.md" href="blog\unlocking-natural-language-processing-(nlp)-with-nltk.html" class="internal-link" target="_self" rel="noopener">Unlocking Natural Language Processing (NLP) with NLTK</a><br><br><br><a data-tooltip-position="top" aria-label="Blog/Advanced Hyperparameter Tuning.md" data-href="Blog/Advanced Hyperparameter Tuning.md" href="blog\advanced-hyperparameter-tuning.html" class="internal-link" target="_self" rel="noopener">Advanced Hyperparameter Tuning</a><br><a data-tooltip-position="top" aria-label="Blog/Clustering.md" data-href="Blog/Clustering.md" href="blog\clustering.html" class="internal-link" target="_self" rel="noopener">Clustering</a><br><a data-tooltip-position="top" aria-label="Blog/Classification using Tree Models.md" data-href="Blog/Classification using Tree Models.md" href="blog\classification-using-tree-models.html" class="internal-link" target="_self" rel="noopener">Classification using Tree Models</a><br><a data-tooltip-position="top" aria-label="Blog/EDA.md" data-href="Blog/EDA.md" href="blog\eda.html" class="internal-link" target="_self" rel="noopener">EDA</a><br><a data-tooltip-position="top" aria-label="Blog/Ensemble Learning.md" data-href="Blog/Ensemble Learning.md" href="blog\ensemble-learning.html" class="internal-link" target="_self" rel="noopener">Ensemble Learning</a><br><a data-tooltip-position="top" aria-label="Blog/Hyperparameter Tuning.md" data-href="Blog/Hyperparameter Tuning.md" href="blog\hyperparameter-tuning.html" class="internal-link" target="_self" rel="noopener">Hyperparameter Tuning</a><br><a data-tooltip-position="top" aria-label="Blog/Git and GitHub.md" data-href="Blog/Git and GitHub.md" href="blog\git-and-github.html" class="internal-link" target="_self" rel="noopener">Git and GitHub</a><br><a data-tooltip-position="top" aria-label="Blog/Hypothesis Testing.md" data-href="Blog/Hypothesis Testing.md" href="blog\hypothesis-testing.html" class="internal-link" target="_self" rel="noopener">Hypothesis Testing</a><br><a data-tooltip-position="top" aria-label="Blog/PCA.md" data-href="Blog/PCA.md" href="blog\pca.html" class="internal-link" target="_self" rel="noopener">PCA</a><br><a data-tooltip-position="top" aria-label="Blog/Regression.md" data-href="Blog/Regression.md" href="blog\regression.html" class="internal-link" target="_self" rel="noopener">Regression</a><br><a data-tooltip-position="top" aria-label="Blog/Validation Strategies.md" data-href="Blog/Validation Strategies.md" href="blog\validation-strategies.html" class="internal-link" target="_self" rel="noopener">Validation Strategies</a><br><a data-tooltip-position="top" aria-label="Blog/SQL for kids.md" data-href="Blog/SQL for kids.md" href="blog\sql-for-kids.html" class="internal-link" target="_self" rel="noopener">SQL for kids</a><br><a data-tooltip-position="top" aria-label="Blog/SQL for older kids.md" data-href="Blog/SQL for older kids.md" href="blog\sql-for-older-kids.html" class="internal-link" target="_self" rel="noopener">SQL for older kids</a><br><a data-tooltip-position="top" aria-label="Blog/Model Selection.md" data-href="Blog/Model Selection.md" href="blog\model-selection.html" class="internal-link" target="_self" rel="noopener">Model Selection</a><br><a data-tooltip-position="top" aria-label="Blog/NLP.md" data-href="Blog/NLP.md" href="blog\nlp.html" class="internal-link" target="_self" rel="noopener">NLP</a><br><a data-tooltip-position="top" aria-label="Blog/NLTK.md" data-href="Blog/NLTK.md" href="blog\nltk.html" class="internal-link" target="_self" rel="noopener">NLTK</a>]]></description><link>blogs-and-notes.html</link><guid isPermaLink="false">Blogs and Notes.md</guid><pubDate>Mon, 30 Sep 2024 06:55:56 GMT</pubDate></item><item><title><![CDATA[Projects]]></title><description><![CDATA[ 
+ <br><br><a data-tooltip-position="top" aria-label="Projects/Collatz Conjecture.md" data-href="Projects/Collatz Conjecture.md" href="projects\collatz-conjecture.html" class="internal-link" target="_self" rel="noopener">Collatz Conjecture</a><br><a data-tooltip-position="top" aria-label="Projects/Gradient Descent-a Visual Linear using Regression.md" data-href="Projects/Gradient Descent-a Visual Linear using Regression.md" href="projects\gradient-descent-a-visual-linear-using-regression.html" class="internal-link" target="_self" rel="noopener">Gradient Descent-a Visual Linear using Regression</a>]]></description><link>projects.html</link><guid isPermaLink="false">Projects.md</guid><pubDate>Mon, 30 Sep 2024 07:06:59 GMT</pubDate></item></channel></rss>

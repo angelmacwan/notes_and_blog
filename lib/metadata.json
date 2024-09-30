@@ -1,0 +1,485 @@
+{
+  "vaultName": "max",
+  "lastExport": 1727680094865,
+  "pluginVersion": "1.8.01",
+  "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon",
+  "useCustomHeadContent": false,
+  "useCustomFavicon": false,
+  "files": [
+    "attachment/image.png",
+    "attachment/Pasted image 20240929152917.png",
+    "attachment/Pasted image 20240929152922.png",
+    "attachment/Pasted image 20240929153056.png",
+    "attachment/Pasted image 20240929153248.png",
+    "Blog/Advanced Hyperparameter Tuning.md",
+    "Blog/Classification using Tree Models.md",
+    "Blog/Clustering.md",
+    "Blog/EDA.md",
+    "Blog/Ensemble Learning.md",
+    "Blog/Getting Started with K-Nearest Neighbors Algorithm.md",
+    "Blog/Git and GitHub.md",
+    "Blog/Hyperparameter Tuning.md",
+    "Blog/Hypothesis Testing.md",
+    "Blog/Linear Regression A Comprehensive Guide.md",
+    "Blog/Model Selection.md",
+    "Blog/NLP.md",
+    "Blog/NLTK.md",
+    "Blog/PCA.md",
+    "Blog/Regression.md",
+    "Blog/Smooth Sailing in the Tech Seas Docker Demystified.md",
+    "Blog/SQL for kids.md",
+    "Blog/SQL for older kids.md",
+    "Blog/Unlocking Natural Language Processing (NLP) with NLTK.md",
+    "Blog/Validation Strategies.md",
+    "Projects/Collatz Conjecture.md",
+    "Projects/Gradient Descent-a Visual Linear using Regression.md",
+    "Blogs and Notes.md",
+    "Projects.md",
+    "lib/media/pasted-image-20240929152922.png",
+    "lib/media/pasted-image-20240929153056.png",
+    "lib/media/pasted-image-20240929153248.png",
+    "lib/media/image.png",
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/874d8b8e340f75575caa.svg",
+    "lib/media/3d6c1bdc4d87cde4de67.svg",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "mainDependencies": [
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/874d8b8e340f75575caa.svg",
+    "lib/media/3d6c1bdc4d87cde4de67.svg",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "fileInfo": {
+    "attachment/image.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 41002,
+      "exportedPath": "attachment/image.png",
+      "dependencies": []
+    },
+    "attachment/Pasted image 20240929152917.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 407083,
+      "exportedPath": "attachment/pasted-image-20240929152917.png",
+      "dependencies": []
+    },
+    "attachment/Pasted image 20240929152922.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 407083,
+      "exportedPath": "attachment/pasted-image-20240929152922.png",
+      "dependencies": []
+    },
+    "attachment/Pasted image 20240929153056.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 14624,
+      "exportedPath": "attachment/pasted-image-20240929153056.png",
+      "dependencies": []
+    },
+    "attachment/Pasted image 20240929153248.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 1129623,
+      "exportedPath": "attachment/pasted-image-20240929153248.png",
+      "dependencies": []
+    },
+    "Blog/Advanced Hyperparameter Tuning.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 1615,
+      "exportedPath": "blog/advanced-hyperparameter-tuning.html",
+      "dependencies": []
+    },
+    "Blog/Classification using Tree Models.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2099,
+      "exportedPath": "blog/classification-using-tree-models.html",
+      "dependencies": []
+    },
+    "Blog/Clustering.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2435,
+      "exportedPath": "blog/clustering.html",
+      "dependencies": []
+    },
+    "Blog/EDA.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2003,
+      "exportedPath": "blog/eda.html",
+      "dependencies": []
+    },
+    "Blog/Ensemble Learning.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 3635,
+      "exportedPath": "blog/ensemble-learning.html",
+      "dependencies": []
+    },
+    "Blog/Getting Started with K-Nearest Neighbors Algorithm.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4671,
+      "exportedPath": "blog/getting-started-with-k-nearest-neighbors-algorithm.html",
+      "dependencies": []
+    },
+    "Blog/Git and GitHub.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 3392,
+      "exportedPath": "blog/git-and-github.html",
+      "dependencies": []
+    },
+    "Blog/Hyperparameter Tuning.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2789,
+      "exportedPath": "blog/hyperparameter-tuning.html",
+      "dependencies": []
+    },
+    "Blog/Hypothesis Testing.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4009,
+      "exportedPath": "blog/hypothesis-testing.html",
+      "dependencies": []
+    },
+    "Blog/Linear Regression A Comprehensive Guide.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4451,
+      "exportedPath": "blog/linear-regression-a-comprehensive-guide.html",
+      "dependencies": []
+    },
+    "Blog/Model Selection.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2071,
+      "exportedPath": "blog/model-selection.html",
+      "dependencies": [
+        "lib/media/pasted-image-20240929152922.png"
+      ]
+    },
+    "Blog/NLP.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 10926,
+      "exportedPath": "blog/nlp.html",
+      "dependencies": []
+    },
+    "Blog/NLTK.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4278,
+      "exportedPath": "blog/nltk.html",
+      "dependencies": []
+    },
+    "Blog/PCA.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2506,
+      "exportedPath": "blog/pca.html",
+      "dependencies": []
+    },
+    "Blog/Regression.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4019,
+      "exportedPath": "blog/regression.html",
+      "dependencies": []
+    },
+    "Blog/Smooth Sailing in the Tech Seas Docker Demystified.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 2852,
+      "exportedPath": "blog/smooth-sailing-in-the-tech-seas-docker-demystified.html",
+      "dependencies": []
+    },
+    "Blog/SQL for kids.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4822,
+      "exportedPath": "blog/sql-for-kids.html",
+      "dependencies": [
+        "lib/media/pasted-image-20240929153056.png"
+      ]
+    },
+    "Blog/SQL for older kids.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 30608,
+      "exportedPath": "blog/sql-for-older-kids.html",
+      "dependencies": []
+    },
+    "Blog/Unlocking Natural Language Processing (NLP) with NLTK.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 6232,
+      "exportedPath": "blog/unlocking-natural-language-processing-(nlp)-with-nltk.html",
+      "dependencies": []
+    },
+    "Blog/Validation Strategies.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 3580,
+      "exportedPath": "blog/validation-strategies.html",
+      "dependencies": []
+    },
+    "Projects/Collatz Conjecture.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4028,
+      "exportedPath": "projects/collatz-conjecture.html",
+      "dependencies": [
+        "lib/media/pasted-image-20240929153248.png"
+      ]
+    },
+    "Projects/Gradient Descent-a Visual Linear using Regression.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 4771,
+      "exportedPath": "projects/gradient-descent-a-visual-linear-using-regression.html",
+      "dependencies": [
+        "lib/media/image.png"
+      ]
+    },
+    "Blogs and Notes.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 83,
+      "exportedPath": "blogs-and-notes.html",
+      "dependencies": []
+    },
+    "Projects.md": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 37,
+      "exportedPath": "projects.html",
+      "dependencies": []
+    },
+    "lib/media/pasted-image-20240929152922.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 407083,
+      "exportedPath": "lib/media/pasted-image-20240929152922.png",
+      "dependencies": []
+    },
+    "lib/media/pasted-image-20240929153056.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 14624,
+      "exportedPath": "lib/media/pasted-image-20240929153056.png",
+      "dependencies": []
+    },
+    "lib/media/pasted-image-20240929153248.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 1129623,
+      "exportedPath": "lib/media/pasted-image-20240929153248.png",
+      "dependencies": []
+    },
+    "lib/media/image.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 41002,
+      "exportedPath": "lib/media/image.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.wasm": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 23377,
+      "exportedPath": "lib/scripts/graph-wasm.wasm",
+      "dependencies": []
+    },
+    "lib/fonts/94f2f163d4b698242fef.otf": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 66800,
+      "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
+      "dependencies": []
+    },
+    "lib/fonts/72505e6a122c6acd5471.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 104232,
+      "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/2d5198822ab091ce4305.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 104332,
+      "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 98868,
+      "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cb10ffd7684cd9836a05.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 106876,
+      "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/b5f0f109bc88052d4000.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 105804,
+      "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cbe0ae49c52c920fd563.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 106108,
+      "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/535a6cf662596b3bd6a6.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 111708,
+      "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/70cc7ff27245e82ad414.ttf": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 192740,
+      "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/454577c22304619db035.ttf": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 161376,
+      "exportedPath": "lib/fonts/454577c22304619db035.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/52ac8f3034507f1d9e53.ttf": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 191568,
+      "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/05b618077343fbbd92b7.ttf": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 155288,
+      "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 7876,
+      "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+      "dependencies": []
+    },
+    "lib/media/874d8b8e340f75575caa.svg": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 317,
+      "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
+      "dependencies": []
+    },
+    "lib/media/3d6c1bdc4d87cde4de67.svg": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 279,
+      "exportedPath": "lib/media/3d6c1bdc4d87cde4de67.svg",
+      "dependencies": []
+    },
+    "lib/html/file-tree.html": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 12624,
+      "exportedPath": "lib/html/file-tree.html",
+      "dependencies": []
+    },
+    "lib/scripts/webpage.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 47290,
+      "exportedPath": "lib/scripts/webpage.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-view.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 15519,
+      "exportedPath": "lib/scripts/graph-view.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 14021,
+      "exportedPath": "lib/scripts/graph-wasm.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-render-worker.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 5179,
+      "exportedPath": "lib/scripts/graph-render-worker.js",
+      "dependencies": []
+    },
+    "lib/scripts/tinycolor.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 29832,
+      "exportedPath": "lib/scripts/tinycolor.js",
+      "dependencies": []
+    },
+    "lib/scripts/pixi.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 449509,
+      "exportedPath": "lib/scripts/pixi.js",
+      "dependencies": []
+    },
+    "lib/scripts/minisearch.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 29422,
+      "exportedPath": "lib/scripts/minisearch.js",
+      "dependencies": []
+    },
+    "lib/media/favicon.png": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 1105,
+      "exportedPath": "lib/media/favicon.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-data.js": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 1769,
+      "exportedPath": "lib/scripts/graph-data.js",
+      "dependencies": []
+    },
+    "lib/styles/obsidian.css": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 130471,
+      "exportedPath": "lib/styles/obsidian.css",
+      "dependencies": []
+    },
+    "lib/styles/global-variable-styles.css": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 236,
+      "exportedPath": "lib/styles/global-variable-styles.css",
+      "dependencies": []
+    },
+    "lib/styles/main-styles.css": {
+      "modifiedTime": 1727680094865,
+      "sourceSize": 23130,
+      "exportedPath": "lib/styles/main-styles.css",
+      "dependencies": []
+    }
+  }
+}
