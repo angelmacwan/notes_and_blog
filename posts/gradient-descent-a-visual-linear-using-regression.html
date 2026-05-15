@@ -1,21 +1,174 @@
-<div><p dir="auto"><span alt="image.png" src="image.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="../media/image.png"></span></p></div><div class="heading-wrapper"><div class="heading-children"><div><p dir="auto">Gradient descent is one of the most essential optimization algorithms in machine learning, and it forms the backbone of many algorithms, including linear regression. This blog will guide you through the concept of gradient descent, and we'll demonstrate its application using a visual linear regression example.</p></div><div><hr></div></div></div><div class="heading-wrapper"><h1 data-heading="What is Gradient Descent?" dir="auto" class="heading" id="What_is_Gradient_Descent?">What is Gradient Descent?</h1><div class="heading-children"><div><p dir="auto">At its core, gradient descent is an iterative optimization algorithm used to minimize a function. In machine learning, it is often used to minimize the error between predicted values and actual values by adjusting model parameters.</p></div><div><p dir="auto">Here's how gradient descent works:</p></div><div><ol>
-<li data-line="0" dir="auto"><strong>Initialize Parameters:</strong> Start with initial values for the parameters (in linear regression, these are the slope ( m ) and intercept ( b )).</li>
-<li data-line="1" dir="auto"><strong>Compute the Error:</strong> Calculate the error between the predicted output and the actual output.</li>
-<li data-line="2" dir="auto"><strong>Update Parameters:</strong> Adjust the parameters to reduce the error. The direction and magnitude of the adjustment are determined by the gradient of the error function with respect to the parameters and a factor known as the <strong>learning rate</strong>.</li>
-<li data-line="3" dir="auto"><strong>Iterate:</strong> Repeat the process until the error is minimized or a stopping criterion is met.</li>
-</ol></div><div><p dir="auto">The key idea is to move the parameters in the direction that decreases the error the fastest, following the gradient.</p></div><div class="heading-wrapper"><h3 data-heading="Linear Regression: A Simple Example" dir="auto" class="heading" id="Linear_Regression:_A_Simple_Example"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Linear Regression: A Simple Example</h3><div class="heading-children"><div><p dir="auto">To understand how gradient descent works, we'll apply it to a basic linear regression problem. Linear regression is used to model the relationship between two variables by fitting a straight line to a set of data points. The equation of this line is:</p></div><div><p dir="auto"><strong><em>y = mx + b</em></strong></p></div><div><p dir="auto">Where:</p></div><div><ul>
-<li data-line="0" dir="auto"><strong>y</strong> is the predicted value.</li>
-<li data-line="1" dir="auto"><strong>x</strong> is the input feature.</li>
-<li data-line="2" dir="auto"><strong>m</strong> is the slope (how steep the line is).</li>
-<li data-line="3" dir="auto"><strong>b</strong> is the y-intercept (where the line crosses the y-axis).</li>
-</ul></div><div><p dir="auto">The goal of linear regression is to find the values of ( m ) and ( b ) that result in the best-fitting line, i.e., the line that minimizes the error between the predicted and actual values.</p></div></div></div></div></div><div class="heading-wrapper"><h1 data-heading="Visual Example: Gradient Descent in Action" dir="auto" class="heading" id="Visual_Example:_Gradient_Descent_in_Action">Visual Example: Gradient Descent in Action</h1><div class="heading-children"><div><p dir="auto"><a data-tooltip-position="top" aria-label="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js" rel="noopener" class="external-link" href="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js" target="_blank">View on Github</a></p></div><div><p dir="auto"><a rel="noopener" class="external-link" href="https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/" target="_blank">https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/</a></p></div><div><p dir="auto">In this example, you can visualize gradient descent by interacting with the linear regression model. The process starts with random values for the slope <strong><em>m</em></strong> and intercept <strong><em>b</em></strong> and then iteratively updates them using gradient descent to fit the data points.</p></div><div class="heading-wrapper"><h3 data-heading="Key Features:" dir="auto" class="heading" id="Key_Features:"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Key Features:</h3><div class="heading-children"><div><ol>
-<li data-line="0" dir="auto"><strong>Interactive Data Points:</strong> You can add data points to the canvas by clicking on it. These points represent the data that the linear regression model will try to fit.</li>
-<li data-line="1" dir="auto"><strong>Drawing the Regression Line:</strong> As you add data points, a line representing the current state of the model is drawn. This line adjusts dynamically as the model learns from the data using gradient descent.</li>
-<li data-line="2" dir="auto"><strong>Controlling the Learning Rate:</strong> A slider allows you to control the learning rate, which determines how quickly the model updates its parameters. A higher learning rate may cause the model to converge faster but risks overshooting the minimum error, while a lower learning rate provides more precision but slows down the learning process.</li>
-<li data-line="3" dir="auto"><strong>Error Display:</strong> The average error is displayed in real time, giving you a clear indication of how well the model is fitting the data.</li>
-</ol></div></div></div><div class="heading-wrapper"><h3 data-heading="Code Breakdown:" dir="auto" class="heading" id="Code_Breakdown:"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Code Breakdown:</h3><div class="heading-children"><div><ol>
-<li data-line="0" dir="auto"><strong>Data Collection:</strong> Each time you click on the canvas, the coordinates are recorded as data points, scaled between 0 and 1 to fit the canvas.</li>
-<li data-line="1" dir="auto"><strong>Gradient Descent:</strong> The <code>linearRegression()</code> function implements gradient descent by calculating the error for each data point and updating ( m ) and ( b ) to minimize this error.</li>
-<li data-line="2" dir="auto"><strong>Drawing the Line:</strong> The <code>drawLine()</code> function maps the calculated line from the model's parameters onto the canvas, updating as gradient descent progresses.</li>
-<li data-line="3" dir="auto"><strong>Reset Function:</strong> A reset feature allows you to clear the data points and start fresh, making it easy to experiment with different scenarios.</li>
-</ol></div></div></div><div class="heading-wrapper"><h3 data-heading="Conclusion" dir="auto" class="heading" id="Conclusion"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Conclusion</h3><div class="heading-children"><div><p dir="auto">Gradient descent is a powerful tool for optimizing machine learning models, and linear regression provides an intuitive way to visualize how it works. This example allows you to see gradient descent in action, with real-time updates as the algorithm adjusts the model to fit your data.</p></div><div><p dir="auto">By experimenting with different data points and learning rates, you can gain a deeper understanding of how gradient descent works and how it can be applied to solve optimization problems in machine learning.</p></div><div class="mod-footer"></div></div></div></div></div></div></div>
+<div>
+    <p dir="auto"><span alt="image.png" src="image.png" class="internal-embed media-embed image-embed is-loaded"><img
+                alt="image.png" src="../media/image.png"></span></p>
+</div>
+<div class="heading-wrapper">
+    <div class="heading-children">
+        <div>
+            <p dir="auto">Gradient descent is one of the most essential optimization algorithms in machine learning, and
+                it forms the backbone of many algorithms, including linear regression. This blog will guide you through
+                the concept of gradient descent, and we'll demonstrate its application using a visual linear regression
+                example.</p>
+        </div>
+        <div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="heading-wrapper">
+    <h1 data-heading="What is Gradient Descent?" dir="auto" class="heading" id="What_is_Gradient_Descent?">What is
+        Gradient Descent?</h1>
+    <div class="heading-children">
+        <div>
+            <p dir="auto">At its core, gradient descent is an iterative optimization algorithm used to minimize a
+                function. In machine learning, it is often used to minimize the error between predicted values and
+                actual values by adjusting model parameters.</p>
+        </div>
+        <div>
+            <p dir="auto">Here's how gradient descent works:</p>
+        </div>
+        <div>
+            <ol>
+                <li data-line="0" dir="auto"><strong>Initialize Parameters:</strong> Start with initial values for the
+                    parameters (in linear regression, these are the slope ( m ) and intercept ( b )).</li>
+                <li data-line="1" dir="auto"><strong>Compute the Error:</strong> Calculate the error between the
+                    predicted output and the actual output.</li>
+                <li data-line="2" dir="auto"><strong>Update Parameters:</strong> Adjust the parameters to reduce the
+                    error. The direction and magnitude of the adjustment are determined by the gradient of the error
+                    function with respect to the parameters and a factor known as the <strong>learning rate</strong>.
+                </li>
+                <li data-line="3" dir="auto"><strong>Iterate:</strong> Repeat the process until the error is minimized
+                    or a stopping criterion is met.</li>
+            </ol>
+        </div>
+        <div>
+            <p dir="auto">The key idea is to move the parameters in the direction that decreases the error the fastest,
+                following the gradient.</p>
+        </div>
+        <div class="heading-wrapper">
+            <h3 data-heading="Linear Regression: A Simple Example" dir="auto" class="heading"
+                id="Linear_Regression:_A_Simple_Example">
+Linear Regression: A Simple Example
+            </h3>
+            <div class="heading-children">
+                <div>
+                    <p dir="auto">To understand how gradient descent works, we'll apply it to a basic linear regression
+                        problem. Linear regression is used to model the relationship between two variables by fitting a
+                        straight line to a set of data points. The equation of this line is:</p>
+                </div>
+                <div>
+                    <p dir="auto"><strong><em>y = mx + b</em></strong></p>
+                </div>
+                <div>
+                    <p dir="auto">Where:</p>
+                </div>
+                <div>
+                    <ul>
+                        <li data-line="0" dir="auto"><strong>y</strong> is the predicted value.</li>
+                        <li data-line="1" dir="auto"><strong>x</strong> is the input feature.</li>
+                        <li data-line="2" dir="auto"><strong>m</strong> is the slope (how steep the line is).</li>
+                        <li data-line="3" dir="auto"><strong>b</strong> is the y-intercept (where the line crosses the
+                            y-axis).</li>
+                    </ul>
+                </div>
+                <div>
+                    <p dir="auto">The goal of linear regression is to find the values of ( m ) and ( b ) that result in
+                        the best-fitting line, i.e., the line that minimizes the error between the predicted and actual
+                        values.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="heading-wrapper">
+    <h1 data-heading="Visual Example: Gradient Descent in Action" dir="auto" class="heading"
+        id="Visual_Example:_Gradient_Descent_in_Action">Visual Example: Gradient Descent in Action</h1>
+    <div class="heading-children">
+        <div>
+            <p dir="auto"><a data-tooltip-position="top"
+                    aria-label="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js"
+                    rel="noopener" class="external-link"
+                    href="https://github.com/angelmacwan/P5.JS/blob/master/Linear%20Regression%20GradientDescent/app.js"
+                    target="_blank">View on Github</a></p>
+        </div>
+        <div>
+            <p dir="auto"><a rel="noopener" class="external-link"
+                    href="https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/"
+                    target="_blank">https://angelmacwan.github.io/P5.JS/Linear%20Regression%20GradientDescent/</a></p>
+        </div>
+        <div>
+            <p dir="auto">In this example, you can visualize gradient descent by interacting with the linear regression
+                model. The process starts with random values for the slope <strong><em>m</em></strong> and intercept
+                <strong><em>b</em></strong> and then iteratively updates them using gradient descent to fit the data
+                points.</p>
+        </div>
+        <div class="heading-wrapper">
+            <h3 data-heading="Key Features:" dir="auto" class="heading" id="Key_Features:">
+Key Features:
+            </h3>
+            <div class="heading-children">
+                <div>
+                    <ol>
+                        <li data-line="0" dir="auto"><strong>Interactive Data Points:</strong> You can add data points
+                            to the canvas by clicking on it. These points represent the data that the linear regression
+                            model will try to fit.</li>
+                        <li data-line="1" dir="auto"><strong>Drawing the Regression Line:</strong> As you add data
+                            points, a line representing the current state of the model is drawn. This line adjusts
+                            dynamically as the model learns from the data using gradient descent.</li>
+                        <li data-line="2" dir="auto"><strong>Controlling the Learning Rate:</strong> A slider allows you
+                            to control the learning rate, which determines how quickly the model updates its parameters.
+                            A higher learning rate may cause the model to converge faster but risks overshooting the
+                            minimum error, while a lower learning rate provides more precision but slows down the
+                            learning process.</li>
+                        <li data-line="3" dir="auto"><strong>Error Display:</strong> The average error is displayed in
+                            real time, giving you a clear indication of how well the model is fitting the data.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="heading-wrapper">
+            <h3 data-heading="Code Breakdown:" dir="auto" class="heading" id="Code_Breakdown:">
+Code Breakdown:
+            </h3>
+            <div class="heading-children">
+                <div>
+                    <ol>
+                        <li data-line="0" dir="auto"><strong>Data Collection:</strong> Each time you click on the
+                            canvas, the coordinates are recorded as data points, scaled between 0 and 1 to fit the
+                            canvas.</li>
+                        <li data-line="1" dir="auto"><strong>Gradient Descent:</strong> The
+                            <code>linearRegression()</code> function implements gradient descent by calculating the
+                            error for each data point and updating ( m ) and ( b ) to minimize this error.</li>
+                        <li data-line="2" dir="auto"><strong>Drawing the Line:</strong> The <code>drawLine()</code>
+                            function maps the calculated line from the model's parameters onto the canvas, updating as
+                            gradient descent progresses.</li>
+                        <li data-line="3" dir="auto"><strong>Reset Function:</strong> A reset feature allows you to
+                            clear the data points and start fresh, making it easy to experiment with different
+                            scenarios.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="heading-wrapper">
+            <h3 data-heading="Conclusion" dir="auto" class="heading" id="Conclusion">
+Conclusion
+            </h3>
+            <div class="heading-children">
+                <div>
+                    <p dir="auto">Gradient descent is a powerful tool for optimizing machine learning models, and linear
+                        regression provides an intuitive way to visualize how it works. This example allows you to see
+                        gradient descent in action, with real-time updates as the algorithm adjusts the model to fit
+                        your data.</p>
+                </div>
+                <div>
+                    <p dir="auto">By experimenting with different data points and learning rates, you can gain a deeper
+                        understanding of how gradient descent works and how it can be applied to solve optimization
+                        problems in machine learning.</p>
+                </div>
+                <div class="mod-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
