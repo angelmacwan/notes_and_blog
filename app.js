@@ -43,14 +43,17 @@ function searchHome(query) {
   renderGrid(matches);
 }
 
-function switchView(id) {
+function switchView(id, pushState = true) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + id).classList.add('active');
   document.getElementById('reader-back').classList.remove('is-floating');
   window.scrollTo(0, 0);
+  if (pushState && id === 'home') {
+    history.pushState(null, '', location.pathname);
+  }
 }
 
-async function openArticle(id) {
+async function openArticle(id, pushState = true) {
   const a = ARTICLES.find(x => x.id === id);
   if (!a) return;
 
@@ -59,13 +62,28 @@ async function openArticle(id) {
   document.getElementById('reader-tags').innerHTML    = a.tags.map(t => `<span class="tag-chip">#${t}</span>`).join('');
   document.getElementById('reader-body').innerHTML    = '<p style="color:var(--outline)">Loading&hellip;</p>';
   document.getElementById('reader-back').onclick      = () => switchView('home');
-  switchView('reader');
+  switchView('reader', false);
+
+  if (pushState) {
+    history.pushState({ post: id }, a.title, '?post=' + id);
+  }
+  document.title = a.title;
 
   const res  = await fetch('posts/' + id + '.html');
   const html = await res.text();
   document.getElementById('reader-body').innerHTML = html;
   document.querySelectorAll('#reader-body pre code').forEach(el => hljs.highlightElement(el));
 }
+
+window.addEventListener('popstate', () => {
+  const id = new URLSearchParams(location.search).get('post');
+  if (id) {
+    openArticle(id, false);
+  } else {
+    document.title = 'My Notes';
+    switchView('home', false);
+  }
+});
 
 document.querySelector('[data-view="home"]').addEventListener('click', () => switchView('home'));
 
@@ -89,4 +107,9 @@ document.querySelector('[data-view="home"]').addEventListener('click', () => swi
 
 fetch('posts/index.json')
   .then(r => r.json())
-  .then(data => { ARTICLES = data; renderGrid(ARTICLES); });
+  .then(data => {
+    ARTICLES = data;
+    renderGrid(ARTICLES);
+    const id = new URLSearchParams(location.search).get('post');
+    if (id) openArticle(id, false);
+  });
