@@ -1,0 +1,56 @@
+<div><p dir="auto">Validation strategies are crucial methods in machine learning (ML) for assessing how well a model performs on unseen data. <em>The main goal is to prevent a model from simply memorizing the training data</em>, and instead ensure it can generalize to new situations. Here's a breakdown of some common validation techniques:</p></div><div class="heading-wrapper"><div class="heading-children"><div><p dir="auto">This is the simplest approach. You split your data into two sets: training data (used to train the model) and testing data (used to evaluate the model's performance on unseen data). The key here is to ensure the testing data is truly representative of the real-world data the model will encounter.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+
+<span class="token comment"># Load your data (X - features, y - target variable)</span>
+X<span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token comment"># Split data into training and testing sets (test_size is the proportion of data for testing)</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Train your model on the training set</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># Evaluate your model on the testing set</span>
+<span class="token comment"># (e.g., using classification report, confusion matrix, etc.)</span>
+predictions <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+<span class="token comment"># ... evaluation metrics here</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="**K-Fold Cross-Validation**" dir="auto" class="heading" id="**K-Fold_Cross-Validation**"><strong>K-Fold Cross-Validation</strong></h1><div class="heading-children"><div><p dir="auto">This is a more robust technique that addresses potential biases from a single data split. It involves dividing your data into multiple folds. Then, you iteratively train the model on k-1 folds (e.g., 7 folds for k-fold cross-validation) and test it on the remaining fold. This process is repeated for each unique combination of folds, and the results are averaged for a more comprehensive evaluation.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> KFold
+
+<span class="token comment"># Define the number of folds</span>
+k <span class="token operator">=</span> <span class="token number">5</span>
+
+<span class="token comment"># Initialize KFold object</span>
+kf <span class="token operator">=</span> KFold<span class="token punctuation">(</span>n_splits<span class="token operator">=</span>k<span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Loop through each fold for training and testing</span>
+<span class="token keyword">for</span> train_index<span class="token punctuation">,</span> test_index <span class="token keyword">in</span> kf<span class="token punctuation">.</span>split<span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  X_train<span class="token punctuation">,</span> X_test <span class="token operator">=</span> X<span class="token punctuation">[</span>train_index<span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">[</span>test_index<span class="token punctuation">]</span>
+  y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> y<span class="token punctuation">[</span>train_index<span class="token punctuation">]</span><span class="token punctuation">,</span> y<span class="token punctuation">[</span>test_index<span class="token punctuation">]</span>
+
+  <span class="token comment"># Train your model on the training fold</span>
+  model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+  <span class="token comment"># Evaluate your model on the testing fold</span>
+  <span class="token comment"># (e.g., using classification report, confusion matrix, etc.)</span>
+  predictions <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+  <span class="token comment"># ... evaluation metrics here</span>
+
+<span class="token comment"># You can average the evaluation metrics across all folds for a final score</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="**Stratified K-Fold Cross-Validation (Imbalanced Data)**" dir="auto" class="heading" id="**Stratified_K-Fold_Cross-Validation_(Imbalanced_Data)**"><strong>Stratified K-Fold Cross-Validation (Imbalanced Data)</strong></h1><div class="heading-children"><div><p dir="auto">This is a variation of k-fold cross-validation that's particularly useful for imbalanced datasets (where some classes have significantly fewer data points than others). It ensures <em>each fold has a similar proportion of classes</em> as the original data, leading to a more reliable assessment.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> StratifiedKFold
+
+<span class="token comment"># Define the number of folds</span>
+k <span class="token operator">=</span> <span class="token number">5</span>
+
+<span class="token comment"># Initialize StratifiedKFold object</span>
+skf <span class="token operator">=</span> StratifiedKFold<span class="token punctuation">(</span>n_splits<span class="token operator">=</span>k<span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Similar loop structure as KFold example, but using skf object for splitting</span>
+<span class="token keyword">for</span> train_index<span class="token punctuation">,</span> test_index <span class="token keyword">in</span> skf<span class="token punctuation">.</span>split<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  X_train<span class="token punctuation">,</span> X_test <span class="token operator">=</span> X<span class="token punctuation">[</span>train_index<span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">[</span>test_index<span class="token punctuation">]</span>
+  y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> y<span class="token punctuation">[</span>train_index<span class="token punctuation">]</span><span class="token punctuation">,</span> y<span class="token punctuation">[</span>test_index<span class="token punctuation">]</span>
+
+  <span class="token comment"># Train and evaluate following the same pattern</span>
+  <span class="token comment"># ...</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="**Leave-One-Out CV (LOOCV)**" dir="auto" class="heading" id="**Leave-One-Out_CV_(LOOCV)**"><strong>Leave-One-Out CV (LOOCV)</strong></h1><div class="heading-children"><div><p dir="auto">This is a type of cross-validation where each data point is used for testing once, with all other points being used for training. While it provides a thorough evaluation, it can be computationally expensive for large datasets. <em>Its a variant of K fold where the value of K is same as the number of records.</em></p></div><div class="mod-footer"></div></div></div>

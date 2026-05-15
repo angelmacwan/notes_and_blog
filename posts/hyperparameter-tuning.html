@@ -1,0 +1,56 @@
+<div><p dir="auto">Hyperparameter tuning involves selecting the best set of hyperparameters for a model to optimize its performance. Hyperparameters are parameters that are set before the learning process begins<br>
+Two popular methods for hyperparameter tuning are <strong>Grid Search</strong> and <strong>Random Search</strong>.</p></div><div class="heading-wrapper"><div class="heading-children"><div><p dir="auto">Grid Search involves defining a grid of hyperparameter values and evaluating the model performance for each combination of values. It exhaustively searches through all the combinations and selects the best one based on a specified performance metric.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> GridSearchCV
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> load_iris
+
+<span class="token comment"># Load dataset</span>
+iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X<span class="token punctuation">,</span> y <span class="token operator">=</span> iris<span class="token punctuation">.</span>data<span class="token punctuation">,</span> iris<span class="token punctuation">.</span>target
+
+<span class="token comment"># Define hyperparameters grid</span>
+param_grid <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'n_estimators'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'max_depth'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'min_samples_split'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'min_samples_leaf'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Create Random Forest Classifier</span>
+rf <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Perform Grid Search Cross-Validation</span>
+grid_search <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>estimator<span class="token operator">=</span>rf<span class="token punctuation">,</span> param_grid<span class="token operator">=</span>param_grid<span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+grid_search<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># Best parameters and best score</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Parameters:"</span><span class="token punctuation">,</span> grid_search<span class="token punctuation">.</span>best_params_<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Score:"</span><span class="token punctuation">,</span> grid_search<span class="token punctuation">.</span>best_score_<span class="token punctuation">)</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="Random Search" dir="auto" class="heading" id="Random_Search">Random Search</h1><div class="heading-children"><div><p dir="auto">Random Search selects random combinations of hyperparameters from a defined search space. It's computationally less expensive compared to Grid Search but may not guarantee finding the best combination.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> RandomizedSearchCV
+<span class="token keyword">from</span> scipy<span class="token punctuation">.</span>stats <span class="token keyword">import</span> randint
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> load_iris
+
+<span class="token comment"># Load dataset</span>
+iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X<span class="token punctuation">,</span> y <span class="token operator">=</span> iris<span class="token punctuation">.</span>data<span class="token punctuation">,</span> iris<span class="token punctuation">.</span>target
+
+<span class="token comment"># Define hyperparameters distribution</span>
+param_grid <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'n_estimators'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'max_depth'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'min_samples_split'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'min_samples_leaf'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Create Random Forest Classifier</span>
+rf <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Perform Randomized Search Cross-Validation</span>
+random_search <span class="token operator">=</span> RandomizedSearchCV<span class="token punctuation">(</span>estimator<span class="token operator">=</span>rf<span class="token punctuation">,</span> param_distributions<span class="token operator">=</span>param_dist<span class="token punctuation">,</span> n_iter<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+random_search<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># Best parameters and best score</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Parameters:"</span><span class="token punctuation">,</span> random_search<span class="token punctuation">.</span>best_params_<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Score:"</span><span class="token punctuation">,</span> random_search<span class="token punctuation">.</span>best_score_<span class="token punctuation">)</span>
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">Both Grid Search and Random Search have their advantages and are useful in different scenarios. Grid Search is exhaustive but can be computationally expensive, especially with a large number of hyperparameters. Random Search, on the other hand, is more efficient but may not guarantee finding the optimal hyperparameters.</p></div><div class="mod-footer"></div></div></div></div>

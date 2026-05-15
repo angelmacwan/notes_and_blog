@@ -1,0 +1,482 @@
+<div><p dir="auto">You know variables, loops, and functions — the building blocks. Now it's time to level up with <strong>data structures</strong>, <strong>object-oriented programming</strong>, <strong>file handling</strong>, <strong>error management</strong>, and a full <strong>quiz app project</strong>.</p></div><div><h2 dir="auto">Lists — Deep Dive</h2></div><div><h3 dir="auto">Slicing</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">scores = [10, 20, 30, 40, 50, 60, 70]
+
+# [start : stop : step]   (stop is exclusive)
+print(scores[1:4])      # [20, 30, 40]
+print(scores[:3])       # [10, 20, 30]
+print(scores[4:])       # [50, 60, 70]
+print(scores[::2])      # [10, 30, 50, 70]  every other
+print(scores[::-1])     # [70, 60, 50, 40, 30, 20, 10]  reversed
+print(scores[-3:])      # [50, 60, 70]  last 3</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>[20, 30, 40]
+[10, 20, 30]
+[50, 60, 70]
+[10, 30, 50, 70]
+[70, 60, 50, 40, 30, 20, 10]
+[50, 60, 70]</code></pre></div><div><h3 dir="auto">Useful List Methods</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">words = [&quot;banana&quot;, &quot;apple&quot;, &quot;cherry&quot;, &quot;apple&quot;]
+
+print(words.count(&quot;apple&quot;))      # 2
+print(words.index(&quot;cherry&quot;))     # 2
+
+words.reverse()
+print(words)
+
+copy = words.copy()
+copy.clear()
+print(words, copy)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>2
+2
+[&#x27;apple&#x27;, &#x27;cherry&#x27;, &#x27;apple&#x27;, &#x27;banana&#x27;]
+[&#x27;apple&#x27;, &#x27;cherry&#x27;, &#x27;apple&#x27;, &#x27;banana&#x27;] []</code></pre></div><div><h3 dir="auto">Nested Lists (2D grid)</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+print(grid[1][2])   # 6  (row 1, column 2)
+
+for row in grid:
+    for cell in row:
+        print(cell, end=&quot; &quot;)
+    print()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>6
+1 2 3 
+4 5 6 
+7 8 9 </code></pre></div><div><h2 dir="auto">Dictionaries — Key/Value Pairs</h2></div><div><p dir="auto">A dictionary maps <em>keys</em> to <em>values</em>, like a real dictionary maps words to definitions. Keys must be unique; values can be anything.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">student = {
+    &quot;name&quot; : &quot;Jamie&quot;,
+    &quot;age&quot;  : 14,
+    &quot;grade&quot;: &quot;A&quot;,
+    &quot;scores&quot;: [88, 95, 72]
+}
+
+print(student[&quot;name&quot;])            # Jamie
+print(student.get(&quot;height&quot;, &quot;?&quot;)) # ?  (safe — no KeyError)
+
+student[&quot;email&quot;] = &quot;jamie@example.com&quot;
+student[&quot;age&quot;]  = 15
+
+del student[&quot;grade&quot;]
+
+for key, value in student.items():
+    print(f&quot;  {key}: {value}&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Jamie
+?
+  name: Jamie
+  age: 15
+  scores: [88, 95, 72]
+  email: jamie@example.com</code></pre></div><div><h3 dir="auto">Dictionary Methods</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">data = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+
+print(list(data.keys()))    # [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+print(list(data.values()))  # [1, 2, 3]
+print(list(data.items()))   # [(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3)]
+
+extra = {&quot;d&quot;: 4, &quot;e&quot;: 5}
+merged = {**data, **extra}   # merge dicts
+print(merged)
+
+data.setdefault(&quot;f&quot;, 100)
+print(data)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+[1, 2, 3]
+[(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3)]
+{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2, &#x27;c&#x27;: 3, &#x27;d&#x27;: 4, &#x27;e&#x27;: 5}
+{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2, &#x27;c&#x27;: 3, &#x27;f&#x27;: 100}</code></pre></div><div><h2 dir="auto">Sets — Unique Values Only</h2></div><div><p dir="auto">A <strong>set</strong> is an unordered collection of <em>unique</em> items. Duplicates are automatically removed. Great for membership testing and set maths.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">a = {1, 2, 3, 4, 5}
+b = {3, 4, 5, 6, 7}
+
+print(a | b)    # union         {1,2,3,4,5,6,7}
+print(a &amp; b)    # intersection  {3,4,5}
+print(a - b)    # difference    {1,2}
+print(a ^ b)    # symmetric diff {1,2,6,7}
+
+print(3 in a)   # True
+print(9 in a)   # False
+
+dupes = [1, 2, 2, 3, 3, 3, 4]
+unique = list(set(dupes))
+print(unique)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>{1, 2, 3, 4, 5, 6, 7}
+{3, 4, 5}
+{1, 2}
+{1, 2, 6, 7}
+True
+False
+[1, 2, 3, 4]</code></pre></div><div><h2 dir="auto">Tuples — Immutable Sequences</h2></div><div><p dir="auto">Tuples are like lists but <strong>cannot be changed</strong> after creation. Use them for fixed data — coordinates, RGB colours, DB rows.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">point = (10, 25)
+rgb   = (255, 128, 0)
+
+x, y = point
+print(f&quot;x={x}, y={y}&quot;)
+
+r, g, b = rgb
+print(f&quot;Red:{r} Green:{g} Blue:{b}&quot;)
+
+a, b = 5, 10
+a, b = b, a
+print(a, b)    # 10 5
+
+location_map = {(40.7128, -74.0060): &quot;New York&quot;}
+print(location_map[(40.7128, -74.0060)])</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>x=10, y=25
+Red:255 Green:128 Blue:0
+10 5
+New York</code></pre></div><div><h2 dir="auto">Comprehensions — Elegant One-Liners</h2></div><div><h3 dir="auto">List Comprehensions</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">squares = [i ** 2 for i in range(1, 11)]
+print(squares)
+
+evens = [n for n in range(20) if n % 2 == 0]
+print(evens)
+
+words = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;]
+upper_words = [w.upper() for w in words]
+print(upper_words)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+[&#x27;HELLO&#x27;, &#x27;WORLD&#x27;, &#x27;PYTHON&#x27;]</code></pre></div><div><h3 dir="auto">Dictionary Comprehensions</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">sq_dict = {n: n**2 for n in range(1, 6)}
+print(sq_dict)
+
+original = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+inverted = {v: k for k, v in original.items()}
+print(inverted)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+{1: &#x27;a&#x27;, 2: &#x27;b&#x27;, 3: &#x27;c&#x27;}</code></pre></div><div><h3 dir="auto">Set Comprehensions</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">words = [&quot;hi&quot;, &quot;hello&quot;, &quot;hey&quot;, &quot;howdy&quot;, &quot;hi&quot;]
+lengths = {len(w) for w in words}
+print(lengths)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>{2, 5}</code></pre></div><div><h2 dir="auto">Advanced Functions</h2></div><div><h3 dir="auto">Default Parameters and Keyword Arguments</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def introduce(name, age, language=&quot;Python&quot;):
+    print(f&quot;{name}, age {age}, loves {language}.&quot;)
+
+introduce(&quot;Alex&quot;, 14)
+introduce(&quot;Sam&quot;, 16, &quot;JavaScript&quot;)
+introduce(age=13, name=&quot;Jordan&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Alex, age 14, loves Python.
+Sam, age 16, loves JavaScript.
+Jordan, age 13, loves Python.</code></pre></div><div><h3 dir="auto">*args — Variable Positional Arguments</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def total(*numbers):
+    return sum(numbers)
+
+print(total(1, 2, 3))
+print(total(10, 20, 30, 40))
+print(total())</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>6
+100
+0</code></pre></div><div><h3 dir="auto">**kwargs — Variable Keyword Arguments</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def profile(**details):
+    for key, value in details.items():
+        print(f&quot;  {key}: {value}&quot;)
+
+profile(name=&quot;Emma&quot;, age=15, hobby=&quot;robotics&quot;)
+print(&quot;---&quot;)
+profile(city=&quot;London&quot;, language=&quot;Python&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>  name: Emma
+  age: 15
+  hobby: robotics
+---
+  city: London
+  language: Python</code></pre></div><div><h3 dir="auto">Lambda Functions</h3></div><div><p dir="auto">A <strong>lambda</strong> is a tiny, anonymous function defined in one line. Great for quick, throwaway functions.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">double = lambda x: x * 2
+print(double(5))    # 10
+
+nums = [3, 1, 4, 1, 5, 9, 2, 6]
+sorted_nums = sorted(nums, key=lambda x: -x)
+print(sorted_nums)
+
+people = [(&quot;Alice&quot;, 30), (&quot;Bob&quot;, 25), (&quot;Carol&quot;, 35)]
+people.sort(key=lambda person: person[1])
+print(people)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>10
+[9, 6, 5, 4, 3, 2, 1, 1]
+[(&#x27;Bob&#x27;, 25), (&#x27;Alice&#x27;, 30), (&#x27;Carol&#x27;, 35)]</code></pre></div><div><h3 dir="auto">Scope — Local vs Global</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">total = 0
+
+def add_to_total(n):
+    global total
+    total += n
+
+add_to_total(10)
+add_to_total(25)
+print(total)    # 35</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>35</code></pre></div><div><h2 dir="auto">Error Handling — try / except / finally</h2></div><div><p dir="auto">Errors (called <em>exceptions</em>) crash your program. Wrap risky code in a <code>try</code> block so you can handle errors gracefully.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">try:
+    age = int(&quot;abc&quot;)
+except ValueError:
+    print(&quot;That&#x27;s not a valid number!&quot;)
+print(&quot;Program continues...&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>That&#x27;s not a valid number!
+Program continues...</code></pre></div><div><pre class="language-python" tabindex="0"><code class="language-python">def safe_divide(a, b):
+    try:
+        result = a / b
+        return result
+    except ZeroDivisionError:
+        print(&quot;  Error: Can&#x27;t divide by zero!&quot;)
+    except TypeError:
+        print(&quot;  Error: Both values must be numbers!&quot;)
+    finally:
+        print(&quot;  (divide attempt finished)&quot;)
+    return None
+
+print(safe_divide(10, 2))
+print(safe_divide(10, 0))
+print(safe_divide(10, &quot;x&quot;))</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>  (divide attempt finished)
+5.0
+  Error: Can&#x27;t divide by zero!
+  (divide attempt finished)
+None
+  Error: Both values must be numbers!
+  (divide attempt finished)
+None</code></pre></div><div><blockquote><strong>Tip:</strong> <code>finally</code> runs whether or not an exception occurred — perfect for cleanup like closing files.</blockquote></div><div><h2 dir="auto">File Input / Output</h2></div><div><p dir="auto">Python can read from and write to files on your computer. Always use a <code>with</code> block — it automatically closes the file when done.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python"># Writing to a file
+with open(&quot;notes.txt&quot;, &quot;w&quot;) as f:
+    f.write(&quot;Line 1: Hello, file!\n&quot;)
+    f.write(&quot;Line 2: Python is great.\n&quot;)
+    f.writelines([&quot;Line 3\n&quot;, &quot;Line 4\n&quot;])
+
+# Reading the whole file
+with open(&quot;notes.txt&quot;, &quot;r&quot;) as f:
+    content = f.read()
+print(content)
+
+# Reading line by line
+with open(&quot;notes.txt&quot;, &quot;r&quot;) as f:
+    for line_num, line in enumerate(f, 1):
+        print(f&quot;{line_num}: {line}&quot;, end=&quot;&quot;)
+
+# Appending
+with open(&quot;notes.txt&quot;, &quot;a&quot;) as f:
+    f.write(&quot;Line 5: Appended!\n&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Line 1: Hello, file!
+Line 2: Python is great.
+Line 3
+Line 4
+
+1: Line 1: Hello, file!
+2: Line 2: Python is great.
+3: Line 3
+4: Line 4</code></pre></div><div><h2 dir="auto">Classes and Object-Oriented Programming</h2></div><div><p dir="auto">A <strong>class</strong> is a blueprint for creating objects. Each object (instance) has its own data (attributes) and can perform actions (methods).</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">class Animal:
+
+    def __init__(self, name, species, age):
+        self.name    = name
+        self.species = species
+        self.age     = age
+        self.energy  = 100
+
+    def eat(self, food):
+        self.energy += 10
+        print(f&quot;{self.name} eats {food}. Energy: {self.energy}&quot;)
+
+    def run(self):
+        if self.energy &gt;= 20:
+            self.energy -= 20
+            print(f&quot;{self.name} runs! Energy: {self.energy}&quot;)
+        else:
+            print(f&quot;{self.name} is too tired to run.&quot;)
+
+    def __str__(self):
+        return f&quot;{self.name} ({self.species}, age {self.age})&quot;
+
+dog = Animal(&quot;Rex&quot;, &quot;Dog&quot;, 3)
+cat = Animal(&quot;Whiskers&quot;, &quot;Cat&quot;, 5)
+
+print(dog)
+dog.eat(&quot;a bone&quot;)
+dog.run()
+dog.run()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Rex (Dog, age 3)
+Rex eats a bone. Energy: 110
+Rex runs! Energy: 90
+Rex runs! Energy: 70</code></pre></div><div><h3 dir="auto">Inheritance</h3></div><div><p dir="auto">A child class <strong>inherits</strong> all attributes and methods from a parent class, and can add or override them.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">class Dog(Animal):
+
+    def __init__(self, name, age, breed):
+        super().__init__(name, &quot;Dog&quot;, age)
+        self.breed  = breed
+        self.tricks = []
+
+    def learn_trick(self, trick):
+        self.tricks.append(trick)
+        print(f&quot;{self.name} learnt &#x27;{trick}&#x27;!&quot;)
+
+    def perform(self):
+        if self.tricks:
+            import random
+            trick = random.choice(self.tricks)
+            print(f&quot;{self.name} performs: {trick}!&quot;)
+        else:
+            print(f&quot;{self.name} doesn&#x27;t know any tricks yet.&quot;)
+
+    def __str__(self):
+        return f&quot;{self.name} the {self.breed} (age {self.age})&quot;
+
+rex = Dog(&quot;Rex&quot;, 3, &quot;Labrador&quot;)
+print(rex)
+rex.eat(&quot;kibble&quot;)
+rex.learn_trick(&quot;sit&quot;)
+rex.learn_trick(&quot;shake paw&quot;)
+rex.perform()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Rex the Labrador (age 3)
+Rex eats kibble. Energy: 110
+Rex learnt &#x27;sit&#x27;!
+Rex learnt &#x27;shake paw&#x27;!
+Rex performs: shake paw!</code></pre></div><div><h2 dir="auto">Useful Built-in Modules</h2></div><div><h3 dir="auto">random</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">import random
+
+print(random.randint(1, 10))
+print(random.random())
+print(random.uniform(1.5, 6.5))
+
+items = [&quot;rock&quot;, &quot;paper&quot;, &quot;scissors&quot;]
+print(random.choice(items))
+random.shuffle(items)
+print(items)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>7
+0.4823
+3.27
+paper
+[&#x27;scissors&#x27;, &#x27;rock&#x27;, &#x27;paper&#x27;]</code></pre></div><div><h3 dir="auto">math</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">import math
+
+print(math.pi)
+print(math.sqrt(144))
+print(math.floor(3.9))
+print(math.ceil(3.1))
+print(math.factorial(5))
+print(math.log(1000, 10))</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>3.141592653589793
+12.0
+3
+4
+120
+3.0</code></pre></div><div><h3 dir="auto">datetime</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">from datetime import datetime, date, timedelta
+
+now   = datetime.now()
+today = date.today()
+
+print(now.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;))
+print(f&quot;Year: {now.year}  Month: {now.month}  Day: {now.day}&quot;)
+
+bday     = date(2010, 8, 15)
+age_days = (today - bday).days
+print(f&quot;Days since 2010-08-15: {age_days}&quot;)
+
+future = today + timedelta(days=30)
+print(f&quot;30 days from now: {future}&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>2025-06-12 14:35:22
+Year: 2025  Month: 6  Day: 12
+Days since 2010-08-15: 5414
+30 days from now: 2025-07-12</code></pre></div><div><h3 dir="auto">os — file system operations</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">import os
+
+print(os.getcwd())
+print(os.listdir(&quot;.&quot;))
+print(os.path.exists(&quot;notes.txt&quot;))
+print(os.path.join(&quot;folder&quot;, &quot;file.txt&quot;))
+
+os.makedirs(&quot;my_folder&quot;, exist_ok=True)</code></pre></div><div><h2 dir="auto">Decorators — a Quick Look</h2></div><div><p dir="auto">A <strong>decorator</strong> is a function that wraps another function to add extra behaviour without changing the original code. They use the <code>@</code> symbol.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start  = time.time()
+        result = func(*args, **kwargs)
+        elapsed = time.time() - start
+        print(f&quot;  [{func.__name__} took {elapsed:.4f}s]&quot;)
+        return result
+    return wrapper
+
+@timer
+def slow_sum(n):
+    total = 0
+    for i in range(n):
+        total += i
+    return total
+
+result = slow_sum(1_000_000)
+print(f&quot;Sum = {result}&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>  [slow_sum took 0.0312s]
+Sum = 499999500000</code></pre></div><div><h2 dir="auto">Final Project — Multi-Category Quiz App</h2></div><div><p dir="auto">This quiz app demonstrates lists, dicts, functions, classes, error handling, and random — everything covered above!</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">import random
+
+QUESTIONS = {
+    &quot;Python&quot;: [
+        {&quot;q&quot;: &quot;What does len([1,2,3]) return?&quot;,
+         &quot;options&quot;: [&quot;A) 2&quot;, &quot;B) 3&quot;, &quot;C) 4&quot;, &quot;D) 1&quot;], &quot;answer&quot;: &quot;B&quot;},
+        {&quot;q&quot;: &quot;Which keyword defines a function?&quot;,
+         &quot;options&quot;: [&quot;A) func&quot;, &quot;B) define&quot;, &quot;C) def&quot;, &quot;D) function&quot;], &quot;answer&quot;: &quot;C&quot;},
+        {&quot;q&quot;: &quot;What is 5 // 2?&quot;,
+         &quot;options&quot;: [&quot;A) 2.5&quot;, &quot;B) 3&quot;, &quot;C) 2&quot;, &quot;D) 1&quot;], &quot;answer&quot;: &quot;C&quot;},
+    ],
+    &quot;Maths&quot;: [
+        {&quot;q&quot;: &quot;What is 7 squared?&quot;,
+         &quot;options&quot;: [&quot;A) 14&quot;, &quot;B) 49&quot;, &quot;C) 42&quot;, &quot;D) 56&quot;], &quot;answer&quot;: &quot;B&quot;},
+        {&quot;q&quot;: &quot;Square root of 144?&quot;,
+         &quot;options&quot;: [&quot;A) 11&quot;, &quot;B) 13&quot;, &quot;C) 14&quot;, &quot;D) 12&quot;], &quot;answer&quot;: &quot;D&quot;},
+    ],
+    &quot;General&quot;: [
+        {&quot;q&quot;: &quot;Capital of France?&quot;,
+         &quot;options&quot;: [&quot;A) Berlin&quot;, &quot;B) Madrid&quot;, &quot;C) Paris&quot;, &quot;D) Rome&quot;], &quot;answer&quot;: &quot;C&quot;},
+        {&quot;q&quot;: &quot;Colours in a rainbow?&quot;,
+         &quot;options&quot;: [&quot;A) 5&quot;, &quot;B) 6&quot;, &quot;C) 7&quot;, &quot;D) 8&quot;], &quot;answer&quot;: &quot;C&quot;},
+    ],
+}
+
+class QuizApp:
+    def __init__(self):
+        self.score = 0
+        self.total = 0
+        self.wrong = []
+
+    def pick_category(self):
+        cats = list(QUESTIONS.keys()) + [&quot;Random Mix&quot;]
+        print(&quot;\nCategories:&quot;)
+        for i, c in enumerate(cats, 1):
+            print(f&quot;  {i}. {c}&quot;)
+        while True:
+            try:
+                choice = int(input(&quot;Pick a category: &quot;))
+                if 1 &lt;= choice &lt;= len(cats):
+                    cat = cats[choice - 1]
+                    if cat == &quot;Random Mix&quot;:
+                        all_qs = [q for qs in QUESTIONS.values() for q in qs]
+                        return random.sample(all_qs, min(5, len(all_qs)))
+                    return list(QUESTIONS[cat])
+            except ValueError:
+                pass
+            print(&quot;  Invalid.&quot;)
+
+    def ask(self, item, num):
+        print(f&quot;\nQ{num}: {item[&#x27;q&#x27;]}&quot;)
+        for opt in item[&quot;options&quot;]:
+            print(f&quot;    {opt}&quot;)
+        answer = input(&quot;Your answer (A/B/C/D): &quot;).strip().upper()
+        self.total += 1
+        if answer == item[&quot;answer&quot;]:
+            print(&quot;  Correct!&quot;)
+            self.score += 1
+        else:
+            print(f&quot;  Wrong! Answer was {item[&#x27;answer&#x27;]}.&quot;)
+            self.wrong.append(item)
+
+    def run(self):
+        print(&quot;=&quot; * 45)
+        print(&quot;         PYTHON QUIZ APP&quot;)
+        print(&quot;=&quot; * 45)
+        name = input(&quot;Enter your name: &quot;).strip() or &quot;Player&quot;
+
+        while True:
+            questions = self.pick_category()
+            random.shuffle(questions)
+            for i, q in enumerate(questions, 1):
+                self.ask(q, i)
+
+            pct = (self.score / self.total * 100) if self.total else 0
+            print(f&quot;\n--- Results for {name} ---&quot;)
+            print(f&quot;Score: {self.score}/{self.total}  ({pct:.0f}%)&quot;)
+
+            if self.wrong:
+                print(&quot;\nReview — questions you got wrong:&quot;)
+                for item in self.wrong:
+                    print(f&quot;  Q: {item[&#x27;q&#x27;]}  (Answer: {item[&#x27;answer&#x27;]})&quot;)
+                self.wrong.clear()
+
+            again = input(&quot;\nPlay again? (y/n): &quot;).strip().lower()
+            if again != &quot;y&quot;:
+                print(f&quot;\nFinal: {self.score}/{self.total}. Thanks, {name}!&quot;)
+                break
+
+QuizApp().run()</code></pre></div><div><h2 dir="auto">String Methods — Complete Reference</h2></div><div><pre class="language-python" tabindex="0"><code class="language-python">s = &quot;  Hello, World!  &quot;
+
+print(s.strip())
+print(s.lstrip())
+print(s.rstrip())
+
+print(s.find(&quot;World&quot;))
+print(s.replace(&quot;World&quot;, &quot;Python&quot;))
+print(s.count(&quot;l&quot;))
+
+csv = &quot;apple,banana,cherry&quot;
+fruits = csv.split(&quot;,&quot;)
+print(fruits)
+print(&quot; | &quot;.join(fruits))
+
+print(&quot;123&quot;.isdigit())
+print(&quot;abc&quot;.isalpha())
+print(&quot;abc123&quot;.isalnum())
+print(&quot;hello&quot;.startswith(&quot;he&quot;))
+print(&quot;hello&quot;.endswith(&quot;lo&quot;))
+
+print(&quot;42&quot;.zfill(5))
+print(&quot;hi&quot;.center(10, &quot;*&quot;))</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hello, World!
+Hello, World!  
+  Hello, World!
+9
+  Hello, Python!  
+3
+[&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;cherry&#x27;]
+apple | banana | cherry
+True
+True
+True
+True
+True
+00042
+****hi****</code></pre></div><div><h2 dir="auto">Practice Projects</h2></div><div><ul><li><strong>To-Do List App:</strong> Build a command-line to-do list with add, complete, delete, and save-to-file features. Use a list of dicts.</li><li><strong>Wordle Clone:</strong> Pick a random 5-letter word; the player has 6 guesses; show which letters are correct/misplaced/wrong each round.</li><li><strong>Contact Book:</strong> Store contacts (name, phone, email) in a dict. Support add, search, update, delete, and save to a JSON file.</li><li><strong>Text Statistics:</strong> Read any text file; count words, sentences, unique words, and find the top 10 most frequent words.</li><li><strong>Mini Bank:</strong> Build a class-based banking system with accounts, deposits, withdrawals, transfers, and transaction history.</li></ul></div><div><p dir="auto">You've now covered the full intermediate Python toolkit: advanced data structures, comprehensions, functions, OOP, file I/O, error handling, modules, and decorators. You're ready to build real projects and dive into libraries like Pygame, Flask, or scikit-learn!</p></div>

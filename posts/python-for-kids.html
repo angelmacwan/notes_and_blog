@@ -1,0 +1,321 @@
+<div><p dir="auto">Python is a friendly, readable programming language used by scientists, game makers, app developers, and engineers all over the world. It was created in 1991 by a Dutch programmer named <strong>Guido van Rossum</strong>. The name comes from <em>Monty Python's Flying Circus</em> — a British comedy show — not the snake! Python's superpower is that it reads almost like plain English, which makes it perfect for beginners.</p></div><div><h2 dir="auto">Why Learn Python?</h2></div><div><ul><li><strong>Easy to read</strong> — code looks like sentences, not robot gibberish.</li><li><strong>Huge community</strong> — millions of people use Python; help is everywhere.</li><li><strong>Used everywhere</strong> — games (Pygame), websites (Django), AI/ML (TensorFlow), science, and more.</li><li><strong>Free</strong> — download from <code>python.org</code> and start today.</li></ul></div><div><h2 dir="auto">Setting Up Python</h2></div><div><p dir="auto">Download Python from <strong>python.org/downloads</strong> and install it. Then open <strong>IDLE</strong> (it comes with Python) or any text editor. Save your files with a <code>.py</code> extension and run them.</p></div><div><p dir="auto">You can also type <code>python</code> in your terminal/command prompt to open the interactive shell — type Python code and see instant results!</p></div><div><h2 dir="auto">Your Very First Program</h2></div><div><p dir="auto">The tradition in programming is to print "Hello, World!" as your first program. Here's how:</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">print(&quot;Hello, World!&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hello, World!</code></pre></div><div><p dir="auto"><code>print()</code> is a <strong>function</strong> — a named action you can trigger. Everything inside the parentheses (and inside the quotes) gets displayed on screen.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python"># You can print multiple lines
+print(&quot;My name is Emma.&quot;)
+print(&quot;I am learning Python.&quot;)
+print(&quot;This is awesome!&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>My name is Emma.
+I am learning Python.
+This is awesome!</code></pre></div><div><blockquote><strong>Tip:</strong> Lines that start with <code>#</code> are <strong>comments</strong>. Python ignores them — they're notes for humans reading the code.</blockquote></div><div><h2 dir="auto">Variables — Labelled Boxes</h2></div><div><p dir="auto">A <strong>variable</strong> is like a labelled box where you store information. You give the box a name, then put something inside it with <code>=</code>.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">name   = &quot;Emma&quot;      # a piece of text (called a string)
+age    = 10           # a whole number (called an integer)
+height = 1.45         # a decimal number (called a float)
+is_cool = True        # True or False (called a boolean)</code></pre></div><div><p dir="auto">Python figures out the type automatically — you never have to say "this is a number" or "this is text" like in some other languages.</p></div><div><h3 dir="auto">Naming Rules</h3></div><div><ul><li>Use letters, numbers, and underscores: <code>my_score</code>, <code>player1</code></li><li>Can't start with a number: <code>1score</code> is <strong>invalid</strong></li><li>No spaces — use underscores instead: <code>best_friend</code></li><li>Python cares about UPPER vs lower case: <code>Name</code> and <code>name</code> are different variables</li></ul></div><div><pre class="language-python" tabindex="0"><code class="language-python"># Good variable names
+player_name = &quot;Alex&quot;
+high_score  = 9999
+game_over   = False
+
+# You can update a variable
+high_score = 10500   # the old value is replaced
+print(high_score)    # 10500</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>10500</code></pre></div><div><h2 dir="auto">Data Types in Detail</h2></div><div><h3 dir="auto">Strings (text)</h3></div><div><p dir="auto">Strings hold text. Wrap them in single quotes <code>'..'</code> or double quotes <code>"..".</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">greeting = &quot;Hello&quot;
+farewell = &#x27;Goodbye&#x27;
+
+# Combine strings with +
+full = greeting + &quot;, World!&quot;
+print(full)            # Hello, World!
+
+# Repeat strings with *
+line = &quot;-&quot; * 20
+print(line)            # --------------------
+
+# Find the length
+print(len(greeting))   # 5
+
+# Upper and lower case
+print(greeting.upper())   # HELLO
+print(greeting.lower())   # hello
+
+# Does it contain something?
+sentence = &quot;I love pizza&quot;
+print(&quot;pizza&quot; in sentence)   # True
+print(&quot;sushi&quot; in sentence)   # False</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hello, World!
+--------------------
+5
+HELLO
+hello
+True
+False</code></pre></div><div><h3 dir="auto">f-Strings — the neat way to mix variables and text</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">name = &quot;Emma&quot;
+age  = 10
+print(f&quot;Hi, I&#x27;m {name} and I&#x27;m {age} years old.&quot;)
+print(f&quot;In 5 years I&#x27;ll be {age + 5}.&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hi, I&#x27;m Emma and I&#x27;m 10 years old.
+In 5 years I&#x27;ll be 15.</code></pre></div><div><h3 dir="auto">Numbers</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python"># Integers (whole numbers)
+a = 7
+b = 3
+print(a + b)   # 10   addition
+print(a - b)   # 4    subtraction
+print(a * b)   # 21   multiplication
+print(a / b)   # 2.333...  division (always gives a float)
+print(a // b)  # 2    floor division (no remainder)
+print(a % b)   # 1    modulus — the REMAINDER after dividing
+print(a ** b)  # 343  exponent  (7 to the power of 3)
+
+# Floats (decimal numbers)
+price = 2.99
+quantity = 4
+print(f&quot;Total: ${price * quantity:.2f}&quot;)   # Total: $11.96</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>10
+4
+21
+2.3333333333333335
+2
+1
+343
+Total: $11.96</code></pre></div><div><h3 dir="auto">Booleans (True / False)</h3></div><div><p dir="auto">Booleans are the result of comparisons. They're either <code>True</code> or <code>False</code> — nothing else.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">print(5 &gt; 3)    # True
+print(5 &lt; 3)    # False
+print(5 == 5)   # True  (== checks equality, = sets a variable)
+print(5 != 3)   # True  (not equal)
+print(5 &gt;= 5)   # True  (greater than OR equal)
+print(5 &lt;= 4)   # False
+
+is_raining = True
+print(not is_raining)   # False   (not flips it)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>True
+False
+True
+True
+True
+False
+False</code></pre></div><div><h2 dir="auto">print() and input() in Depth</h2></div><div><p dir="auto"><code>print()</code> can display multiple things at once, separated by commas. <code>input()</code> pauses and waits for the user to type something — it always returns a <strong>string</strong>.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python"># print with multiple values
+print(&quot;Score:&quot;, 100, &quot;Lives:&quot;, 3)
+# default separator is a space; change it:
+print(&quot;2025&quot;, &quot;06&quot;, &quot;01&quot;, sep=&quot;-&quot;)   # 2025-06-01
+# default end is a newline; change it:
+print(&quot;Loading&quot;, end=&quot;&quot;)
+print(&quot;...&quot;, end=&quot;\n&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Score: 100 Lives: 3
+2025-06-01
+Loading...</code></pre></div><div><pre class="language-python" tabindex="0"><code class="language-python"># input always returns a string
+name = input(&quot;What is your name? &quot;)
+print(f&quot;Nice to meet you, {name}!&quot;)
+
+# Convert to a number when needed
+age = int(input(&quot;How old are you? &quot;))      # int() converts &quot;10&quot; -&gt; 10
+score = float(input(&quot;Enter a decimal: &quot;))  # float() converts &quot;9.5&quot; -&gt; 9.5
+print(f&quot;In 10 years you will be {age + 10}.&quot;)</code></pre></div><div><blockquote><strong>Tip:</strong> Always convert <code>input()</code> to a number with <code>int()</code> or <code>float()</code> before doing maths. Otherwise Python will concatenate strings instead of adding numbers!</blockquote></div><div><h2 dir="auto">If / elif / else — Making Decisions</h2></div><div><p dir="auto">Python uses indentation (4 spaces or one Tab) to group lines that belong together inside an if-block.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">temperature = 28
+
+if temperature &gt; 35:
+    print(&quot;It&#x27;s scorching hot!&quot;)
+elif temperature &gt; 25:
+    print(&quot;Warm and sunny — great day!&quot;)
+elif temperature &gt; 15:
+    print(&quot;A bit cool — bring a jacket.&quot;)
+else:
+    print(&quot;Cold! Stay warm.&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Warm and sunny — great day!</code></pre></div><div><p dir="auto">You can combine conditions with <code>and</code> / <code>or</code>:</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">age   = 13
+height = 1.40
+
+if age &gt;= 12 and height &gt;= 1.35:
+    print(&quot;You can ride the roller coaster!&quot;)
+else:
+    print(&quot;Sorry, not yet.&quot;)
+
+# or — at least one must be true
+has_ticket  = False
+has_pass    = True
+if has_ticket or has_pass:
+    print(&quot;Welcome to the park!&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>You can ride the roller coaster!
+Welcome to the park!</code></pre></div><div><h3 dir="auto">Nested if</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">score = 78
+
+if score &gt;= 50:
+    print(&quot;You passed!&quot;)
+    if score &gt;= 90:
+        print(&quot;Excellent — gold star!&quot;)
+    elif score &gt;= 75:
+        print(&quot;Great work!&quot;)
+    else:
+        print(&quot;Good effort, keep going.&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>You passed!
+Great work!</code></pre></div><div><h2 dir="auto">For Loops — Repeat for Each Item</h2></div><div><p dir="auto">A <strong>for loop</strong> runs a block of code once for every item in a sequence.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python"># Loop over a list
+fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+for fruit in fruits:
+    print(f&quot;I like {fruit}!&quot;)
+
+print(&quot;Done!&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>I like apple!
+I like banana!
+I like cherry!
+Done!</code></pre></div><div><h3 dir="auto">range() — generate numbers</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python"># range(stop) — 0 up to (but not including) stop
+for i in range(5):
+    print(i, end=&quot; &quot;)
+print()   # newline
+
+# range(start, stop)
+for i in range(1, 6):
+    print(i, end=&quot; &quot;)
+print()
+
+# range(start, stop, step)
+for i in range(0, 20, 5):
+    print(i, end=&quot; &quot;)
+print()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>0 1 2 3 4 
+1 2 3 4 5 
+0 5 10 15 </code></pre></div><div><h3 dir="auto">Looping over a string</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">word = &quot;Python&quot;
+for letter in word:
+    print(letter, end=&quot;-&quot;)
+print()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>P-y-t-h-o-n-</code></pre></div><div><h3 dir="auto">enumerate() — index and value at once</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">colors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]
+for index, color in enumerate(colors):
+    print(f&quot;{index}: {color}&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>0: red
+1: green
+2: blue</code></pre></div><div><h2 dir="auto">While Loops — Repeat While True</h2></div><div><p dir="auto">A <strong>while loop</strong> keeps running as long as a condition is <code>True</code>. Be careful — if the condition never becomes <code>False</code>, the loop runs forever!</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">count = 1
+while count &lt;= 5:
+    print(f&quot;Count is {count}&quot;)
+    count += 1   # count = count + 1
+print(&quot;Done counting!&quot;)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Count is 1
+Count is 2
+Count is 3
+Count is 4
+Count is 5
+Done counting!</code></pre></div><div><h3 dir="auto">break and continue</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python"># break — exits the loop immediately
+for num in range(1, 11):
+    if num == 6:
+        break
+    print(num, end=&quot; &quot;)
+print()
+
+# continue — skips the rest of this iteration
+for num in range(1, 11):
+    if num % 2 == 0:   # skip even numbers
+        continue
+    print(num, end=&quot; &quot;)
+print()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>1 2 3 4 5 
+1 3 5 7 9 </code></pre></div><div><h2 dir="auto">Lists — Ordered Collections</h2></div><div><p dir="auto">A <strong>list</strong> holds many values in order inside square brackets <code>[]</code>. You can have a list of anything — numbers, strings, booleans, even other lists!</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">pets = [&quot;dog&quot;, &quot;cat&quot;, &quot;rabbit&quot;, &quot;hamster&quot;]
+
+# Access by index (starts at 0!)
+print(pets[0])    # dog
+print(pets[2])    # rabbit
+print(pets[-1])   # hamster  (negative = count from end)
+
+# Length
+print(len(pets))  # 4
+
+# Change an item
+pets[1] = &quot;parrot&quot;
+print(pets)   # [&#x27;dog&#x27;, &#x27;parrot&#x27;, &#x27;rabbit&#x27;, &#x27;hamster&#x27;]</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>dog
+rabbit
+hamster
+4
+[&#x27;dog&#x27;, &#x27;parrot&#x27;, &#x27;rabbit&#x27;, &#x27;hamster&#x27;]</code></pre></div><div><h3 dir="auto">List Methods</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">nums = [3, 1, 4, 1, 5, 9, 2, 6]
+
+nums.append(7)          # add to the end
+print(nums)
+
+nums.insert(0, 99)      # insert at position 0
+print(nums)
+
+nums.remove(1)          # removes the FIRST 1
+print(nums)
+
+popped = nums.pop()     # removes and returns the last item
+print(popped, nums)
+
+nums.sort()             # sort in place (ascending)
+print(nums)
+
+nums.sort(reverse=True) # descending
+print(nums)
+
+print(min(nums), max(nums), sum(nums))</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>[3, 1, 4, 1, 5, 9, 2, 6, 7]
+[99, 3, 1, 4, 1, 5, 9, 2, 6, 7]
+[99, 3, 4, 1, 5, 9, 2, 6, 7]
+7 [99, 3, 4, 1, 5, 9, 2, 6]
+[1, 2, 3, 4, 5, 6, 9, 99]
+[99, 9, 6, 5, 4, 3, 2, 1]
+1 99 129</code></pre></div><div><h2 dir="auto">Functions — Reusable Blocks</h2></div><div><p dir="auto">A <strong>function</strong> is a named block of code you can run whenever you need it, as many times as you want. Define it with <code>def</code>.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">def say_hello():
+    print(&quot;Hello!&quot;)
+    print(&quot;Nice to meet you!&quot;)
+
+# Call (run) it:
+say_hello()
+say_hello()</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hello!
+Nice to meet you!
+Hello!
+Nice to meet you!</code></pre></div><div><h3 dir="auto">Parameters and Arguments</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def greet(name):          # name is a parameter
+    print(f&quot;Hi, {name}!&quot;)
+
+greet(&quot;Emma&quot;)             # &quot;Emma&quot; is the argument
+greet(&quot;Lucas&quot;)
+
+def add(a, b):
+    result = a + b
+    print(f&quot;{a} + {b} = {result}&quot;)
+
+add(3, 5)
+add(100, 200)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Hi, Emma!
+Hi, Lucas!
+3 + 5 = 8
+100 + 200 = 300</code></pre></div><div><h3 dir="auto">Returning Values</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def multiply(a, b):
+    return a * b         # send the result back to the caller
+
+answer = multiply(6, 7)
+print(answer)            # 42
+print(multiply(3, 3))    # 9
+
+# Functions can call other functions
+def square(n):
+    return multiply(n, n)
+
+print(square(5))   # 25</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>42
+9
+25</code></pre></div><div><h3 dir="auto">Default Parameters</h3></div><div><pre class="language-python" tabindex="0"><code class="language-python">def power(base, exponent=2):   # exponent defaults to 2
+    return base ** exponent
+
+print(power(4))      # 16  (4^2)
+print(power(4, 3))   # 64  (4^3)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>16
+64</code></pre></div><div><h2 dir="auto">String Slicing</h2></div><div><p dir="auto">You can grab a section of a string using <code>[start:stop:step]</code>. Think of it like cutting a loaf of bread — you pick where to start and where to stop.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">word = &quot;Python&quot;
+print(word[0:3])    # Pyt   (chars 0,1,2)
+print(word[2:])     # thon  (from index 2 to end)
+print(word[:4])     # Pyth  (from start to index 3)
+print(word[::-1])   # nohtyP (reverse the whole string!)
+print(word[::2])    # Pto   (every other character)</code></pre></div><div><pre style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:.75rem 1rem;color:#16a34a;font-size:.83rem;"><code>Pyt
+thon
+Pyth
+nohtyP
+Pto</code></pre></div><div><h2 dir="auto">Putting It All Together — Number Guessing Game</h2></div><div><p dir="auto">Now we'll build a complete game. Read through the code carefully — every part should make sense now!</p></div><div><pre class="language-python" tabindex="0"><code class="language-python">import random
+
+def play_game():
+    secret = random.randint(1, 100)
+    attempts = 0
+    max_attempts = 7
+
+    print(&quot;=&quot; * 40)
+    print(&quot;  GUESS THE NUMBER GAME&quot;)
+    print(&quot;=&quot; * 40)
+    print(f&quot;I&#x27;ve picked a number between 1 and 100.&quot;)
+    print(f&quot;You have {max_attempts} attempts. Good luck!\n&quot;)
+
+    while attempts &lt; max_attempts:
+        guess_text = input(f&quot;Attempt {attempts + 1}/{max_attempts} — Enter your guess: &quot;)
+
+        if not guess_text.isdigit():
+            print(&quot;  Please enter a whole number!&quot;)
+            continue
+
+        guess = int(guess_text)
+        attempts += 1
+
+        if guess &lt; 1 or guess &gt; 100:
+            print(&quot;  Out of range! Guess between 1 and 100.&quot;)
+        elif guess &lt; secret:
+            diff = secret - guess
+            if diff &gt; 20:
+                print(&quot;  Too low — way off!&quot;)
+            else:
+                print(&quot;  Too low — getting warmer!&quot;)
+        elif guess &gt; secret:
+            diff = guess - secret
+            if diff &gt; 20:
+                print(&quot;  Too high — way off!&quot;)
+            else:
+                print(&quot;  Too high — getting warmer!&quot;)
+        else:
+            print(f&quot;\n  Correct! The number was {secret}.&quot;)
+            print(f&quot;  You got it in {attempts} attempt(s)!&quot;)
+            if attempts == 1:
+                print(&quot;  INCREDIBLE — first try!&quot;)
+            elif attempts &lt;= 3:
+                print(&quot;  Amazing — well played!&quot;)
+            return
+
+    print(f&quot;\n  Out of attempts! The secret was {secret}.&quot;)
+
+play_game()</code></pre></div><div><blockquote>This game uses <code>import random</code> to load Python's built-in random module, then <code>random.randint(1, 100)</code> to pick a random whole number from 1 to 100.</blockquote></div><div><h2 dir="auto">Practice Exercises</h2></div><div><ul><li><strong>BMI Calculator:</strong> Ask for weight (kg) and height (m). Calculate BMI = weight / height². Print "Underweight", "Normal", "Overweight", or "Obese" based on the result.</li><li><strong>Times Table:</strong> Ask for a number 1–12. Print its full times table.</li><li><strong>Shopping Basket:</strong> Ask the user to enter items and prices until they type "done". Print the total bill.</li><li><strong>Palindrome Checker:</strong> Ask for a word. Print whether it's a palindrome (reads the same forwards and backwards) — hint: use slicing <code>[::-1]</code>.</li><li><strong>FizzBuzz:</strong> Print numbers 1–50. For multiples of 3 print "Fizz", multiples of 5 print "Buzz", multiples of both print "FizzBuzz".</li></ul></div><div><p dir="auto">Great job! You now know variables, data types, print/input, if/elif/else, for loops, while loops, lists, functions, and string slicing. That's the core of Python — everything else is built on top of these ideas.</p></div>

@@ -1,0 +1,39 @@
+<div><p dir="auto"><strong>Optuna</strong> is a hyperparameter optimization framework that automates the search for the optimal hyperparameters of machine learning models. It uses an efficient and adaptable approach based on the idea of <strong>Bayesian optimization</strong>.</p></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">import</span> optuna
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> cross_val_score
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> load_iris
+
+<span class="token comment"># Load dataset</span>
+iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X<span class="token punctuation">,</span> y <span class="token operator">=</span> iris<span class="token punctuation">.</span>data<span class="token punctuation">,</span> iris<span class="token punctuation">.</span>target
+
+<span class="token comment"># Define objective function</span>
+<span class="token keyword">def</span> <span class="token function">objective</span><span class="token punctuation">(</span>trial<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Define hyperparameters to be tuned</span>
+    n_estimators <span class="token operator">=</span> trial<span class="token punctuation">.</span>suggest_int<span class="token punctuation">(</span><span class="token string">'n_estimators'</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+    max_depth <span class="token operator">=</span> trial<span class="token punctuation">.</span>suggest_categorical<span class="token punctuation">(</span><span class="token string">'max_depth'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    min_samples_split <span class="token operator">=</span> trial<span class="token punctuation">.</span>suggest_int<span class="token punctuation">(</span><span class="token string">'min_samples_split'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+    min_samples_leaf <span class="token operator">=</span> trial<span class="token punctuation">.</span>suggest_int<span class="token punctuation">(</span><span class="token string">'min_samples_leaf'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># Create Random Forest Classifier with hyperparameters</span>
+    rf <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>
+        n_estimators<span class="token operator">=</span>n_estimators<span class="token punctuation">,</span>
+        max_depth<span class="token operator">=</span>max_depth<span class="token punctuation">,</span>
+        min_samples_split<span class="token operator">=</span>min_samples_split<span class="token punctuation">,</span>
+        min_samples_leaf<span class="token operator">=</span>min_samples_leaf
+    <span class="token punctuation">)</span>
+
+    <span class="token comment"># Evaluate model using cross-validation</span>
+    score <span class="token operator">=</span> cross_val_score<span class="token punctuation">(</span>rf<span class="token punctuation">,</span> X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> score<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># Return the mean cross-validation score</span>
+
+<span class="token comment"># Create Optuna study object</span>
+study <span class="token operator">=</span> optuna<span class="token punctuation">.</span>create_study<span class="token punctuation">(</span>direction<span class="token operator">=</span><span class="token string">'maximize'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Optimize objective function</span>
+study<span class="token punctuation">.</span>optimize<span class="token punctuation">(</span>objective<span class="token punctuation">,</span> n_trials<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Best parameters and best score</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Parameters:"</span><span class="token punctuation">,</span> study<span class="token punctuation">.</span>best_params<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Best Score:"</span><span class="token punctuation">,</span> study<span class="token punctuation">.</span>best_value<span class="token punctuation">)</span>
+</code><button class="copy-code-button">Copy</button></pre></div><div class="mod-footer"></div>

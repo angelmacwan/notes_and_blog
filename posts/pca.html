@@ -1,0 +1,37 @@
+<div><p dir="auto">Principal Component Analysis (PCA) is a dimensionality reduction technique commonly used in data analysis and machine learning. It works by transforming the original dataset into a new coordinate system, where the axes are the principal components (PCs), which are orthogonal to each other and capture the maximum variance in the data.</p></div><div><ol>
+<li data-line="0" dir="auto"><strong>Standardization:</strong> The first step is often to standardize the data by subtracting the mean and dividing by the standard deviation of each feature. This ensures that each feature has a mean of 0 and a standard deviation of 1.</li>
+<li data-line="1" dir="auto"><strong>Covariance Matrix:</strong> Next, PCA calculates the covariance matrix of the standardized data. The covariance matrix describes the relationships between all pairs of features in the dataset.</li>
+<li data-line="2" dir="auto"><strong>Eigenvalue Decomposition:</strong> PCA then performs eigenvalue decomposition on the covariance matrix to find the eigenvectors and eigenvalues. Eigenvectors represent the directions of the new feature space (principal components), and eigenvalues represent the magnitude of variance along these directions.</li>
+<li data-line="3" dir="auto"><strong>Selecting Principal Components:</strong> PCA ranks the eigenvectors based on their corresponding eigenvalues. The eigenvector with the highest eigenvalue is the first principal component (PC1), the second highest eigenvalue corresponds to PC2, and so on.</li>
+<li data-line="4" dir="auto"><strong>Projection:</strong> Finally, PCA projects the original data onto the new feature space defined by the selected principal components. This results in a lower-dimensional representation of the data, where the new variables (principal components) are uncorrelated and capture the maximum variance.</li>
+</ol></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> load_iris
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> StandardScaler
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>decomposition <span class="token keyword">import</span> PCA
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># Load the Iris dataset</span>
+iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X <span class="token operator">=</span> iris<span class="token punctuation">.</span>data
+y <span class="token operator">=</span> iris<span class="token punctuation">.</span>target
+
+<span class="token comment"># Standardize the features</span>
+scaler <span class="token operator">=</span> StandardScaler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X_scaled <span class="token operator">=</span> scaler<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+
+<span class="token comment"># Perform PCA</span>
+pca <span class="token operator">=</span> PCA<span class="token punctuation">(</span>n_components<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+X_pca <span class="token operator">=</span> pca<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>X_scaled<span class="token punctuation">)</span>
+
+<span class="token comment"># Plot the PCA-transformed data</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>iris<span class="token punctuation">.</span>target_names<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>X_pca<span class="token punctuation">[</span>y <span class="token operator">==</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X_pca<span class="token punctuation">[</span>y <span class="token operator">==</span> i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span>iris<span class="token punctuation">.</span>target_names<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Principal Component 1'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Principal Component 2'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'PCA of Iris Dataset'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Explained variance ratio</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Explained variance ratio:"</span><span class="token punctuation">,</span> pca<span class="token punctuation">.</span>explained_variance_ratio_<span class="token punctuation">)</span>
+</code><button class="copy-code-button">Copy</button></pre></div><div class="mod-footer"></div>

@@ -1,0 +1,378 @@
+[
+  {
+    "id": "python-for-kids",
+    "title": "Python for Kids",
+    "category": "note",
+    "tags": [
+      "python",
+      "beginner",
+      "kids",
+      "tutorial",
+      "variables",
+      "loops",
+      "functions",
+      "project"
+    ],
+    "excerpt": "A thorough beginner guide \u2014 variables, strings, numbers, booleans, print/input, if/elif/else, for/while loops, lists, functions, string slicing, and a complete number guessing game project with exercises."
+  },
+  {
+    "id": "python-for-big-kids",
+    "title": "Python for Big Kids",
+    "category": "note",
+    "tags": [
+      "python",
+      "intermediate",
+      "tutorial",
+      "lists",
+      "classes",
+      "modules",
+      "project",
+      "quiz"
+    ],
+    "excerpt": "A comprehensive intermediate guide \u2014 list/dict/set/tuple deep dives, comprehensions, *args/**kwargs, lambda, scope, error handling, file I/O, OOP with inheritance, modules (random/math/datetime/os), decorators, and a full multi-category quiz app project."
+  },
+  {
+    "id": "advanced-hyperparameter-tuning",
+    "title": "Advanced Hyperparameter Tuning",
+    "category": "note",
+    "tags": [
+      "optuna",
+      "learning",
+      "ml",
+      "machine",
+      "notes",
+      "tensorflow",
+      "tuning",
+      "advance",
+      "model",
+      "hyperparameter",
+      "sklearn"
+    ],
+    "excerpt": "Advanced Hyperparameter Tuning"
+  },
+  {
+    "id": "classification-using-tree-models",
+    "title": "Classification using Tree Models",
+    "category": "note",
+    "tags": [
+      "ensamble",
+      "learning",
+      "machine",
+      "notes",
+      "classification",
+      "tensorflow",
+      "tree",
+      "decission",
+      "model",
+      "forest",
+      "ml",
+      "python",
+      "sklearn",
+      "binary"
+    ],
+    "excerpt": "Classification using Tree Models"
+  },
+  {
+    "id": "clustering",
+    "title": "Clustering",
+    "category": "note",
+    "tags": [
+      "notes",
+      "machine",
+      "means",
+      "unsupervised",
+      "ml",
+      "clustering",
+      "python",
+      "sklearn"
+    ],
+    "excerpt": "K-Means Clustering"
+  },
+  {
+    "id": "collatz-conjecture",
+    "title": "Collatz Conjecture",
+    "category": "project",
+    "tags": [],
+    "excerpt": "Collatz Conjecture"
+  },
+  {
+    "id": "eda",
+    "title": "EDA",
+    "category": "note",
+    "tags": [
+      "processing",
+      "eda",
+      "notes",
+      "analysis",
+      "data"
+    ],
+    "excerpt": "EDA"
+  },
+  {
+    "id": "ensemble-learning",
+    "title": "Ensemble Learning",
+    "category": "note",
+    "tags": [
+      "ensamble",
+      "learning",
+      "machine",
+      "notes",
+      "tensorflow",
+      "decission",
+      "forest",
+      "ml",
+      "python",
+      "sklearn",
+      "random"
+    ],
+    "excerpt": "Random Forests"
+  },
+  {
+    "id": "getting-started-with-k-nearest-neighbors-algorithm",
+    "title": "Getting Started with K-Nearest Neighbors Algorithm",
+    "category": "blog",
+    "tags": [
+      "learning",
+      "machine",
+      "distance",
+      "basic",
+      "blog",
+      "model",
+      "ml",
+      "python",
+      "knn"
+    ],
+    "excerpt": "How KNN Works"
+  },
+  {
+    "id": "git-and-github",
+    "title": "Git and GitHub",
+    "category": "note",
+    "tags": [
+      "notes",
+      "version",
+      "git",
+      "github",
+      "devops"
+    ],
+    "excerpt": "Git and GitHub"
+  },
+  {
+    "id": "gradient-descent-a-visual-linear-using-regression",
+    "title": "Gradient Descent-a Visual Linear using Regression",
+    "category": "project",
+    "tags": [],
+    "excerpt": "Understanding Gradient Descent with a Visual Linear Regression Example"
+  },
+  {
+    "id": "hyperparameter-tuning",
+    "title": "Hyperparameter Tuning",
+    "category": "note",
+    "tags": [
+      "optuna",
+      "learning",
+      "ml",
+      "selection",
+      "machine",
+      "notes",
+      "tensorflow",
+      "tuning",
+      "model",
+      "hyperparameter"
+    ],
+    "excerpt": "Grid Search"
+  },
+  {
+    "id": "hypothesis-testing",
+    "title": "Hypothesis Testing",
+    "category": "note",
+    "tags": [
+      "basian",
+      "math",
+      "notes",
+      "testing",
+      "probability",
+      "stats",
+      "data",
+      "hypothesis"
+    ],
+    "excerpt": "Types of Hypothesis Testing"
+  },
+  {
+    "id": "linear-regression-a-comprehensive-guide",
+    "title": "Linear Regression A Comprehensive Guide",
+    "category": "blog",
+    "tags": [
+      "learning",
+      "machine",
+      "regression",
+      "blog",
+      "basics",
+      "ml",
+      "python"
+    ],
+    "excerpt": "Linear Regression A Comprehensive Guide"
+  },
+  {
+    "id": "model-selection",
+    "title": "Model Selection",
+    "category": "note",
+    "tags": [
+      "ml",
+      "selection",
+      "notes",
+      "testing",
+      "tensorflow",
+      "tuning",
+      "model",
+      "hyperparameter",
+      "python",
+      "sklearn"
+    ],
+    "excerpt": "Model Selection in Machine Learning"
+  },
+  {
+    "id": "nlp",
+    "title": "NLP",
+    "category": "note",
+    "tags": [
+      "sentence",
+      "language",
+      "notes",
+      "processing",
+      "text",
+      "token",
+      "classification",
+      "natural",
+      "tokenization",
+      "nlp",
+      "words",
+      "naturel",
+      "data"
+    ],
+    "excerpt": "NLTK"
+  },
+  {
+    "id": "nltk",
+    "title": "NLTK",
+    "category": "note",
+    "tags": [
+      "language",
+      "notes",
+      "processing",
+      "text",
+      "natural",
+      "setup",
+      "tokenization",
+      "python",
+      "nltk"
+    ],
+    "excerpt": "NLTK"
+  },
+  {
+    "id": "pca",
+    "title": "PCA",
+    "category": "note",
+    "tags": [
+      "notes",
+      "component",
+      "analysis",
+      "processing",
+      "tuning",
+      "PCA",
+      "principal",
+      "python",
+      "data"
+    ],
+    "excerpt": "PCA"
+  },
+  {
+    "id": "regression",
+    "title": "Regression",
+    "category": "note",
+    "tags": [
+      "math",
+      "processing",
+      "notes",
+      "analysis",
+      "regression",
+      "python",
+      "sklearn",
+      "data"
+    ],
+    "excerpt": "Building on Linear Regression"
+  },
+  {
+    "id": "sql-for-kids",
+    "title": "SQL for kids",
+    "category": "note",
+    "tags": [
+      "sql",
+      "notes",
+      "basic",
+      "database",
+      "data"
+    ],
+    "excerpt": "Introduction to Databases"
+  },
+  {
+    "id": "sql-for-older-kids",
+    "title": "SQL for older kids",
+    "category": "note",
+    "tags": [
+      "sql",
+      "notes",
+      "basic",
+      "database",
+      "data"
+    ],
+    "excerpt": "Constraints"
+  },
+  {
+    "id": "smooth-sailing-in-the-tech-seas-docker-demystified",
+    "title": "Smooth Sailing in the Tech Seas Docker Demystified",
+    "category": "blog",
+    "tags": [
+      "containers",
+      "docker",
+      "mlops",
+      "blog",
+      "devops"
+    ],
+    "excerpt": "Smooth Sailing in the Tech Seas Docker Demystified"
+  },
+  {
+    "id": "unlocking-natural-language-processing-(nlp)-with-nltk",
+    "title": "Unlocking Natural Language Processing (NLP) with NLTK",
+    "category": "blog",
+    "tags": [
+      "language",
+      "processing",
+      "text",
+      "classification",
+      "natural",
+      "blog",
+      "nlp",
+      "ml",
+      "python",
+      "nltk"
+    ],
+    "excerpt": "Unlocking Natural Language Processing (NLP) with NLTK"
+  },
+  {
+    "id": "validation-strategies",
+    "title": "Validation Strategies",
+    "category": "note",
+    "tags": [
+      "validation",
+      "notes",
+      "testing",
+      "tensorflow",
+      "model",
+      "ml",
+      "python",
+      "sklearn"
+    ],
+    "excerpt": "Train-Test Split"
+  }
+]

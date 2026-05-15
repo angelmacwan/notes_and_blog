@@ -1,0 +1,44 @@
+<div class="heading-wrapper"><div class="heading-children"><div><p dir="auto">A Random Forest is an ensemble learning method that combines multiple decision trees to create a more robust and accurate predictor. It leverages the idea of "wisdom of the crowd" where averaging predictions from diverse trees reduces variance and improves generalization.</p></div><div><ul>
+<li data-line="0" dir="auto">Uses bagging (bootstrap aggregating) to train individual decision trees on random subsets of data with random feature selection at each split.</li>
+<li data-line="1" dir="auto">Each tree <em>votes</em> on the final prediction, with the majority class being the <em>ensemble's prediction (for classification)</em> or the <em>average prediction (for regression)</em>.</li>
+<li data-line="2" dir="auto">Enhances model stability and reduces overfitting compared to a single decision tree.</li>
+</ul></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> RandomForestClassifier
+
+<span class="token comment"># Create a Random Forest classifier with 100 trees</span>
+clf <span class="token operator">=</span> RandomForestClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Train the model on your data</span>
+clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># Make predictions on new data</span>
+predictions <span class="token operator">=</span> clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+</code><button class="copy-code-button">Copy</button></pre></div><div class="heading-wrapper"><h2 data-heading="**Bagging**" dir="auto" class="heading" id="**Bagging**"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Bagging</strong></h2><div class="heading-children"><div><p dir="auto">A technique for reducing variance in machine learning models by training multiple models on <em>different subsets of data</em> with replacement (i.e., some samples may appear in multiple subsets). By <em>averaging</em> the predictions from these models, the overall prediction is less sensitive to fluctuations in the training data.</p></div><div><ul>
+<li data-line="0" dir="auto">Creates diversity among the base models by using different data subsets.</li>
+<li data-line="1" dir="auto">Particularly effective for reducing variance in unstable models like decision trees.</li>
+<li data-line="2" dir="auto">Used in Random Forests and other ensemble methods.</li>
+</ul></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token comment"># Same as above XD</span>
+</code><button class="copy-code-button">Copy</button></pre></div></div></div></div></div><div class="heading-wrapper"><h1 data-heading="**Boosting**" dir="auto" class="heading" id="**Boosting**"><strong>Boosting</strong></h1><div class="heading-children"><div><p dir="auto">A <em>sequential ensemble method</em> where each new model in the sequence learns from the errors of the previous model. The goal is to progressively improve the overall prediction accuracy by focusing on the data points that the earlier models misclassified.</p></div><div><ul>
+<li data-line="0" dir="auto"><em>Models are built sequentially, with each model fitting the residuals (errors) of the previous model.</em></li>
+<li data-line="1" dir="auto">Weights are assigned to data points, increasing weights for misclassified points to give them more focus in subsequent models.</li>
+<li data-line="2" dir="auto">Can be more prone to overfitting than bagging if not carefully tuned.</li>
+<li data-line="3" dir="auto">Examples of boosting algorithms include AdaBoost and Gradient Boosting.</li>
+</ul></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword">import</span> GradientBoostingClassifier
+
+<span class="token comment"># Create a Gradient Boosting classifier with 100 trees and a learning rate of 0.1</span>
+gbr <span class="token operator">=</span> GradientBoostingClassifier<span class="token punctuation">(</span>n_estimators<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> learning_rate<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Train the model on your data</span>
+gbr<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># Make predictions on new data</span>
+predictions <span class="token operator">=</span> gbr<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="**Gradient Boosting**" dir="auto" class="heading" id="**Gradient_Boosting**"><strong>Gradient Boosting</strong></h1><div class="heading-children"><div><p dir="auto">A specific type of boosting algorithm that uses a gradient descent-like approach to minimize loss function. It iteratively builds decision trees, focusing on correcting the errors of the previous trees.</p></div><div><ul>
+<li data-line="0" dir="auto">Utilizes decision trees as weak learners (simple models).</li>
+<li data-line="1" dir="auto">Employs a loss function to measure prediction errors.</li>
+<li data-line="2" dir="auto">Each subsequent tree attempts to correct the errors made by the previous one.</li>
+<li data-line="3" dir="auto">Popular algorithm for regression and classification tasks.<br>
+The provided Python code demonstrates Gradient Boosting using <code>GradientBoostingClassifier</code>. This is a powerful and versatile ensemble method.</li>
+</ul></div></div></div><div class="heading-wrapper"><h1 data-heading="**Choosing Between Bagging and Boosting:**" dir="auto" class="heading" id="**Choosing_Between_Bagging_and_Boosting:**"><strong>Choosing Between Bagging and Boosting:</strong></h1><div class="heading-children"><div><ul>
+<li data-line="0" dir="auto">If reducing variance (model instability) is your primary concern, bagging is a good choice.</li>
+<li data-line="1" dir="auto">If you need a more powerful model that can potentially achieve lower bias (underfitting), boosting might be preferable. However, be cautious of overfitting and tune the learning rate carefully.</li>
+</ul></div><div class="mod-footer"></div></div></div></div>

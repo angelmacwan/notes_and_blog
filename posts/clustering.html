@@ -1,0 +1,50 @@
+<div class="heading-wrapper"><div class="heading-children"><div><p dir="auto">K-Means clustering is a partitioning-based clustering algorithm that aims to partition data into K clusters, where each data point belongs to the cluster with the nearest mean (centroid). Here's how it works:</p></div><div><ol>
+<li data-line="0" dir="auto"><strong>Initialization:</strong> Randomly initialize K centroids.</li>
+<li data-line="1" dir="auto"><strong>Assignment:</strong> Assign each data point to the nearest centroid, forming K clusters.</li>
+<li data-line="2" dir="auto"><strong>Update Centroids:</strong> Recalculate the centroids of each cluster as the mean of all data points assigned to that cluster.</li>
+<li data-line="3" dir="auto"><strong>Repeat:</strong> Iterate steps 2 and 3 until convergence, i.e., when the centroids no longer change significantly or a predefined number of iterations is reached.</li>
+</ol></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> make_blobs
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>cluster <span class="token keyword">import</span> KMeans
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># Generate sample data</span>
+X<span class="token punctuation">,</span> _ <span class="token operator">=</span> make_blobs<span class="token punctuation">(</span>n_samples<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">,</span> centers<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> cluster_std<span class="token operator">=</span><span class="token number">0.60</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Perform K-Means clustering</span>
+kmeans <span class="token operator">=</span> KMeans<span class="token punctuation">(</span>n_clusters<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span>
+kmeans<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+y_kmeans <span class="token operator">=</span> kmeans<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+
+<span class="token comment"># Visualize the clusters</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>X<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token operator">=</span>y_kmeans<span class="token punctuation">,</span> s<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'viridis'</span><span class="token punctuation">)</span>
+
+centers <span class="token operator">=</span> kmeans<span class="token punctuation">.</span>cluster_centers_
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>centers<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> centers<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">,</span> s<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.75</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Feature 1'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Feature 2'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'K-Means Clustering'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div></div></div><div class="heading-wrapper"><h1 data-heading="**Hierarchical Clustering:**" dir="auto" class="heading" id="**Hierarchical_Clustering:**"><strong>Hierarchical Clustering:</strong></h1><div class="heading-children"><div><p dir="auto">Hierarchical clustering is a method of cluster analysis that builds a hierarchy of clusters. It does not require specifying the number of clusters beforehand. Here's how it works:</p></div><div><ol>
+<li data-line="0" dir="auto"><strong>Initialization:</strong> Start with each data point as a singleton cluster.</li>
+<li data-line="1" dir="auto"><strong>Merge:</strong> Iteratively merge the two closest clusters until only one cluster remains, forming a hierarchy or dendrogram.</li>
+<li data-line="2" dir="auto"><strong>Dendrogram Cutting:</strong> Cut the dendrogram at a certain height to determine the number of clusters.</li>
+<li data-line="3" dir="auto"><strong>Cluster Formation:</strong> Assign each data point to a cluster based on the cutting point.</li>
+</ol></div><div><pre class="language-python" tabindex="0"><code class="language-python is-loaded"><span class="token keyword">from</span> scipy<span class="token punctuation">.</span>cluster<span class="token punctuation">.</span>hierarchy <span class="token keyword">import</span> dendrogram<span class="token punctuation">,</span> linkage
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># Generate sample data</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Perform Hierarchical Clustering</span>
+linked <span class="token operator">=</span> linkage<span class="token punctuation">(</span>X<span class="token punctuation">,</span> <span class="token string">'single'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Plot dendrogram</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+dendrogram<span class="token punctuation">(</span>linked<span class="token punctuation">,</span> orientation<span class="token operator">=</span><span class="token string">'top'</span><span class="token punctuation">,</span> distance_sort<span class="token operator">=</span><span class="token string">'descending'</span><span class="token punctuation">,</span> show_leaf_counts<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Hierarchical Clustering Dendrogram'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Sample Index'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Distance'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</code><button class="copy-code-button">Copy</button></pre></div><div class="mod-footer"></div></div></div>

@@ -1,0 +1,62 @@
+<div class="heading-wrapper"><h2 data-heading="**What is Git?**" dir="auto" class="heading" id="**What_is_Git?**"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>What is Git?</strong></h2><div class="heading-children"><div><p dir="auto">Git is a distributed version control system (DVCS) designed to handle everything from small to very large projects with speed and efficiency. It allows multiple people to collaborate on projects and keep track of changes made to files over time.</p></div><div class="heading-wrapper"><h3 data-heading="**Key Concepts in Git**" dir="auto" class="heading" id="**Key_Concepts_in_Git**"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Key Concepts in Git</strong></h3><div class="heading-children"><div><ol>
+<li data-line="0" dir="auto"><strong>Repository (Repo):</strong> This is the core of Git. It's a directory where Git stores all the files and the history of changes for a project.</li>
+<li data-line="1" dir="auto"><strong>Commit:</strong> A commit is a snapshot of the project at a specific point in time. It represents a set of changes made to the files in the repository.</li>
+<li data-line="2" dir="auto"><strong>Branch:</strong> A branch is essentially a parallel version of the repository. It allows you to work on new features or fixes without affecting the main project until you're ready to merge your changes.</li>
+<li data-line="3" dir="auto"><strong>Merge:</strong> Merging combines changes from different branches into one branch. It's typically used to incorporate the changes made in a feature branch back into the main branch.</li>
+<li data-line="4" dir="auto"><strong>Pull Request (PR):</strong> A pull request is a request to merge changes from one branch into another. It's commonly used in collaborative environments, where team members review each other's code before merging it into the main branch.</li>
+</ol></div></div></div><div class="heading-wrapper"><h3 data-heading="**Basic Git Workflow**" dir="auto" class="heading" id="**Basic_Git_Workflow**"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Basic Git Workflow</strong></h3><div class="heading-children"><div><ol>
+<li data-line="0" dir="auto">
+<p><strong>Initialize a Repository:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> init
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="6" dir="auto">
+<p><strong>Add Files to the Staging Area:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator"><</span>file<span class="token operator"><span class="token file-descriptor important">1</span>></span> <span class="token operator"><</span>file<span class="token operator"><span class="token file-descriptor important">2</span>></span> <span class="token punctuation">..</span>.
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="12" dir="auto">
+<p><strong>Commit Changes:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> commit -m <span class="token string">"Commit message"</span>
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="18" dir="auto">
+<p><strong>Create a Branch:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> checkout -b new-feature
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="24" dir="auto">
+<p><strong>Make Changes and Commit:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token comment"># Make changes to files</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Implement new feature"</span>
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="32" dir="auto">
+<p><strong>Switch Branches:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> checkout main
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="38" dir="auto">
+<p><strong>Merge Branches:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> merge new-feature
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="44" dir="auto">
+<p><strong>Push Changes to Remote Repository:</strong></p>
+<pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> push origin main
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+</ol></div></div></div><div class="heading-wrapper"><h3 data-heading="**Example**" dir="auto" class="heading" id="**Example**"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Example</strong></h3><div class="heading-children"><div><p dir="auto">Let's say you're working on a project with a friend. You both clone the repository to your local machines:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> clone <span class="token operator"><</span>repository_url<span class="token operator">></span>
+<span class="token builtin class-name">cd</span> <span class="token operator"><</span>repository_name<span class="token operator">></span>
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">You create a new branch to work on a feature:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> checkout -b new-feature
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">You make changes to some files, add them to the staging area, and commit your changes:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token comment"># Make changes</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Implemented new feature"</span>
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">Meanwhile, your friend makes some changes on the main branch. You want to incorporate those changes into your branch, so you switch back to the main branch, pull the latest changes, and then switch back to your feature branch:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> checkout main
+<span class="token function">git</span> pull origin main
+<span class="token function">git</span> checkout new-feature
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">Finally, when you're done with your feature and have tested it thoroughly, you merge it back into the main branch:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> checkout main
+<span class="token function">git</span> merge new-feature
+</code><button class="copy-code-button">Copy</button></pre></div><div><p dir="auto">And push the changes to the remote repository:</p></div><div><pre class="language-bash" tabindex="0"><code class="language-bash is-loaded"><span class="token function">git</span> push origin main
+</code><button class="copy-code-button">Copy</button></pre></div><div><hr></div></div></div></div></div><div class="heading-wrapper"><h1 data-heading="Important commands" dir="auto" class="heading" id="Important_commands">Important commands</h1><div class="heading-children"><div><p dir="auto"><strong>Clone</strong> -> <code>git clone <URL></code></p></div><div><p dir="auto"><strong>Clone Branch</strong> -> <code>git clone -b <Branch_Name> <URL></code></p></div><div><p dir="auto"><strong>View Branches</strong> -> <code>git branch</code></p></div><div><p dir="auto"><strong>View Current Branch</strong> -> <code>git branch --show-current</code></p></div><div><p dir="auto"><strong>Stage Files</strong> -> <code>git add .</code> or <code>git add <File_Path></code></p></div><div><p dir="auto"><strong>Commit Files</strong> -> <code>git commit -m "<Commit_Message>"</code></p></div><div><p dir="auto"><strong>Push Code to Branch</strong> -> <code>git push origin <Branch_Name></code></p></div><div class="mod-footer"></div></div></div></div>
