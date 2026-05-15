@@ -60,7 +60,7 @@ button { cursor:pointer; border:none; background:none; font-family:inherit; font
 
 /* Page wrapper */
 .page-wrap { max-width:1200px; margin:0 auto; padding:2.5rem 2rem 4rem; }
-.reader-wrap { max-width:72ch; }
+.reader-wrap { max-width:88ch; }
 
 /* Main content */
 .main-content { min-height:calc(100vh - 57px); }
@@ -136,8 +136,39 @@ button { cursor:pointer; border:none; background:none; font-family:inherit; font
 .empty-state .material-symbols-outlined { font-size:2.5rem; opacity:.3; display:block; margin-bottom:.75rem; }
 
 /* Reader */
-.reader-back { display:inline-flex; align-items:center; gap:.45rem; margin-bottom:1.5rem; color:var(--secondary); font-size:.88rem; font-weight:600; cursor:pointer; padding:.45rem .75rem; border-radius:8px; transition:all .15s; border:1px solid var(--outline-variant); }
+.reader-back { display:inline-flex; align-items:center; gap:.45rem; margin-bottom:1.5rem; color:var(--secondary); font-size:.88rem; font-weight:600; cursor:pointer; padding:.45rem .75rem; border-radius:8px; transition:background .15s, color .15s, box-shadow .15s; border:1px solid var(--outline-variant); }
 .reader-back:hover { background:var(--surface-container); color:var(--primary); }
+
+@keyframes back-btn-in {
+  from { opacity:0; transform:translateY(-6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* Back button floats when user scrolls — desktop: move to left side */
+@media (min-width:769px) {
+  .reader-back.is-floating {
+    position:fixed; top:4.5rem; left:1.5rem;
+    background:rgba(248,249,249,.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 16px rgba(18,40,60,.1);
+    z-index:99;
+    margin-bottom:0;
+    animation:back-btn-in .2s ease forwards;
+  }
+}
+
+/* Mobile: stays fixed at top, no left shift */
+@media (max-width:768px) {
+  .reader-back.is-floating {
+    position:fixed; top:4.25rem; left:1rem;
+    background:rgba(248,249,249,.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 16px rgba(18,40,60,.1);
+    z-index:99;
+    margin-bottom:0;
+    animation:back-btn-in .2s ease forwards;
+  }
+}
 .reader-cat { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--outline); margin-bottom:.5rem; }
 .reader-title { font-family:'Manrope',sans-serif; font-size:clamp(1.75rem,3vw,2.6rem); line-height:1.05; letter-spacing:-.055em; color:var(--primary); margin-bottom:.85rem; }
 .reader-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.25rem; }
@@ -166,7 +197,7 @@ button { cursor:pointer; border:none; background:none; font-family:inherit; font
 .reader-body pre code { background:none !important; padding:0 !important; font-family:'SF Mono','Fira Code',monospace; font-size:.85rem; line-height:1.65; color:#24292e !important; }
 .reader-body code { background:var(--surface-container-high); padding:.1em .4em; border-radius:5px; font-family:'SF Mono','Fira Code',monospace; font-size:.85em; color:var(--primary); }
 .reader-body .heading-wrapper,.reader-body .heading-children { display:contents; }
-.reader-body .block-language-dataview,.reader-body .mod-footer,.reader-body .tag { display:none; }
+.reader-body .block-language-dataview,.reader-body .mod-footer,.reader-body .tag,.reader-body .copy-code-button { display:none; }
 
 /* Views */
 .view { display:none; }

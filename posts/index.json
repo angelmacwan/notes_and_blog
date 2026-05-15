@@ -16,8 +16,8 @@
     "excerpt": "A thorough beginner guide \u2014 variables, strings, numbers, booleans, print/input, if/elif/else, for/while loops, lists, functions, string slicing, and a complete number guessing game project with exercises."
   },
   {
-    "id": "python-for-big-kids",
-    "title": "Python for Big Kids",
+    "id": "python-for-older-kids",
+    "title": "Python for Older Kids",
     "category": "note",
     "tags": [
       "python",

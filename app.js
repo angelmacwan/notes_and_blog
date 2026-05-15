@@ -46,6 +46,7 @@ function searchHome(query) {
 function switchView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + id).classList.add('active');
+  document.getElementById('reader-back').classList.remove('is-floating');
   window.scrollTo(0, 0);
 }
 
@@ -67,6 +68,24 @@ async function openArticle(id) {
 }
 
 document.querySelector('[data-view="home"]').addEventListener('click', () => switchView('home'));
+
+(function () {
+  const btn = document.getElementById('reader-back');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const readerActive = document.getElementById('view-reader').classList.contains('active');
+      if (readerActive) {
+        btn.classList.toggle('is-floating', window.scrollY > 60);
+      } else {
+        btn.classList.remove('is-floating');
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 fetch('posts/index.json')
   .then(r => r.json())
